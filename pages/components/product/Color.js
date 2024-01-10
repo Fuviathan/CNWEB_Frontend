@@ -3,7 +3,7 @@ import React from "react";
 const Color = (props) => {
   return (
     <>
-      <ul className="flex gap-4 ">
+      <ul className="flex gap-4 flex-wrap ">
         {props?.data?.map((item, index) => {
           return (
             <li
