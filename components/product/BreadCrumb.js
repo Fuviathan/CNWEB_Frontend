@@ -3,8 +3,8 @@ import Link from "next/link";
 export const BreadCrumb = (props) => {
   const { title } = props || " ";
   return (
-    <div className="breadcrumb mb-0 py-4">
-      <p className="text-left mb-0 pl-8 font-mono font-semibold">
+    <div className="py-4 mb-0 breadcrumb">
+      <p className="pl-8 mb-0 font-mono font-semibold text-left">
         <Link href={"/"} to="/" className="text-dark">
           Home
         </Link>
