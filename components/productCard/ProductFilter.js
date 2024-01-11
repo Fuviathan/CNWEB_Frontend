@@ -64,21 +64,21 @@ const ProductFilter = () => {
   }
   return (
     <div>
-      <div className="grid  lg:grid-cols-4 gap-2  lg:mx-[4rem] shadow-2xl bg-white px-[2rem] ">
+      <div className="grid lg:grid-cols-4 gap-2 lg:mx-[4rem] shadow-2xl bg-white px-[2rem] ">
         {/* ==============Product Filter========================= */}
         <div className="col-span-1 mt-4">
           {/* =============Filter by category====================== */}
-          <div className="flex flex-col justify-center border-2 px-4 rounded-lg">
-            <div className="text-2xl font-bold  mr-4 ">Shop by categories</div>
+          <div className="flex flex-col justify-center px-4 border-2 rounded-lg">
+            <div className="mr-4 text-2xl font-bold ">Shop by categories</div>
             <div className="flex flex-row py-4">
               <div>
-                <ul className="ps-0 mb-0 flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 mb-0 ps-0">
                   {categories &&
                     [...new Set(categories)].map((item, index) => {
                       return (
                         <li
                           key={item && item["_id"]}
-                          className="border-2 bg-yellow-400 text-base font-semibold px-2 rounded-md cursor-pointer "
+                          className="px-2 text-base font-semibold bg-yellow-400 border-2 rounded-md cursor-pointer "
                           onClick={() => setCategory(item.title)}
                         >
                           {item.title}
@@ -92,10 +92,10 @@ const ProductFilter = () => {
 
           {/* =============Filter by Color and price====================== */}
 
-          <div className="flex flex-col justify-center border-2 rounded-xl p-2 mt-4">
-            <div className="text-2xl font-bold mr-4 ">Filter By</div>
+          <div className="flex flex-col justify-center p-2 mt-4 border-2 rounded-xl">
+            <div className="mr-4 text-2xl font-bold ">Filter By</div>
             <div className="mt-2">
-              <div className="text-xl text-gray-500 font-semibold"> Price:</div>
+              <div className="text-xl font-semibold text-gray-500"> Price:</div>
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
                 <TextField
@@ -112,7 +112,7 @@ const ProductFilter = () => {
               </div>
             </div>
             <div>
-              <div className="text-xl text-gray-500 font-semibold mt-4">
+              <div className="mt-4 text-xl font-semibold text-gray-500">
                 {" "}
                 Colors
               </div>
@@ -121,17 +121,17 @@ const ProductFilter = () => {
           </div>
 
           {/* =====================Filter by Brand======================= */}
-          <div className="flex flex-col justify-center border-2 px-4 rounded-lg mt-4">
-            <div className="text-2xl font-bold  mr-4 ">Brand</div>
+          <div className="flex flex-col justify-center px-4 mt-4 border-2 rounded-lg">
+            <div className="mr-4 text-2xl font-bold ">Brand</div>
             <div className="flex flex-row py-4">
               <div>
-                <ul className="ps-0 mb-0 flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 mb-0 ps-0">
                   {categories &&
                     [...new Set(brands)].map((item, index) => {
                       return (
                         <li
                           key={item && item["_id"]}
-                          className="border-2 bg-yellow-400 text-base font-semibold px-2 rounded-md cursor-pointer "
+                          className="px-2 text-base font-semibold bg-yellow-400 border-2 rounded-md cursor-pointer "
                           onClick={() => setCategory(item.title)}
                         >
                           {item.title}
@@ -148,10 +148,10 @@ const ProductFilter = () => {
         <div className="col-span-3">
           <div className="col-span-3 mb-4">
             <div className="flex items-center ">
-              <p className="text-base font-semibold mr-4">Sort By:</p>
+              <p className="mr-4 text-base font-semibold">Sort By:</p>
               <div>
                 <select
-                  className="text-lg font-medium  border-2 px-4 rounded-xl"
+                  className="px-4 text-lg font-medium border-2 rounded-xl"
                   onChange={(e) => {
                     setSort(e.target.value);
                   }}
@@ -199,7 +199,7 @@ const ProductFilter = () => {
           </div>
           {/* =================Pagination======================= */}
           <div className="col-span-3">
-            <div className="w-full m-auto py-8 flex justify-center ">
+            <div className="flex justify-center w-full py-8 m-auto ">
               <Pagination
                 count={10}
                 defaultPage={5}
