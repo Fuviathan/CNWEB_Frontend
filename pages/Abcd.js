@@ -3,10 +3,8 @@ import React from 'react'
 
 export default function abcd() {
     return (
-        <div className=''>
-
-            <Layout />
-        </div>
-
+        <Layout >
+            <div className='w-screen h-screen bg-gray-50'>ABCD</div>
+        </Layout>
     )
 }
