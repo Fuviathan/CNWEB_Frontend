@@ -1,10 +1,13 @@
 import React from 'react'
 import Header from './Header/Header'
+import Footer from './Footer/Footer'
 
-export default function Layout() {
+export default function Layout(props) {
   return (
-    <div className='flex flex-col'>
-        <Header />
+    <div className='flex flex-col h-screen'>
+      <Header />
+      {props.children}
+      <Footer />
     </div>
   )
 }
