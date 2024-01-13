@@ -4,10 +4,12 @@ import {
   CompareArrowsOutlined,
   Favorite,
   FavoriteBorder,
+  ShoppingCart,
 } from "@mui/icons-material";
-import { Checkbox, Rating } from "@mui/material";
+import { Button, Checkbox, Rating } from "@mui/material";
 import React from "react";
 import { pink } from "@mui/material/colors";
+import Image from "next/image";
 
 const ProductCard = ({ grid }) => {
   const item = {
@@ -21,23 +23,23 @@ const ProductCard = ({ grid }) => {
   return (
     <div>
       <div
-        class={`flex w-full overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md  ${
+        class={`flex w-full overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md h-fit${
           grid === 6 ? " flex-row justify-start" : " flex-col"
         } `}
       >
         <div
-          class={`relative block mr-0 mx-3 mt-3 flex h-60 overflow-hidden rounded-xl w-max-full ${
-            grid === 6 ? " w-[40%] " : " "
+          class={`relative block mr-0 mx-3 mt-3   overflow-hidden rounded-xl w-max-full ${
+            grid === 6 ? " w-[20%] " : " "
           } `}
         >
-          <div className="w-full h-full ">
+          <div className="w-[full] h-[11rem] ">
             <img
-              className="w-full h-full object-contain "
+              className=" object-contain w-full h-full absolute top-0 "
               src="http://res.cloudinary.com/des2cvikr/image/upload/v1684594653/rdlwx7vepfuyzntrrnab.jpg"
             />
 
             <img
-              className="w-full h-full object-contain absolute top-0 hover:opacity-0"
+              className="object-contain w-full h-full absolute top-0 hover:opacity-0"
               src="https://res.cloudinary.com/des2cvikr/image/upload/v1684831369/knekthojbz0de2kbw6gk.jpg"
             />
           </div>
@@ -71,19 +73,17 @@ const ProductCard = ({ grid }) => {
           </div>
         </div>
         <div
-          className={`ml-auto mt-4 px-5 pb-5 ${grid === 6 ? "w-[60%]" : ""}`}
+          className={`ml-auto mt-4 px-5 pb-5 w-full ${
+            grid === 6 ? "w-full" : ""
+          }`}
         >
-          <a href="#">
-            <h5 class="text-xl tracking-tight text-slate-900 font-semibold">
-              Nike Air MX Super 2500 - Red
-            </h5>
-          </a>
-          <div class="mt-2 mb-5 flex items-center justify-between">
-            <p>
-              <span class="text-3xl font-bold text-slate-900">$449</span>
-              <span class="text-sm text-slate-900 line-through">$699</span>
-            </p>
-            <div class="flex items-center">
+          <div className="w-full flex flex-wrap justify-between">
+            <div>
+              <div class="w-max-full tracking-tight text-slate-900 font-semibold">
+                Nike Air MX Super 2500 - Red
+              </div>
+            </div>
+            <div class="flex items-center  flex-wrap ">
               <Rating
                 value={5}
                 size={`${grid === 6 ? "large" : "small"}`}
@@ -93,33 +93,23 @@ const ProductCard = ({ grid }) => {
               </div>
             </div>
           </div>
-          <div>
+          <div class="mt-2 mb-5 flex items-center  justify-between">
+            <p>
+              <span class="text-3xl font-bold text-slate-900">$449</span>
+              <span class="text-sm text-slate-900 line-through">$699</span>
+            </p>
+          </div>
+          <div className="w-full ">
             {grid === 6 && (
               <p
                 className=""
                 dangerouslySetInnerHTML={{ __html: item?.description }}
               ></p>
             )}
-            <button
-              href="#"
-              className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="mr-2 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              Add to cart
-            </button>
+            <Button variant="contained" className="bg-[#facc15] py-2">
+              <ShoppingCart></ShoppingCart>
+              <p className="text-base font-medium ml-2">Add to cart</p>
+            </Button>
           </div>
         </div>
       </div>
