@@ -64,7 +64,7 @@ const ProductFilter = () => {
   }
   return (
     <div>
-      <div className="grid lg:grid-cols-4 gap-2 lg:mx-[4rem] shadow-2xl bg-white px-[2rem] ">
+      <div className="grid lg:grid-cols-4 gap-10 lg:mx-[6rem] shadow-2xl bg-white px-[2rem] ">
         {/* ==============Product Filter========================= */}
         <div className="col-span-1 mt-4">
           {/* =============Filter by category====================== */}
@@ -187,11 +187,11 @@ const ProductFilter = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-1">
             {[1, 1, 1, 1, 1, 1].map((item, index) => (
               <div
                 key={index}
-                className={`${grid === 6 ? "col-span-4" : "col-span-1"}  `}
+                className={`${grid === 6 ? "col-span-5" : "col-span-1"}  `}
               >
                 <ProductCard grid={grid}></ProductCard>
               </div>
