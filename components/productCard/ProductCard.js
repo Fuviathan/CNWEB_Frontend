@@ -28,7 +28,7 @@ const ProductCard = ({ grid }) => {
         } `}
       >
         <div
-          class={`relative block mr-0 mx-3 mt-3 flex h-60 overflow-hidden rounded-xl w-max-full ${
+          class={`relative mr-0 mx-3 mt-3 flex h-60 overflow-hidden rounded-xl w-max-full ${
             grid === 6 ? " w-[40%] " : " "
           } `}
         >
