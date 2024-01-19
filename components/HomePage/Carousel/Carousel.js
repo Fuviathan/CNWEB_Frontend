@@ -22,9 +22,9 @@ export default function Carousel() {
                 modules={[Autoplay, Mousewheel, Pagination]}
                 className="w-full my-4 h-fit"
                 loop={true}
-            // autoplay={{
-            //     delay: 2500,
-            // }}
+                autoplay={{
+                    delay: 2500,
+                }}
             >
                 <SwiperSlide>
                     <div className='flex flex-row p-4 h-[30rem]'>
@@ -42,15 +42,6 @@ export default function Carousel() {
                             <div className='font-sans text-2xl font-semibold tracking-wide text-right text-[#917a67]'>We provide modern laptop</div>
                         </div>
                         <img className='object-cover w-2/3 rounded-r-lg' src='https://mockups-design.com/wp-content/uploads/2022/06/Smartphone_on_White_Background_Mockup_1.jpg'></img>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='flex flex-row p-4 h-[30rem]'>
-                        <div className='w-1/2 bg-[#ede2d1] flex flex-col px-4 justify-center rounded-l-lg'>
-                            <div className='font-sans text-3xl font-bold tracking-widest text-right text-[#917a67] uppercase '>Laptop</div>
-                            <div className='font-sans text-2xl font-semibold tracking-wide text-right text-[#917a67]'>We provide modern laptop</div>
-                        </div>
-                        <img className='object-cover w-1/2 rounded-r-lg' src='https://www.jabra.com/-/media/Images/Category-Pages/Professional/Office/V7-Refresh/wj-01.jpg'></img>
                     </div>
                 </SwiperSlide>
             </Swiper>
