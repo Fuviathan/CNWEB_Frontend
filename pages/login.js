@@ -1,9 +1,10 @@
 import FormLogin from "@/components/Auth/FormLogin";
+import Layout from "@/components/Layout/Layout";
 
 export default function Product() {
   return (
-    <div>
+    <Layout>
       <FormLogin></FormLogin>
-    </div>
+    </Layout>
   );
 }
