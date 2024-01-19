@@ -54,9 +54,9 @@ const FormLogin = () => {
   };
 
   return (
-    <div className="bg-gray-200 py-[5rem]">
-      <div className="w-[30rem]  m-auto border-2 rounded-2xl py-4 shadow-xl bg-white">
-        <p className="text-2xl font-bold text-center text mb-5 text-gray-500">
+    <div className="w-full py-[5rem]">
+      <div className="w-2/5 p-4 m-auto bg-white border-2 shadow-xl rounded-2xl">
+        <p className="mb-5 text-2xl font-bold text-center text-orange-gray text">
           Login
         </p>
         <form className="px-4">
@@ -85,9 +85,9 @@ const FormLogin = () => {
           <Link href={"#"}>
             <p className="text-base text-gray-500">Forgot password?</p>
           </Link>
-          <div className=" flex justify-center gap-5 mt-4">
+          <div className="flex justify-center gap-5 mt-4 ">
             <Button
-              className="text-base rounded-2xl font-semibold bg-black hover:bg-yellow-400"
+              className="text-base font-semibold bg-black rounded-2xl hover:bg-yellow-400"
               type="submit"
               variant="contained"
               onClick={handleSubmit}
@@ -97,7 +97,7 @@ const FormLogin = () => {
             </Button>
 
             <Button
-              className=" rounded-2xl text-base font-semibold bg-yellow-400 hover:bg-black"
+              className="text-base font-semibold bg-yellow-400 rounded-2xl hover:bg-black"
               type="submit"
               variant="contained"
               color="primary"

@@ -6,7 +6,7 @@ export default function FirstRow() {
     return (
         <div className='w-full bg-[#ede2d1]'>
             <div className='grid items-center grid-cols-6 py-4 max-w-[1320px] mx-auto'>
-                <a href='Abcd' className='px-5 mb-0 font-sans text-3xl font-semibold tracking-wide text-[#917a67] hover:cursor-pointer'>
+                <a href='Abcd' className='px-5 mb-0 font-sans text-3xl font-semibold tracking-wide text-orange-gray hover:cursor-pointer'>
                     ElectricalD
                 </a>
                 <div className='relative flex flex-row items-stretch w-full col-span-3 focus:ring-0 flex-warp'>
@@ -25,8 +25,8 @@ export default function FirstRow() {
                         <p className='ml-2 text-sm font-medium text-white'>Favorite<br></br>Wishlist</p>
                     </a> */}
                     <a className='flex items-center hover:cursor-pointer hover:opacity-75'>
-                        <UserIcon className='w-10 h-10 font-thin text-[#917a67]' />
-                        <p className='ml-2 text-sm font-medium text-[#917a67]'>Login<br></br>My account</p>
+                        <UserIcon className='w-10 h-10 font-thin text-orange-gray' />
+                        <p className='ml-2 text-sm font-medium text-orange-gray'>Login<br></br>My account</p>
                     </a>
                     {/* <a className='flex items-center hover:cursor-pointer hover:opacity-75'>
                         <ShoppingCartIcon className='w-10 h-10 font-thin text-white' />
