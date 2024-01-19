@@ -28,18 +28,18 @@ const ProductCard = ({ grid }) => {
         } `}
       >
         <div
-          class={`relative block mr-0 mx-3 mt-3   overflow-hidden rounded-xl w-max-full ${
-            grid === 6 ? " w-[20%] " : " "
+          class={`relative block mr-0 mx-3 mt-3 flex h-60 overflow-hidden rounded-xl w-max-full ${
+            grid === 6 ? " w-[40%] " : " "
           } `}
         >
           <div className="w-[full] h-[11rem] ">
             <img
-              className=" object-contain w-full h-full absolute top-0 "
+              className="object-contain w-full h-full "
               src="http://res.cloudinary.com/des2cvikr/image/upload/v1684594653/rdlwx7vepfuyzntrrnab.jpg"
             />
 
             <img
-              className="object-contain w-full h-full absolute top-0 hover:opacity-0"
+              className="absolute top-0 object-contain w-full h-full hover:opacity-0"
               src="https://res.cloudinary.com/des2cvikr/image/upload/v1684831369/knekthojbz0de2kbw6gk.jpg"
             />
           </div>
@@ -77,7 +77,7 @@ const ProductCard = ({ grid }) => {
             grid === 6 ? "w-full" : ""
           }`}
         >
-          <div className="w-full flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-between w-full">
             <div>
               <div class="w-max-full tracking-tight text-slate-900 font-semibold">
                 Nike Air MX Super 2500 - Red
@@ -108,7 +108,7 @@ const ProductCard = ({ grid }) => {
             )}
             <Button variant="contained" className="bg-[#facc15] py-2">
               <ShoppingCart></ShoppingCart>
-              <p className="text-base font-medium ml-2">Add to cart</p>
+              <p className="ml-2 text-base font-medium">Add to cart</p>
             </Button>
           </div>
         </div>
