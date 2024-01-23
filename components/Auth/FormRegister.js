@@ -72,9 +72,9 @@ const FormRegister = () => {
   };
 
   return (
-    <div className="bg-gray-200 py-[5rem]">
-      <div className="w-[30rem]  m-auto border-2 rounded-2xl py-4 shadow-xl bg-white">
-        <p className="text-2xl font-bold text-center text mb-5 text-gray-500">
+    <div className="py-[5rem]">
+      <div className="w-2/5 py-4 m-auto bg-white">
+        <p className="mb-5 text-2xl font-bold text-center text-orange-gray">
           Sign up
         </p>
         <form className="px-4">
@@ -135,9 +135,9 @@ const FormRegister = () => {
             helperText={error.password}
           />
 
-          <div className=" flex justify-center gap-5 mt-4">
+          <div className="flex justify-center gap-5 mt-4 ">
             <Button
-              className="text-base rounded-2xl font-semibold bg-black hover:bg-yellow-400"
+              className="text-base font-semibold bg-light-brown text-orange-gray rounded-2xl hover:bg-light-brown hover:bg-opacity-80"
               type="submit"
               variant="contained"
               onClick={(e) => {
@@ -150,7 +150,7 @@ const FormRegister = () => {
             </Button>
 
             <Button
-              className=" rounded-2xl text-base font-semibold bg-yellow-400 hover:bg-black"
+              className="text-base font-semibold bg-light-brown text-orange-gray rounded-2xl hover:bg-light-brown hover:bg-opacity-80"
               type="submit"
               variant="contained"
               color="primary"
