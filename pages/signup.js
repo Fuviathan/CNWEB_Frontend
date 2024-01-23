@@ -1,9 +1,10 @@
 import FormRegister from "@/components/Auth/FormRegister";
+import Layout from "@/components/Layout/Layout";
 
 export default function Product() {
   return (
-    <div>
+    <Layout>
       <FormRegister></FormRegister>
-    </div>
+    </Layout>
   );
 }
