@@ -26,6 +26,7 @@ import {
   getProducts,
 } from "@/state/Products/Action";
 import { useRouter } from "next/router";
+import { CustomTextField } from "../Auth/CustomTextField";
 
 const ProductFilter = () => {
   const router = useRouter();
@@ -141,13 +142,13 @@ const ProductFilter = () => {
               <div className="text-xl font-semibold text-gray-500"> Price:</div>
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
-                <TextField
+                <CustomTextField
                   onChange={(e) => setMinPrice(e.target.value)}
                   label={"From"}
                   id="margin-none"
                 />
                 <span className="px-2 text-xl font-semibold">$</span>
-                <TextField
+                <CustomTextField
                   onChange={(e) => setMaxPrice(e.target.value)}
                   label={"To"}
                   id="margin-none"
@@ -261,8 +262,8 @@ const ProductFilter = () => {
                   "& .MuiPaginationItem-root": {
                     color: "black",
                     "&.Mui-selected": {
-                      backgroundColor: "black",
-                      color: "#fff",
+                      backgroundColor: "#ede2d1",
+                      color: "black",
                     },
                   },
                 }}

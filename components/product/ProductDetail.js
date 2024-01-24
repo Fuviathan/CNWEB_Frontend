@@ -71,14 +71,14 @@ export default function ProductDetail() {
         {/* ========================Product detail===================== */}
         <div className="px-2 w-full h-full  grid grid-cols-3  grid-flow-row auto-rows-max">
           <div className="col-span-3 ">
-            <h1 className="font-semibold text-2xl  border-b-2">
+            <h1 className="font-semibold text-2xl font-sans border-b-2">
               {product?.title}
             </h1>
             <div className="blox font-semibold text-xl pt-2">
               <span>{product?.price}$</span>
             </div>
             <div className="flex gap-5">
-              <Rating value={5}></Rating>
+              <Rating value={5} readOnly></Rating>
               <div className="font-semibold">Based on 0 Reviews</div>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function ProductDetail() {
           <div className="col-span-3 ">
             <div className="col-span-2 grid grid-flow-col auto-cols-max gap-8">
               <Button
-                className="bg-gray-500 hover:bg-red-500"
+                className="bg-[#baaf9d] hover:bg-[#baaf9d] hover:bg-opacity-80"
                 variant="contained"
                 size="large"
               >
@@ -151,7 +151,7 @@ export default function ProductDetail() {
                 <div className="font-semibold">ADD TO CART </div>
               </Button>
               <Button
-                className="bg-[#febd69] hover:bg-[#febd69]"
+                className="bg-[#f1c27c] hover:bg-[#febd69]"
                 variant="contained"
                 size="large"
               >

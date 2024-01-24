@@ -131,11 +131,11 @@ const ProductCard = ({ grid, item }) => {
             )}
             <Button
               variant="contained"
-              className="bg-[#ede2d1] py-2"
+              className="bg-[#ede2d1] py-2 hover:bg-light-brown hover:bg-opacity-80"
               onClick={(event) => event.stopPropagation()}
             >
               <ShoppingCart className="text-black"></ShoppingCart>
-              <p className="ml-2 text-base text-black font-medium font-sans">
+              <p className="ml-2 text-base text-black font-medium font-sans ">
                 Add to cart
               </p>
             </Button>
