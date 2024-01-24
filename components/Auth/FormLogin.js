@@ -4,15 +4,20 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { CustomTextField } from "./CustomTextField";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/state/Auth/Action";
 
 const FormLogin = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth);
+  console.log(auth);
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [error, setError] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -27,8 +32,8 @@ const FormLogin = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (formData.username.trim() === "") {
-      newErrors.username = "Username is required";
+    if (formData.email.trim() === "") {
+      newErrors.email = "email is required";
     }
 
     if (formData.password.trim() === "") {
@@ -49,7 +54,7 @@ const FormLogin = () => {
     }
 
     setError({});
-
+    dispatch(login(formData));
     console.log("Đăng nhập với:", formData);
   };
 
@@ -62,13 +67,13 @@ const FormLogin = () => {
         <form className="px-4">
           <CustomTextField
             className="mb-4"
-            label="Username"
-            name="username"
-            value={formData.username}
+            label="Email"
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
             fullWidth
-            error={Boolean(error.username)}
-            helperText={error.username}
+            error={Boolean(error.email)}
+            helperText={error.email}
           />
           <CustomTextField
             className="mb-4"
@@ -83,7 +88,9 @@ const FormLogin = () => {
             helperText={error.password}
           />
           <Link href={"#"}>
-            <p className="text-base text-orange-gray hover:opacity-80">Forgot password?</p>
+            <p className="text-base text-orange-gray hover:opacity-80">
+              Forgot password?
+            </p>
           </Link>
           <div className="flex justify-center gap-5 mt-4 ">
             <Button

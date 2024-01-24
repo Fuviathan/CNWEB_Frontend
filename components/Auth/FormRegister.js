@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import { CustomTextField } from "./CustomTextField";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "@/state/Auth/Action";
 
 const FormRegister = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store?.auth);
+
   const [formData, setFormData] = useState({
     email: "",
     firstname: "",
     lastname: "",
-    phone: "",
+    mobile: "",
     password: "",
   });
   const [error, setError] = useState({
     email: "",
     firstname: "",
     lastname: "",
-    phone: "",
+    mobile: "",
     password: "",
   });
 
@@ -49,8 +54,8 @@ const FormRegister = () => {
       newErrors.lastname = "Last Name is required";
     }
 
-    if (formData.phone.trim() === "") {
-      newErrors.phone = "Phone Number is required";
+    if (formData.mobile.trim() === "") {
+      newErrors.mobile = "Phone Number is required";
     }
 
     return newErrors;
@@ -68,8 +73,12 @@ const FormRegister = () => {
 
     setError({});
 
+    dispatch(register(formData));
     console.log("Đăng nhập với:", formData);
   };
+  useEffect(() => {
+    console.log(auth);
+  }, [auth]);
 
   return (
     <div className="py-[5rem]">
@@ -114,12 +123,12 @@ const FormRegister = () => {
           <CustomTextField
             className=""
             label="Mobile Number"
-            name="phone"
-            value={formData.phone}
+            name="mobile"
+            value={formData.mobile}
             onChange={handleInputChange}
             fullWidth
-            error={Boolean(error.phone)}
-            helperText={error.phone}
+            error={Boolean(error.mobile)}
+            helperText={error.mobile}
           />
 
           <CustomTextField
