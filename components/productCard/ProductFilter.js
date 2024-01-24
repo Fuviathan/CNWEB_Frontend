@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -17,42 +17,29 @@ import { TableRows, ViewModule } from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 import { purple, lime, red } from "@mui/material/colors";
 import Color from "../product/Color";
-
-const categories = [
-  { title: "phone" },
-  { title: "computer" },
-  { title: "laptop" },
-  { title: "phone" },
-  { title: "computer" },
-  { title: "laptop" },
-  { title: "phone" },
-  { title: "computer" },
-  { title: "laptop" },
-];
-
-const colors = [
-  { title: "red" },
-  { title: "blue" },
-  { title: "white" },
-  { title: "yellow" },
-  { title: "black" },
-  { title: "green" },
-  { title: "orange" },
-  { title: "brown" },
-  { title: "gray" },
-];
-
-const brands = [{ title: "iphone" }, { title: "samsung" }, { title: "oppo" }];
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getProductByBrand,
+  getProductByCategory,
+  getProductByColor,
+  getProductByFilter,
+  getProducts,
+} from "@/state/Products/Action";
+import { useRouter } from "next/router";
 
 const ProductFilter = () => {
-  const [sort, setSort] = useState();
-  const [category, setCategory] = useState([]);
+  const router = useRouter();
+
+  const [sort, setSort] = useState("title");
+  const [tag, setTag] = useState(null);
+  const [category, setCategory] = useState(null);
   const [color, setColor] = useState(null);
-  const [brand, setBrand] = useState([]);
+  const [brand, setBrand] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [grid, setGrid] = useState(12);
 
+  //============SET LAYOUT
   function handleChangeLayout(e) {
     e.target.parentElement.parentElement.parentElement
       .querySelector(".line-layout")
@@ -62,6 +49,54 @@ const ProductFilter = () => {
       .querySelector(".row-layout")
       ?.classList.toggle("bg-gray-300");
   }
+
+  const dispatch = useDispatch();
+  const products = useSelector((store) => store?.product?.products);
+  const colors = useSelector((store) => store?.product?.color);
+  const brands = useSelector((store) => store?.product?.brand);
+  const categories = useSelector((store) => store?.product?.category);
+
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getProductByBrand());
+    dispatch(getProductByColor());
+    dispatch(getProductByCategory());
+  }, []);
+
+  // ================SET PERPAGE
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(12);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products?.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const pageCount = Math.ceil(products?.length / productsPerPage);
+
+  const handleChangePage = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  // =============== GET DATA FOR CATEGORY===========
+  useEffect(() => {});
+
+  // ================ GET DATA FILTER ============
+  useEffect(() => {
+    dispatch(
+      getProductByFilter({
+        sort,
+        tag,
+        brand,
+        category,
+        minPrice,
+        maxPrice,
+        color,
+      })
+    );
+  }, [sort, tag, brand, category, minPrice, maxPrice, color]);
   return (
     <div>
       <div className="grid lg:grid-cols-4 gap-10 lg:mx-[6rem] shadow-2xl bg-white px-[2rem] ">
@@ -76,13 +111,21 @@ const ProductFilter = () => {
                   {categories &&
                     [...new Set(categories)].map((item, index) => {
                       return (
-                        <li
-                          key={item && item["_id"]}
-                          className="px-2 text-base font-semibold bg-yellow-400 border-2 rounded-md cursor-pointer "
-                          onClick={() => setCategory(item.title)}
+                        <button
+                          key={item && item["_id"] && index}
+                          className={`px-2 text-base font-semibold bg-[#ede2d1] border-2 rounded-md cursor-pointer ${
+                            item.title === category
+                              ? "border-yellow-700 border-opacity-40"
+                              : ""
+                          } `}
+                          onClick={() =>
+                            setCategory(
+                              category === item.title ? "" : item.title
+                            )
+                          }
                         >
                           {item.title}
-                        </li>
+                        </button>
                       );
                     })}
                 </ul>
@@ -99,13 +142,13 @@ const ProductFilter = () => {
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
                 <TextField
-                  onChange={() => setMinPrice(e.target.value)}
+                  onChange={(e) => setMinPrice(e.target.value)}
                   label={"From"}
                   id="margin-none"
                 />
                 <span className="px-2 text-xl font-semibold">$</span>
                 <TextField
-                  onChange={() => setMaxPrice(e.target.value)}
+                  onChange={(e) => setMaxPrice(e.target.value)}
                   label={"To"}
                   id="margin-none"
                 />
@@ -113,10 +156,9 @@ const ProductFilter = () => {
             </div>
             <div>
               <div className="mt-4 text-xl font-semibold text-gray-500">
-                {" "}
                 Colors
               </div>
-              <Color data={colors} setColor={setColor}></Color>
+              <Color data={colors} color={color} setColor={setColor}></Color>
             </div>
           </div>
 
@@ -129,13 +171,19 @@ const ProductFilter = () => {
                   {categories &&
                     [...new Set(brands)].map((item, index) => {
                       return (
-                        <li
+                        <button
                           key={item && item["_id"]}
-                          className="px-2 text-base font-semibold bg-yellow-400 border-2 rounded-md cursor-pointer "
-                          onClick={() => setCategory(item.title)}
+                          className={`px-2 text-base font-semibold bg-[#ede2d1] border-2 rounded-md cursor-pointer ${
+                            brand === item.title
+                              ? "border-yellow-700 border-opacity-40"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            setBrand(brand === item.title ? "" : item.title)
+                          }
                         >
                           {item.title}
-                        </li>
+                        </button>
                       );
                     })}
                 </ul>
@@ -171,6 +219,7 @@ const ProductFilter = () => {
                   onClick={(e) => {
                     handleChangeLayout(e);
                     setGrid(12);
+                    setProductsPerPage(12);
                   }}
                 >
                   <ViewModule></ViewModule>
@@ -180,6 +229,7 @@ const ProductFilter = () => {
                   onClick={(e) => {
                     handleChangeLayout(e);
                     setGrid(6);
+                    setProductsPerPage(6);
                   }}
                 >
                   <TableRows></TableRows>
@@ -187,13 +237,13 @@ const ProductFilter = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-1">
-            {[1, 1, 1, 1, 1, 1].map((item, index) => (
+          <div className="grid grid-cols-4 gap-10">
+            {currentProducts.map((item, index) => (
               <div
                 key={index}
                 className={`${grid === 6 ? "col-span-5" : "col-span-1"}  `}
               >
-                <ProductCard grid={grid}></ProductCard>
+                <ProductCard key={index} grid={grid} item={item}></ProductCard>
               </div>
             ))}
           </div>
@@ -201,8 +251,9 @@ const ProductFilter = () => {
           <div className="col-span-3">
             <div className="flex justify-center w-full py-8 m-auto ">
               <Pagination
-                count={10}
-                defaultPage={5}
+                count={pageCount}
+                page={currentPage}
+                onChange={handleChangePage}
                 variant="outlined"
                 shape="rounded"
                 size="large"

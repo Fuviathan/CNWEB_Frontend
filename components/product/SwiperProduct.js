@@ -12,38 +12,37 @@ import "swiper/css/thumbs";
 
 // import required modules
 
-const images = [
-  {
-    src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-    alt: "First",
-  },
-  {
-    src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-    alt: "First",
-  },
-  {
-    src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-    alt: "First",
-  },
-  {
-    src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-    alt: "First",
-  },
-  {
-    src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-    alt: "First",
-  },
-];
+// const images = [
+//   {
+//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
+//     alt: "First",
+//   },
+//   {
+//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
+//     alt: "First",
+//   },
+//   {
+//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
+//     alt: "First",
+//   },
+//   {
+//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
+//     alt: "First",
+//   },
+//   {
+//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
+//     alt: "First",
+//   },
+// ];
 
-export default function SwiperProduct() {
+export default function SwiperProduct({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <div>
       <Swiper
         style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
+          "--swiper-navigation-color": "#ede2d1",
         }}
         // className={styles.mySwiper2}
         loop={true}
@@ -55,12 +54,12 @@ export default function SwiperProduct() {
         modules={[FreeMode, Navigation, Thumbs]}
         className="h-96 w-full rounded-lg"
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="flex h-full w-full items-center justify-center">
               <img
-                src={image.src}
-                className="block h-full w-full object-cover"
+                src={image.url}
+                className="block h-full w-full object-contain"
               />
             </div>
           </SwiperSlide>
@@ -68,23 +67,21 @@ export default function SwiperProduct() {
       </Swiper>
 
       <Swiper
+        centeredSlides={true}
         // className={styles.mySwiper}
         onSwiper={setThumbsSwiper}
         loop={true}
-        spaceBetween={12}
+        spaceBetween={15}
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="thumbs mt-3 h-32 w-full rounded-lg"
+        className="thumbs mt-5 h-32 rounded-lg border-2"
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index}>
-            <button className="flex h-full w-full items-center justify-center ">
-              <img
-                src={image.src}
-                className="block h-full w-full object-cover"
-              />
+            <button className="h-full w-full">
+              <img src={image.url} className=" h-full w-full object-contain" />
             </button>
           </SwiperSlide>
         ))}

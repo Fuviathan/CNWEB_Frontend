@@ -1,7 +1,7 @@
 import { Button, IconButton, Rating } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Color from "./Color";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AddShoppingCart,
   BalanceOutlined,
@@ -23,14 +23,25 @@ import { BreadCrumb } from "./BreadCrumb";
 import { Description } from "./Description";
 import { Review } from "./Review";
 import SwiperProduct from "./SwiperProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useSearchParams } from "next/navigation";
+import { getSingleProduct } from "@/state/Products/Action";
+import { useRouter } from "next/router";
 // import { Rating } from "@mui/material";
 
 const dataColor = [{ title: "white" }, { title: "blue" }];
 
 export default function ProductDetail() {
+  const dispatch = useDispatch();
   const [color, setColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
+  const router = useRouter();
+  const { productId } = router.query;
+
+  const product = useSelector((store) => store.product.product);
+
+  // ======= OPTION MENU==============
   const handleOption = (e) => {
     e.target.parentElement.querySelector(".down")?.classList.toggle("hidden");
     e.target.parentElement.querySelector(".up")?.classList.toggle("hidden");
@@ -39,6 +50,10 @@ export default function ProductDetail() {
       .querySelector(".product-data")
       ?.classList.toggle("hidden");
   };
+
+  useEffect(() => {
+    dispatch(getSingleProduct(productId));
+  }, [router]);
 
   return (
     <div>
@@ -50,17 +65,17 @@ export default function ProductDetail() {
         {/* =========================ProductImage================ */}
         <div className="w-full h-full ">
           <div className=" p-5 pb-20 h-[60%]">
-            <SwiperProduct></SwiperProduct>
+            <SwiperProduct images={product?.images}></SwiperProduct>
           </div>
         </div>
         {/* ========================Product detail===================== */}
         <div className="px-2 w-full h-full  grid grid-cols-3  grid-flow-row auto-rows-max">
           <div className="col-span-3 ">
             <h1 className="font-semibold text-2xl  border-b-2">
-              Bàn phím cơ Razer BlackWidow V3 Tenkeyless
+              {product?.title}
             </h1>
             <div className="blox font-semibold text-xl pt-2">
-              <span>369$</span>
+              <span>{product?.price}$</span>
             </div>
             <div className="flex gap-5">
               <Rating value={5}></Rating>
@@ -72,34 +87,34 @@ export default function ProductDetail() {
             <div className="flex gap-4">
               <div className="font-semibold">Brand:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600 font-mono">
-                MSI
+                {product?.brand}
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="font-semibold">Category:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600 font-mono">
-                MSI
+                {product?.category}
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="font-semibold">Tag:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600  font-mono">
-                MSI
+                {product?.tags}
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="font-semibold">Availablity :</div>
               <div className="font-semibolđ opacity-90 text-yellow-600  font-mono">
-                MSI
+                {product?.quantity}
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="font-semibold">Color :</div>
-              <Color setColor={setColor} data={dataColor} />
+              <Color color={color} setColor={setColor} data={dataColor} />
             </div>
           </div>
           {/* =============Quantity===================== */}
@@ -144,7 +159,7 @@ export default function ProductDetail() {
               </Button>
             </div>
           </div>
-          <div className="col-span-3 grid grid-flow-col auto-cols-max gap-x-20 mt-2 bt-2">
+          {/* <div className="col-span-3 grid grid-flow-col auto-cols-max gap-x-20 mt-2 bt-2">
             <IconButton
               variant="contained"
               className=" font-medium text-base  text-gray-700"
@@ -171,9 +186,9 @@ export default function ProductDetail() {
               <Favorite></Favorite>
               <div className="font-medium">Add to wishlist</div>
             </IconButton>
-          </div>
+          </div> */}
 
-          <div className="col-span-3">
+          <div className="col-span-3 mt-5">
             <div className="flex  flex-col ">
               <div
                 className="flex items-center cursor-pointer border-b-2"
@@ -254,7 +269,7 @@ export default function ProductDetail() {
 
       {/* ===================PRoduct description========================= */}
       <div>
-        <Description></Description>
+        <Description description={product?.description}></Description>
       </div>
 
       {/* =====================Product Review=========================== */}
