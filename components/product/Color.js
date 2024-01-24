@@ -6,21 +6,18 @@ const Color = (props) => {
       <ul className="flex gap-4 flex-wrap ">
         {props?.data?.map((item, index) => {
           return (
-            <li
+            <button
               key={index}
               style={{
                 backgroundColor: item.title,
-                border: "1px solid rgb(183 155 156)",
-                borderRadius: "50%",
-                cursor: "pointer",
-                width: "1.5rem",
-                height: "1.5rem",
               }}
-              // className={``}
+              className={`border-2 rounded-3xl cursor-pointer w-6 h-6 ${
+                props.color === item["_id"] ? "border-red-500" : " "
+              }`}
               onClick={() => {
-                props?.setColor(item["_id"]);
+                props?.setColor(props.color === item["_id"] ? "" : item["_id"]);
               }}
-            ></li>
+            ></button>
           );
         })}
       </ul>
