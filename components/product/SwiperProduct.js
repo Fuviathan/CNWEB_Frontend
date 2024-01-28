@@ -10,31 +10,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-// import required modules
-
-// const images = [
-//   {
-//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-//     alt: "First",
-//   },
-//   {
-//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-//     alt: "First",
-//   },
-//   {
-//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-//     alt: "First",
-//   },
-//   {
-//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-//     alt: "First",
-//   },
-//   {
-//     src: "http://res.cloudinary.com/des2cvikr/image/upload/v1684597121/tsjgfwynjbbyot1t6apg.jpg",
-//     alt: "First",
-//   },
-// ];
-
 export default function SwiperProduct({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -72,7 +47,7 @@ export default function SwiperProduct({ images }) {
         onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={15}
-        slidesPerView={4}
+        slidesPerView={3}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}

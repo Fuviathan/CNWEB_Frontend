@@ -13,10 +13,27 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { getSingleProduct } from "@/state/Products/Action";
+import { addProductToCart } from "@/state/Cart/Action";
 
 const ProductCard = ({ grid, item }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  function handleAddToCart(product) {
+    const data = {
+      cart: [
+        {
+          _id: product?._id,
+          count: 1,
+          price: product?.price,
+          title: product?.title,
+          description: product.description,
+        },
+      ],
+    };
+    dispatch(addProductToCart(data));
+    alert("Thêm sản phẩm thành công");
+  }
   // useEffect(() => {
   //   dispatch(getSingleProduct(item._id));
   // }, []);
@@ -132,7 +149,9 @@ const ProductCard = ({ grid, item }) => {
             <Button
               variant="contained"
               className="bg-[#ede2d1] py-2 hover:bg-light-brown hover:bg-opacity-80"
-              onClick={(event) => event.stopPropagation()}
+              onClick={(event) => {
+                event.stopPropagation(), handleAddToCart(item);
+              }}
             >
               <ShoppingCart className="text-black"></ShoppingCart>
               <p className="ml-2 text-base text-black font-medium font-sans ">

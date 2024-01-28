@@ -27,19 +27,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "next/navigation";
 import { getSingleProduct } from "@/state/Products/Action";
 import { useRouter } from "next/router";
+import { addProductToCart } from "@/state/Cart/Action";
 // import { Rating } from "@mui/material";
 
 const dataColor = [{ title: "white" }, { title: "blue" }];
 
 export default function ProductDetail() {
   const dispatch = useDispatch();
+
   const [color, setColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   const router = useRouter();
   const { productId } = router.query;
-
-  const product = useSelector((store) => store.product.product);
+  const product = useSelector((store) => store?.product?.product);
 
   // ======= OPTION MENU==============
   const handleOption = (e) => {
@@ -51,6 +52,21 @@ export default function ProductDetail() {
       ?.classList.toggle("hidden");
   };
 
+  function handleAddToCart(product) {
+    const data = {
+      cart: [
+        {
+          _id: product?._id,
+          count: quantity,
+          price: product?.price,
+          title: product?.title,
+          description: product.description,
+        },
+      ],
+    };
+    dispatch(addProductToCart(data));
+  }
+
   useEffect(() => {
     dispatch(getSingleProduct(productId));
   }, [router]);
@@ -60,7 +76,7 @@ export default function ProductDetail() {
       <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-2  lg:mx-[4rem] shadow-2xl bg-white px-[2rem]">
         {/* ======================BreadCumd========== */}
         <div className="w-full h-full lg:col-span-2 border-2">
-          <BreadCrumb></BreadCrumb>
+          <BreadCrumb title={"Product"}></BreadCrumb>
         </div>
         {/* =========================ProductImage================ */}
         <div className="w-full h-full ">
@@ -146,6 +162,9 @@ export default function ProductDetail() {
                 className="bg-[#baaf9d] hover:bg-[#baaf9d] hover:bg-opacity-80"
                 variant="contained"
                 size="large"
+                onClick={() => {
+                  handleAddToCart(product), alert("Thêm sản phẩm thành công");
+                }}
               >
                 <AddShoppingCart />
                 <div className="font-semibold">ADD TO CART </div>
@@ -154,6 +173,9 @@ export default function ProductDetail() {
                 className="bg-[#f1c27c] hover:bg-[#febd69]"
                 variant="contained"
                 size="large"
+                onClick={() => {
+                  handleAddToCart(product), router.push("/cart");
+                }}
               >
                 <div className="font-semibold">BUY IT NOW </div>
               </Button>
