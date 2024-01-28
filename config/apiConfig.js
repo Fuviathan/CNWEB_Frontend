@@ -4,14 +4,14 @@ export const API_BASE_URL = "http://localhost:3000/api/";
 
 let getTokenFromLocalStorage;
 if (typeof window !== "undefined") {
-  getTokenFromLocalStorage = localStorage.getItem("customer")
-    ? JSON.parse(localStorage.getItem("customer"))
+  getTokenFromLocalStorage = localStorage.getItem("token")
+    ? localStorage.getItem("token")
     : null;
 } else {
   console.error("localStorage is not available in this environment");
 }
 
-const token = getTokenFromLocalStorage?.token || "";
+const token = getTokenFromLocalStorage || "";
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

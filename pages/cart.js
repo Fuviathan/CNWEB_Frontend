@@ -1,11 +1,12 @@
 import Cart from "@/components/Cart/Cart";
+import Layout from "@/components/Layout/Layout";
 import React from "react";
 
 const cart = () => {
   return (
-    <div className="bg-white">
+    <Layout className="bg-white">
       <Cart></Cart>
-    </div>
+    </Layout>
   );
 };
 
