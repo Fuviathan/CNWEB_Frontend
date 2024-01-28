@@ -1,53 +1,81 @@
+import {
+  getCart,
+  removeProductFromCart,
+  updateProductInCart,
+} from "@/state/Cart/Action";
 import { Delete, Remove } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const CartItem = () => {
-  const [quantity, setQuantity] = useState(1);
+const CartItem = ({ data }) => {
+  const dispatch = useDispatch();
+
   return (
     <div>
-      <div className="w-full flex shadow-xl  mt-4 rounded-xl">
-        <div className="w-[9rem] h-[9rem] ">
+      <div className="w-full flex shadow-lg border-t-2  rounded-xl">
+        <div className="w-[9rem] h-[9rem] flex justify-center mr-4">
           <img
             className="object-contain"
-            src="https://clickbuy.com.vn/uploads/images/2023/09/iphone-15-pro-max-xanh-1-1.png"
+            src={data?.product?.images[0].url}
           ></img>
         </div>
-        <div className="flex flex-col">
-          <div className="text-black text-2xl font-semibold">
-            Iphone 15 pro max
+        <div className="flex flex-col ">
+          <div
+            className="text-black text-2xl font-semibold pt-5 text-ellipsis text-nowrap w-[20rem] overflow-hidden"
+            title={data?.title}
+          >
+            {data?.title}
           </div>
-          <div className=" text-xl font-semibold text-gray-500">
+          {/* <div className=" text-xl font-semibold text-gray-500">
             Color: Black
-          </div>
+          </div> */}
           <div className="text-xl font-semibold text-black mt-6 pt-6 flex flex-row gap-5">
-            <div>2500$</div>
-            <div className="text-gray-500 line-through">500$</div>
-            <div className="text-green-500">20%</div>
+            <div>
+              {data?.price - (data?.price * data?.product?.discount) / 100}$
+            </div>
+            <div className="text-gray-500 line-through">
+              {(data?.price * data?.product?.discount) / 100}$
+            </div>
+            <div className="text-green-500">{data?.product?.discount}%</div>
           </div>
         </div>
-        <div className="flex items-center ml-20 gap-2">
+        <div className="flex items-center ml-auto gap-2">
           <div className="place-self-center font-semibold text-black text-xl">
             Quantity:
           </div>
 
           <IconButton
             className="p-0 w-fit h-fit"
-            onClick={() => setQuantity(quantity - 1)}
-            disabled={quantity < 2}
+            onClick={() => {
+              dispatch(
+                updateProductInCart({
+                  id: data?.product?._id,
+                  quantity: data?.count - 1,
+                })
+              );
+            }}
+            disabled={data?.cout < 2}
             aria-label="delete"
             size="large"
           >
             <Remove />
           </IconButton>
           <div className="place-self-center text-black font-semibold">
-            {quantity}
+            {data?.count}
           </div>
           <IconButton
             className="p-0 w-fit h-fit"
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => {
+              dispatch(
+                updateProductInCart({
+                  id: data?.product?._id,
+                  quantity: data?.count + 1,
+                })
+              );
+            }}
             aria-label="delete"
             size="large"
           >
@@ -60,7 +88,12 @@ const CartItem = () => {
           aria-label="delete"
           size="large"
         >
-          <Delete className="text-red-500"></Delete>
+          <Delete
+            className="text-red-500"
+            onClick={() => {
+              dispatch(removeProductFromCart(data.product._id));
+            }}
+          ></Delete>
         </IconButton>
       </div>
     </div>

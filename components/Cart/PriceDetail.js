@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const PriceDetail = () => {
+const PriceDetail = ({ cart }) => {
+  console.log(cart);
   return (
     <div className="px-[4rem]">
       <div className="items-center gap-4 border-2 shadow-2xl rounded-lg ">
@@ -12,11 +13,11 @@ const PriceDetail = () => {
         <div className="px-4 text-xl font-medium text-black">
           <div className="flex justify-between pt-3">
             <div>Price</div>
-            <div>2500$</div>
+            <div>{cart?.cartTotal}$</div>
           </div>
           <div className="flex justify-between pt-3">
             <div>Discount</div>
-            <div className="text-green-600">500$</div>
+            <div className="text-green-600">0$</div>
           </div>
           <div className="flex justify-between pt-3">
             <div>Delivery Charge</div>
@@ -25,12 +26,12 @@ const PriceDetail = () => {
           <hr></hr>
           <div className="flex justify-between pt-3">
             <div>Total amount</div>
-            <div className="text-green-600">500$</div>
+            <div className="text-green-600">{cart?.cartTotal}$</div>
           </div>
         </div>
         <Button
           variant="contained"
-          className="w-full mt-3 bg-[#facc15] hover:bg-[#fad815d1] text-xl font-semibold text-white"
+          className="w-full mt-3 bg-[#baaf9d]  hover:bg-[#baaf9d] text-xl font-semibold text-white"
         >
           CHECKOUT
         </Button>
