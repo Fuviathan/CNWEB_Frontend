@@ -32,7 +32,7 @@ export default function FirstRow() {
     <div className="w-full bg-[#ede2d1]">
       <div className="grid items-center grid-cols-6 py-4 max-w-[1320px] mx-auto">
         <Link
-          href="Abcd"
+          href="/Abcd"
           className="px-5 mb-0 font-sans text-3xl font-semibold tracking-wide text-orange-gray hover:cursor-pointer"
         >
           ElectricalD
@@ -55,12 +55,12 @@ export default function FirstRow() {
           <div className="flex items-center hover:cursor-pointer hover:opacity-75">
             <UserIcon className="w-10 h-10 font-thin text-orange-gray" />
             {!auth ? (
-              <Link
+              <a
                 href="/login"
                 className="ml-2 text-sm font-medium text-orange-gray"
               >
                 Login<br></br>Sign Up
-              </Link>
+              </a>
             ) : (
               <p
                 onClick={handleLogout}

@@ -15,12 +15,12 @@ const ProtectRouter = ({ children }) => {
         <main>{children}</main>
       ) : (
         <div>
-          <Link
+          <a
             href={"/login"}
             className="flex justify-center bg-light-brown w-fit h-fit mx-auto rounded-lg p-3 text-2xl font-sans font-semibold text-orange-gray shadow-md hover:opacity-75"
           >
             Login to shop now!
-          </Link>
+          </a>
         </div>
       )}
       ;
