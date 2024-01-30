@@ -2,21 +2,27 @@ import axios from "axios";
 
 export const API_BASE_URL = "http://localhost:3000/api/";
 
-let getTokenFromLocalStorage;
-if (typeof window !== "undefined") {
-  getTokenFromLocalStorage = localStorage.getItem("token")
-    ? localStorage.getItem("token")
-    : null;
-} else {
-  console.error("localStorage is not available in this environment");
-}
+// Hàm để lấy token từ localStorage
+const getTokenFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("token") || "";
+  }
+  return "";
+};
 
-const token = getTokenFromLocalStorage || "";
-
+// Tạo một instance của Axios với các cài đặt cơ bản
 export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
+});
+
+// Interceptor để thêm token vào mỗi request
+api.interceptors.request.use((config) => {
+  const token = getTokenFromLocalStorage();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
