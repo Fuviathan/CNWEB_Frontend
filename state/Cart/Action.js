@@ -29,7 +29,7 @@ export const addProductToCart = (req) => async (dispatch) => {
   dispatch({ type: ADD_PRODUCT_TO_CART_REQUEST });
   console.log(req);
   try {
-    const { data } = api.post("user/cart", req);
+    const { data } = await api.post("user/cart", req);
     dispatch({ type: ADD_PRODUCT_TO_CART_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ADD_PRODUCT_TO_CART_FAILURE, payload: error.message });

@@ -32,15 +32,15 @@ import { addProductToCart } from "@/state/Cart/Action";
 
 const dataColor = [{ title: "white" }, { title: "blue" }];
 
-export default function ProductDetail() {
+export default function ProductDetail({ product }) {
   const dispatch = useDispatch();
 
   const [color, setColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   const router = useRouter();
-  const { productId } = router.query;
-  const product = useSelector((store) => store?.product?.product);
+  // const { productId } = router.query;
+  // const product = useSelector((store) => store?.product?.product);
 
   // ======= OPTION MENU==============
   const handleOption = (e) => {
@@ -67,9 +67,9 @@ export default function ProductDetail() {
     dispatch(addProductToCart(data));
   }
 
-  useEffect(() => {
-    dispatch(getSingleProduct(productId));
-  }, [router]);
+  // useEffect(() => {
+  //   dispatch(getSingleProduct(productId));
+  // }, [router]);
 
   return (
     <div>
