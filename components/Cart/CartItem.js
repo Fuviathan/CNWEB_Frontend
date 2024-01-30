@@ -82,19 +82,16 @@ const CartItem = ({ data }) => {
             <AddIcon></AddIcon>
           </IconButton>
         </div>
-        <IconButton
-          className="p-0 w-fit h-fit ml-auto my-auto px-5"
-          // onClick={() => setQuantity(quantity + 1)}
-          aria-label="delete"
-          size="large"
-        >
-          <Delete
-            className="text-red-500"
-            onClick={() => {
-              dispatch(removeProductFromCart(data.product._id));
-            }}
-          ></Delete>
-        </IconButton>
+        <div className="p-0 w-fit h-fit ml-auto my-[auto] px-5">
+          <IconButton aria-label="delete" size="large">
+            <Delete
+              className="text-red-500"
+              onClick={() => {
+                dispatch(removeProductFromCart(data.product._id));
+              }}
+            ></Delete>
+          </IconButton>
+        </div>
       </div>
     </div>
   );

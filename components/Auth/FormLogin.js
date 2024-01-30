@@ -55,7 +55,7 @@ const FormLogin = () => {
 
     setError({});
     dispatch(login(formData));
-    console.log("Đăng nhập với:", formData);
+    router.push("/product");
   };
 
   return (
