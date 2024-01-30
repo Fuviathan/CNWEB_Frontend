@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import {
   HeartIcon,
@@ -6,8 +6,28 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "@/state/Cart/Action";
 
 export default function FirstRow() {
+  const [auth, setAuth] = useState();
+  const user = useSelector((store) => store?.auth?.user);
+  const dispatch = useDispatch();
+
+  const cartItem = useSelector((store) => store?.cart?.cartItem);
+  const cart = useSelector((store) => store?.cart?.cart);
+  useEffect(() => {
+    let value;
+    // Get the value from local storage if it exists
+    value = localStorage.getItem("token") || "";
+    setAuth(value);
+    dispatch(getCart());
+  }, [user, cart?.cartTotal, cartItem?.cartTotal]);
+
+  function handleLogout() {
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <div className="w-full bg-[#ede2d1]">
       <div className="grid items-center grid-cols-6 py-4 max-w-[1320px] mx-auto">
@@ -32,23 +52,35 @@ export default function FirstRow() {
                         <HeartIcon className='w-10 h-10 font-thin text-white' />
                         <p className='ml-2 text-sm font-medium text-white'>Favorite<br></br>Wishlist</p>
                     </a> */}
-          <Link
-            href="/login"
-            className="flex items-center hover:cursor-pointer hover:opacity-75"
-          >
+          <div className="flex items-center hover:cursor-pointer hover:opacity-75">
             <UserIcon className="w-10 h-10 font-thin text-orange-gray" />
-            <p className="ml-2 text-sm font-medium text-orange-gray">
-              Login<br></br>Sign Up
-            </p>
-          </Link>
+            {!auth ? (
+              <Link
+                href="/login"
+                className="ml-2 text-sm font-medium text-orange-gray"
+              >
+                Login<br></br>Sign Up
+              </Link>
+            ) : (
+              <p
+                onClick={handleLogout}
+                className="ml-2 text-sm font-medium text-orange-gray"
+              >
+                Logout
+              </p>
+            )}
+          </div>
           <Link
             href={"/cart"}
             className="flex items-center hover:cursor-pointer hover:opacity-75"
           >
             <ShoppingCartIcon className="w-10 h-10 font-thin text-orange-gray" />
-            <p className="ml-2 text-sm font-medium text-orange-gray">
+            {/* <p className="ml-2 text-sm font-medium text-orange-gray">
               My<br></br>Cart
-            </p>
+            </p> */}
+            <div className="text-md font-medium text-orange-gray">
+              {cart ? `${cart?.cartTotal}$` : ""}{" "}
+            </div>
           </Link>
         </div>
       </div>
