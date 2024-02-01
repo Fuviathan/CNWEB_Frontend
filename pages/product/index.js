@@ -4,7 +4,9 @@ import ProductFilter from "../../components/productCard/ProductFilter";
 export default function OurStore() {
   return (
     <Layout>
-      <ProductFilter></ProductFilter>
+      <div className="mx-auto max-w-[1320px] min-h-fit">
+        <ProductFilter></ProductFilter>
+      </div>
     </Layout>
   );
 }
