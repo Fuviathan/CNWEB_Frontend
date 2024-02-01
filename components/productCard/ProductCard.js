@@ -52,18 +52,18 @@ const ProductCard = ({ grid, item }) => {
         } `}
       >
         <div
-          class={`relative mr-0 mx-3 mt-3 flex h-60 overflow-hidden rounded-xl w-max-full ${
-            grid === 6 ? " w-[40%] " : " "
+          class={`relative border m-4 flex h-60 overflow-hidden rounded-xl w-max-full ${
+            grid === 6 ? " w-1/3 " : " "
           } `}
         >
-          <div className="w-full h-full relative">
+          <div className="w-full h-full">
             <img
-              className=" object-contain w-full h-full  "
+              className="object-fill w-full h-full "
               src={item.images[0].url}
             />
 
             <img
-              className="absolute top-0   object-cover w-full h-full   hover:opacity-0"
+              className="absolute top-0 object-fill w-full h-full hover:opacity-0"
               src={item.images[1].url}
             />
           </div>
@@ -74,9 +74,9 @@ const ProductCard = ({ grid, item }) => {
           )}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute top-0 right-0 flex flex-col z-50"
+            className="absolute top-0 right-0 z-50 flex flex-col"
           >
-            <Checkbox
+            {/* <Checkbox
               // {...label}
               sx={{
                 color: pink[500],
@@ -98,7 +98,7 @@ const ProductCard = ({ grid, item }) => {
               }}
               icon={<CompareArrowsOutlined />}
               checkedIcon={<CompareArrows />}
-            />
+            /> */}
           </div>
         </div>
         <div
@@ -111,29 +111,33 @@ const ProductCard = ({ grid, item }) => {
               <div
                 title={item.title}
                 className={`tracking-tight text-slate-900 font-semibold text-nowrap text-ellipsis overflow-hidden ${
-                  grid === 6 ? "w-full " : "w-[12rem]"
+                  grid === 6 ? "w-full" : "w-[12rem]"
                 }`}
               >
                 {item.title}
               </div>
             </div>
-            <div class="flex items-center  flex-wrap ">
+            <div className="flex flex-wrap items-center ">
               <Rating
                 value={5}
                 size={`${grid === 6 ? "large" : "small"}`}
               ></Rating>
-              <div class="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
+              <div className="px-2 py-1 ml-2 mr-2 text-xs font-semibold bg-yellow-200 rounded">
                 5.0
               </div>
             </div>
           </div>
-          <div class="mt-2 mb-5 flex items-center  justify-between">
+          <div className={`flex items-center justify-between ${
+            grid === 6 ? 'mt-2 mb-5' : 'mt-3'
+          }`}>
             <p>
-              <span class="text-3xl font-bold text-slate-900">
+              <span className={`font-bold text-slate-900 ${
+                grid === 6 ? 'text-3xl' : 'text-2xl'
+              }`}>
                 ${item.price}
               </span>
               {item.discount !== 0 && (
-                <span class="text-sm text-slate-900 line-through">
+                <span className="ml-2 text-sm line-through text-slate-900">
                   ${item.price + (item.price * item.discount) / 100}
                 </span>
               )}
@@ -142,11 +146,11 @@ const ProductCard = ({ grid, item }) => {
           <div className="w-full ">
             {grid === 6 && (
               <p
-                className="h-[10rem]  overflow-y-scroll mb-10"
+                className="h-min-[10rem] overflow-y-scroll mb-10"
                 dangerouslySetInnerHTML={{ __html: item?.description }}
               ></p>
             )}
-            <Button
+            {/* <Button
               variant="contained"
               className="bg-[#ede2d1] py-2 hover:bg-light-brown hover:bg-opacity-80"
               onClick={(event) => {
@@ -154,10 +158,10 @@ const ProductCard = ({ grid, item }) => {
               }}
             >
               <ShoppingCart className="text-black"></ShoppingCart>
-              <p className="ml-2 text-base text-black font-medium font-sans ">
+              <p className="ml-2 font-sans text-base font-medium text-black ">
                 Add to cart
               </p>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

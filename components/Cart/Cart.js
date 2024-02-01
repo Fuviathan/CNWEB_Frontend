@@ -21,14 +21,14 @@ const Cart = () => {
   }, [cartItem?.cartTotal]);
 
   return (
-    <div>
-      <div className="grid grid-cols-3 px-[8rem] my-[5rem]">
-        <div className="col-span-2">
+    <div className="mt-8">
+      <div className="flex justify-between mx-auto max-w-[1320px]">
+        <div className="w-2/3 mr-12">
           {cart?.products.map((item) => (
             <CartItem key={item._id} data={item}></CartItem>
           ))}
         </div>
-        <div className="col-span-1">
+        <div className="w-1/3">
           <PriceDetail cart={cart}></PriceDetail>
         </div>
       </div>

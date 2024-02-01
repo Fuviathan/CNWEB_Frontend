@@ -72,25 +72,21 @@ export default function ProductDetail({ product }) {
   // }, [router]);
 
   return (
-    <div>
-      <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-2  lg:mx-[4rem] shadow-2xl bg-white px-[2rem]">
-        {/* ======================BreadCumd========== */}
-        <div className="w-full h-full lg:col-span-2 border-2">
-          <BreadCrumb title={"Product"}></BreadCrumb>
-        </div>
+    <div className="mx-auto mt-8 max-w-[1320px]">
+      <div className="grid gap-2 bg-white sm:grid-cols-1 lg:grid-cols-2">
         {/* =========================ProductImage================ */}
         <div className="w-full h-full ">
-          <div className=" p-5 pb-20 h-[60%]">
+          <div className="pb-20 mr-8 h-3/5">
             <SwiperProduct images={product?.images}></SwiperProduct>
           </div>
         </div>
         {/* ========================Product detail===================== */}
-        <div className="px-2 w-full h-full  grid grid-cols-3  grid-flow-row auto-rows-max">
-          <div className="col-span-3 ">
-            <h1 className="font-semibold text-2xl font-sans border-b-2">
+        <div className="grid w-full h-full grid-flow-row grid-cols-3 px-2 auto-rows-max">
+          <div className="col-span-3">
+            <h1 className="mb-2 font-sans text-2xl font-semibold ">
               {product?.title}
             </h1>
-            <div className="blox font-semibold text-xl pt-2">
+            <div className="pt-2 mb-2 text-xl font-semibold blox">
               <span>{product?.price}$</span>
             </div>
             <div className="flex gap-5">
@@ -99,7 +95,7 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
           {/* ==============Category================ */}
-          <div className="col-span-2 flex flex-col gap-y-2 mt-5">
+          <div className="flex flex-col col-span-2 mt-5 gap-y-2">
             <div className="flex gap-4">
               <div className="font-semibold">Brand:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600 font-mono">
@@ -134,9 +130,9 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
           {/* =============Quantity===================== */}
-          <div className="col-span-3 grid lg:grid-cols-3 sm:grid-cols-1">
+          <div className="grid col-span-3 lg:grid-cols-3 sm:grid-cols-1">
             <div className="flex ">
-              <div className="place-self-center font-semibold">Quantity:</div>
+              <div className="font-semibold place-self-center">Quantity:</div>
 
               <IconButton
                 onClick={() => setQuantity(quantity - 1)}
@@ -157,9 +153,9 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
           <div className="col-span-3 ">
-            <div className="col-span-2 grid grid-flow-col auto-cols-max gap-8">
+            <div className="grid grid-flow-col col-span-2 gap-4 auto-cols-max">
               <Button
-                className="bg-[#baaf9d] hover:bg-[#baaf9d] hover:bg-opacity-80"
+                className="shadow-lg bg-brown-green hover:bg-brown-green hover:bg-opacity-80"
                 variant="contained"
                 size="large"
                 onClick={() => {
@@ -170,7 +166,7 @@ export default function ProductDetail({ product }) {
                 <div className="font-semibold">ADD TO CART </div>
               </Button>
               <Button
-                className="bg-[#f1c27c] hover:bg-[#febd69]"
+                className="shadow-lg bg-light-brown hover:cursor-pointer text-orange-gray hover:bg-opacity-80 hover:bg-light-brown"
                 variant="contained"
                 size="large"
                 onClick={() => {
@@ -181,10 +177,10 @@ export default function ProductDetail({ product }) {
               </Button>
             </div>
           </div>
-          {/* <div className="col-span-3 grid grid-flow-col auto-cols-max gap-x-20 mt-2 bt-2">
+          {/* <div className="grid grid-flow-col col-span-3 mt-2 auto-cols-max gap-x-20 bt-2">
             <IconButton
               variant="contained"
-              className=" font-medium text-base  text-gray-700"
+              className="text-base font-medium text-gray-700 "
               sx={{
                 "&:hover": {
                   color: "red",
@@ -196,7 +192,7 @@ export default function ProductDetail({ product }) {
               <div className="">Add to compare </div>
             </IconButton>
             <IconButton
-              className="font-medium text-base text-gray-700"
+              className="text-base font-medium text-gray-700"
               variant="contained"
               sx={{
                 "&:hover": {
@@ -210,20 +206,20 @@ export default function ProductDetail({ product }) {
             </IconButton>
           </div> */}
 
-          <div className="col-span-3 mt-5">
-            <div className="flex  flex-col ">
+          <div className="col-span-3 mt-8">
+            <div className="flex flex-col ">
               <div
-                className="flex items-center cursor-pointer border-b-2"
+                className="flex items-center border-b-2 cursor-pointer"
                 onClick={handleOption}
               >
                 <LocalShippingOutlined className="fs-5 me-2 " />
                 <p className="text-medium font-semibold font-sans mr-[auto]">
                   Shipping & Returns
                 </p>
-                <ExpandLess className=" hidden down" />
-                <ExpandMore className="  up block" />
+                <ExpandLess className="hidden down" />
+                <ExpandMore className="block up" />
               </div>
-              <p className=" product-data hidden  ">
+              <p className="hidden product-data">
                 Free shipping and returns available on all orders! <br />
                 We ship all US domestic orders within
                 <b> 5-10 business days!</b>
@@ -231,20 +227,20 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
 
-          <div className="col-span-3 mt-4">
-            <div className="flex  flex-col ">
+          {/* <div className="col-span-3 mt-4">
+            <div className="flex flex-col ">
               <div
-                className="flex items-center cursor-pointer border-b-2"
+                className="flex items-center border-b-2 cursor-pointer"
                 onClick={handleOption}
               >
                 <FavoriteBorder className="fs-5 me-2 " />
                 <p className="text-medium font-semibold font-sans mr-[auto]">
                   Add to wishlist
                 </p>
-                <ExpandLess className=" hidden down" />
-                <ExpandMore className="  up block" />
+                <ExpandLess className="hidden down" />
+                <ExpandMore className="block up" />
               </div>
-              <p className=" product-data hidden  ">
+              <p className="hidden product-data">
                 Free shipping and returns available on all orders! <br />
                 We ship all US domestic orders within
                 <b> 5-10 business days!</b>
@@ -253,19 +249,19 @@ export default function ProductDetail({ product }) {
           </div>
 
           <div className="col-span-3 mt-4">
-            <div className="flex  flex-col ">
+            <div className="flex flex-col ">
               <div
-                className="flex items-center cursor-pointer border-b-2"
+                className="flex items-center border-b-2 cursor-pointer"
                 onClick={handleOption}
               >
                 <StraightenOutlined className="fs-5 me-2 " />
                 <p className="text-medium font-semibold font-sans mr-[auto]">
                   Dimension
                 </p>
-                <ExpandLess className=" hidden down" />
-                <ExpandMore className="  up block" />
+                <ExpandLess className="hidden down" />
+                <ExpandMore className="block up" />
               </div>
-              <p className=" product-data hidden  ">
+              <p className="hidden product-data">
                 Free shipping and returns available on all orders! <br />
                 We ship all US domestic orders within
                 <b> 5-10 business days!</b>
@@ -280,12 +276,12 @@ export default function ProductDetail({ product }) {
                 navigator.clipboard.writeText(window.location.href);
               }}
             >
-              <Share className=" me-2 " />
+              <Share className=" me-2" />
               <p className="text-medium font-semibold font-sans mr-[auto]">
                 Share
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

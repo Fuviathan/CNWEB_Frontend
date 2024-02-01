@@ -4,39 +4,39 @@ import { red } from "@mui/material/colors";
 export const Review = () => {
   return (
     <div className="mt-4">
-      <div className="bg-white p-4   box-shadow-2 border-2 lg:mx-[4rem] pb-[3rem]">
-        <div className="text-3xl font-bold ">Review</div>
+      <div className="bg-white ">
+        {/* <div className="text-3xl font-bold ">Review</div> */}
         <div className="mt-4">
           <div className="text-2xl font-bold ">Customer Reviews</div>
-          <div className="flex gap-4">
+          <div className="flex gap-2 mt-2">
             <Rating value={4.5}></Rating>
-            <div className="text-xl text-gray-400 font-semibold">
+            <div className="text-xl font-semibold text-gray-400">
               Based on 0 Reviews
             </div>
           </div>
 
           <div>
-            <div className="text-xl text-gray-400 font-semibold">
+            <div className="mt-8 text-2xl font-bold">
               Write a Review
             </div>
-            <div className="text-xl text-gray-400 font-semibold mt-4">
+            <div className="my-2 text-xl font-semibold text-gray-400 ">
               Rating
             </div>
             <Rating name="size-medium" defaultValue={3} />
-            <div className="text-xl text-gray-400 font-semibold mt-4">
+            <div className="my-4 text-xl font-semibold text-gray-400">
               Write your review
             </div>
             <TextareaAutosize
               minRows={5}
               placeholder="Comments"
-              className="w-full border-2 p-4 focus:outline-gray-500  "
+              className="w-full p-4 border-2 focus:outline-gray-500 "
             ></TextareaAutosize>
 
             <Button
               className="outline-black bg-black text-white rounded-2xl hover:bg-[#febd69] hover:border-[#febd69] hover:shadow-lg mt-2"
               variant="outlined"
             >
-              <p className="text-md font-bold">Submit Review</p>
+              <p className="font-bold text-md">Submit Review</p>
             </Button>
           </div>
         </div>

@@ -1,10 +1,10 @@
 export const Description = ({ description }) => {
   return (
-    <div className="mt-2">
-      <div className="bg-white p-4   box-shadow-2 lg:mx-[4rem] ">
-        <h4 className="font-semibold text-2xl ml-4">Description</h4>
+    <div className="mt-2 max-w-[1320px] mx-auto">
+      <div className="bg-white ">
+        <h4 className="text-3xl font-semibold">Description</h4>
         <div
-          className="mt-2 px-4"
+          className="mt-4"
           dangerouslySetInnerHTML={{
             __html: description,
           }}

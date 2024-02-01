@@ -99,22 +99,22 @@ const ProductFilter = () => {
     );
   }, [sort, tag, brand, category, minPrice, maxPrice, color]);
   return (
-    <div>
-      <div className="grid lg:grid-cols-4 gap-10 lg:mx-[6rem] shadow-2xl bg-white px-[2rem] ">
+    <div className="mt-8">
+      <div className="grid gap-8 bg-white lg:grid-cols-4 ">
         {/* ==============Product Filter========================= */}
         <div className="col-span-1 mt-4">
           {/* =============Filter by category====================== */}
-          <div className="flex flex-col justify-center px-4 border-2 rounded-lg">
+          <div className="flex flex-col justify-center px-6 py-4 border-2 rounded-lg">
             <div className="mr-4 text-2xl font-bold ">Shop by categories</div>
             <div className="flex flex-row py-4">
               <div>
-                <ul className="flex flex-wrap gap-2 mb-0 ps-0">
+                <ul className="flex flex-wrap gap-2">
                   {categories &&
                     [...new Set(categories)].map((item, index) => {
                       return (
                         <button
                           key={item && item["_id"] && index}
-                          className={`px-2 text-base font-semibold bg-[#ede2d1] border-2 rounded-md cursor-pointer ${
+                          className={`px-2 p-1 text-base mb-1 font-semibold bg-[#ede2d1] rounded-md cursor-pointer ${
                             item.title === category
                               ? "border-yellow-700 border-opacity-40"
                               : ""
@@ -136,10 +136,10 @@ const ProductFilter = () => {
 
           {/* =============Filter by Color and price====================== */}
 
-          <div className="flex flex-col justify-center p-2 mt-4 border-2 rounded-xl">
+          <div className="flex flex-col justify-center px-6 py-4 mt-4 border-2 rounded-xl">
             <div className="mr-4 text-2xl font-bold ">Filter By</div>
             <div className="mt-2">
-              <div className="text-xl font-semibold text-gray-500"> Price:</div>
+              <div className="mb-4 text-xl font-semibold text-gray-500"> Price:</div>
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
                 <CustomTextField
@@ -147,7 +147,7 @@ const ProductFilter = () => {
                   label={"From"}
                   id="margin-none"
                 />
-                <span className="px-2 text-xl font-semibold">$</span>
+                <span className="px-2 ml-8 text-xl font-semibold">$</span>
                 <CustomTextField
                   onChange={(e) => setMaxPrice(e.target.value)}
                   label={"To"}
@@ -155,16 +155,16 @@ const ProductFilter = () => {
                 />
               </div>
             </div>
-            <div>
+            {/* <div>
               <div className="mt-4 text-xl font-semibold text-gray-500">
                 Colors
               </div>
               <Color data={colors} color={color} setColor={setColor}></Color>
-            </div>
+            </div> */}
           </div>
 
           {/* =====================Filter by Brand======================= */}
-          <div className="flex flex-col justify-center px-4 mt-4 border-2 rounded-lg">
+          <div className="flex flex-col justify-center px-6 py-4 mt-4 border-2 rounded-lg">
             <div className="mr-4 text-2xl font-bold ">Brand</div>
             <div className="flex flex-row py-4">
               <div>
@@ -174,7 +174,7 @@ const ProductFilter = () => {
                       return (
                         <button
                           key={item && item["_id"]}
-                          className={`px-2 text-base font-semibold bg-[#ede2d1] border-2 rounded-md cursor-pointer ${
+                          className={`px-2 text-base mb-1 p-1 font-semibold bg-[#ede2d1] rounded-md cursor-pointer ${
                             brand === item.title
                               ? "border-yellow-700 border-opacity-40"
                               : ""
@@ -197,10 +197,10 @@ const ProductFilter = () => {
         <div className="col-span-3">
           <div className="col-span-3 mb-4">
             <div className="flex items-center ">
-              <p className="mr-4 text-base font-semibold">Sort By:</p>
+              <p className="mr-2 text-base font-semibold">Sort By:</p>
               <div>
                 <select
-                  className="px-4 text-lg font-medium border-2 rounded-xl"
+                  className="px-4 py-1 text-lg font-medium border-2 rounded-xl"
                   onChange={(e) => {
                     setSort(e.target.value);
                   }}
@@ -214,7 +214,7 @@ const ProductFilter = () => {
                 </select>
               </div>
 
-              <div className="ml-[auto]">
+              <div className="ml-auto">
                 <IconButton
                   className="line-layout w-[3rem] h-[3rem]  rounded-md hover:bg-gray-300 bg-gray-300"
                   onClick={(e) => {
@@ -238,7 +238,7 @@ const ProductFilter = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-10">
+          <div className="grid grid-cols-4 gap-4">
             {currentProducts.map((item, index) => (
               <div
                 key={index}

@@ -15,8 +15,8 @@ const CartItem = ({ data }) => {
 
   return (
     <div>
-      <div className="w-full flex shadow-lg border-t-2  rounded-xl">
-        <div className="w-[9rem] h-[9rem] flex justify-center mr-4">
+      <div className="flex w-full mb-6 border rounded-lg shadow-lg">
+        <div className="flex justify-center w-3/5 p-4 max-h-[9rem] min-h-fit ">
           <img
             className="object-contain"
             src={data?.product?.images[0].url}
@@ -29,10 +29,10 @@ const CartItem = ({ data }) => {
           >
             {data?.title}
           </div>
-          {/* <div className=" text-xl font-semibold text-gray-500">
+          {/* <div className="text-xl font-semibold text-gray-500 ">
             Color: Black
           </div> */}
-          <div className="text-xl font-semibold text-black mt-6 pt-6 flex flex-row gap-5">
+          <div className="flex flex-row gap-5 pt-6 mt-6 text-xl font-semibold text-black">
             <div>
               {data?.price - (data?.price * data?.product?.discount) / 100}$
             </div>
@@ -42,8 +42,8 @@ const CartItem = ({ data }) => {
             <div className="text-green-500">{data?.product?.discount}%</div>
           </div>
         </div>
-        <div className="flex items-center ml-auto gap-2">
-          <div className="place-self-center font-semibold text-black text-xl">
+        <div className="flex items-center gap-2 ml-auto">
+          <div className="text-xl font-semibold text-black place-self-center">
             Quantity:
           </div>
 
@@ -63,7 +63,7 @@ const CartItem = ({ data }) => {
           >
             <Remove />
           </IconButton>
-          <div className="place-self-center text-black font-semibold">
+          <div className="font-semibold text-black place-self-center">
             {data?.count}
           </div>
           <IconButton
