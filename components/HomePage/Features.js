@@ -6,7 +6,7 @@ import { Gif } from '@mui/icons-material'
 export default function features() {
   return (
     <>
-        <div className='flex flex-row justify-between my-8'>
+        <div className='flex flex-row justify-between my-16'>
             <div className='flex flex-row items-center'>
                 <TruckIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
