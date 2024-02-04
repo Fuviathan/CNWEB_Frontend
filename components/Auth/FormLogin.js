@@ -6,6 +6,7 @@ import { CustomTextField } from "./CustomTextField";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/state/Auth/Action";
+import "react-toastify/dist/ReactToastify.css";
 
 const FormLogin = () => {
   const router = useRouter();
@@ -55,7 +56,10 @@ const FormLogin = () => {
 
     setError({});
     dispatch(login(formData));
-    router.push("/product");
+
+    if (auth) {
+      router.push("/product");
+    }
   };
 
   return (

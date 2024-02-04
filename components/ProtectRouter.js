@@ -6,7 +6,7 @@ const ProtectRouter = ({ children }) => {
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists
-    value = localStorage.getItem("token") || "";
+    value = localStorage.getItem("user") || "";
     setAuth(value);
   }, []);
   return (

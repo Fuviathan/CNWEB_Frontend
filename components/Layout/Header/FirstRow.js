@@ -8,6 +8,8 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "@/state/Cart/Action";
+import { toast } from "react-toastify";
+import { set } from "react-hook-form";
 
 export default function FirstRow() {
   const [auth, setAuth] = useState();
@@ -16,17 +18,22 @@ export default function FirstRow() {
 
   const cartItem = useSelector((store) => store?.cart?.cartItem);
   const cart = useSelector((store) => store?.cart?.cart);
+  let value;
+  if (typeof window !== "undefined") {
+    value = JSON.parse(localStorage.getItem("user")) || null;
+  }
+
   useEffect(() => {
-    let value;
     // Get the value from local storage if it exists
-    value = localStorage.getItem("token") || "";
+
     setAuth(value);
     dispatch(getCart());
-  }, [user, cart?.cartTotal, cartItem?.cartTotal]);
+  }, [user, cart?.cartTotal, cartItem?.cartTotal, auth]);
 
   function handleLogout() {
+    setAuth("");
     localStorage.clear();
-    window.location.reload();
+    toast.error("Bạn đã đăng xuất");
   }
   return (
     <div className="w-full bg-[#ede2d1]">
@@ -62,12 +69,17 @@ export default function FirstRow() {
                 Login<br></br>Sign Up
               </a>
             ) : (
-              <p
-                onClick={handleLogout}
-                className="ml-2 text-sm font-medium text-orange-gray"
-              >
-                Logout
-              </p>
+              <div>
+                <div className="ml-2 text-sm font-medium text-orange-gray uppercase ">
+                  {auth.firstname}
+                </div>
+                <p
+                  onClick={handleLogout}
+                  className="ml-2 text-sm font-medium text-orange-gray"
+                >
+                  Logout
+                </p>
+              </div>
             )}
           </div>
           <Link
@@ -75,12 +87,12 @@ export default function FirstRow() {
             className="flex items-center hover:cursor-pointer hover:opacity-75"
           >
             <ShoppingCartIcon className="w-10 h-10 font-thin text-orange-gray" />
-            {/* <p className="ml-2 text-sm font-medium text-orange-gray">
-              My<br></br>Cart
-            </p> */}
-            <div className="text-md font-medium text-orange-gray">
-              {cart ? `${cart?.cartTotal}$` : ""}{" "}
-            </div>
+
+            {auth && (
+              <div className="text-md font-medium text-orange-gray">
+                {cart ? `${cart?.cartTotal}$` : ""}{" "}
+              </div>
+            )}
           </Link>
         </div>
       </div>

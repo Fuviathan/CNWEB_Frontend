@@ -159,7 +159,7 @@ export default function ProductDetail({ product }) {
                 variant="contained"
                 size="large"
                 onClick={() => {
-                  handleAddToCart(product), alert("Thêm sản phẩm thành công");
+                  handleAddToCart(product);
                 }}
               >
                 <AddShoppingCart />
