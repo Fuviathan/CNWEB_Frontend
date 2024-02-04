@@ -3,6 +3,8 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
+import { ThemeProvider } from "@emotion/react";
+import { ToastContainer } from "react-toastify";
 
 export default function Layout(props) {
   return (
@@ -11,9 +13,10 @@ export default function Layout(props) {
         <div>
           <Header />
         </div>
-        {props.children}
+        <div>{props.children}</div>
         <Footer />
       </div>
+      <ToastContainer />
     </Provider>
   );
 }

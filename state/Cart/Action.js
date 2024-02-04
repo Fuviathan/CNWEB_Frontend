@@ -13,6 +13,7 @@ import {
   UPDATE_PRODUCT_IN_CART_REQUEST,
   UPDATE_PRODUCT_IN_CART_SUCCESS,
 } from "./ActionType";
+import { toast } from "react-toastify";
 
 export const getCart = () => async (dispatch) => {
   dispatch({ type: GET_CART_REQUEST });
@@ -31,6 +32,7 @@ export const addProductToCart = (req) => async (dispatch) => {
   try {
     const { data } = await api.post("user/cart", req);
     dispatch({ type: ADD_PRODUCT_TO_CART_SUCCESS, payload: data });
+    toast.success("Thêm sản phẩm thành công!");
   } catch (error) {
     dispatch({ type: ADD_PRODUCT_TO_CART_FAILURE, payload: error.message });
   }
@@ -41,8 +43,8 @@ export const removeProductFromCart = (productId) => async (dispatch) => {
   dispatch({ type: DELETE_PRODUCT_FROM_CART_REQUEST });
   try {
     const { data } = await api.delete(`user/delete-product-cart/${productId}`);
-    console.log(data);
     dispatch({ type: DELETE_PRODUCT_FROM_CART_SUCCESS, payload: data });
+    toast.error("Đã xóa sản phẩm khỏi giỏ hàng!");
   } catch (error) {
     dispatch({
       type: DELETE_PRODUCT_FROM_CART_FAILURE,

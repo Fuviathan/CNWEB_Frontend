@@ -12,6 +12,8 @@ import {
   REGISTER_SUCCESS,
 } from "./ActionType";
 import { API_BASE_URL } from "@/config/apiConfig";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
@@ -31,11 +33,12 @@ export const login = (userData) => async (dispatch) => {
   try {
     const response = await axios.post(`${API_BASE_URL}user/login`, userData);
     const user = response.data;
-    console.log(user);
-    if (user.token) {
-      localStorage.setItem("token", user.token);
+
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
     }
 
+    toast.success("Đăng nhập thành công!");
     dispatch({ type: LOGIN_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: LOGIN_FAILURE, payload: error });
@@ -64,7 +67,7 @@ export const getUser = (jwt) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+  toast.error("Bạn đã đăng xuất!");
   dispatch({ type: LOGOUT, payload: null });
   localStorage.clear();
-  dispatch(showAlert("You have logged out!", "error"));
 };
