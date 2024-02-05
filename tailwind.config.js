@@ -15,7 +15,9 @@ module.exports = {
       colors: {
         'orange-gray': '#917a67',
         'light-brown': '#ede2d1',
-        'brown-green': '#baaf9d'
+        'brown-green': '#baaf9d',
+        'dark-purple': '#081A51',
+        "light-white": "rgba(255,255,255,0.17)"
       },
       animation: {
         marquee: 'marquee 25s linear infinite',
