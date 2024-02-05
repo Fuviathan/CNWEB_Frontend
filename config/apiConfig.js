@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_BASE_URL = "http://localhost:3000/api/";
+export const API_BASE_URL = "https://shopping-9dz1.onrender.com/api/";
 
 // Hàm để lấy token từ localStorage
 const getTokenFromLocalStorage = () => {
