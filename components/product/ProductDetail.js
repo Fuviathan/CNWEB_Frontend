@@ -110,12 +110,12 @@ export default function ProductDetail({ product }) {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <div className="font-semibold">Tag:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600  font-mono">
                 {product?.tags}
               </div>
-            </div>
+            </div> */}
 
             <div className="flex gap-4">
               <div className="font-semibold">Availablity :</div>
@@ -124,15 +124,15 @@ export default function ProductDetail({ product }) {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <div className="font-semibold">Color :</div>
               <Color color={color} setColor={setColor} data={dataColor} />
-            </div>
+            </div> */}
           </div>
           {/* =============Quantity===================== */}
           <div className="grid col-span-3 lg:grid-cols-3 sm:grid-cols-1">
             <div className="flex ">
-              <div className="font-semibold place-self-center">Quantity:</div>
+              <div className="font-semibold place-self-center">Số lượng:</div>
 
               <IconButton
                 onClick={() => setQuantity(quantity - 1)}
@@ -227,7 +227,7 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
 
-          {/* <div className="col-span-3 mt-4">
+          <div className="col-span-3 mt-4">
             <div className="flex flex-col ">
               <div
                 className="flex items-center border-b-2 cursor-pointer"
@@ -281,12 +281,12 @@ export default function ProductDetail({ product }) {
                 Share
               </p>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
 
       {/* ===================PRoduct description========================= */}
-      <div>
+      <div className="mt-16">
         <Description description={product?.description}></Description>
       </div>
 

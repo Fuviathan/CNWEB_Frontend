@@ -8,10 +8,10 @@ const order = () => {
   return (
     <Layout>
       <ProtectRouter>
-        <div className="ml-12">
+        {/* <div className="ml-12">
           <BreadCrumb title={"Orders"}></BreadCrumb>
-        </div>
-        <div className="">
+        </div> */}
+        <div className="mt-16">
           <OrderDetail></OrderDetail>
         </div>
       </ProtectRouter>

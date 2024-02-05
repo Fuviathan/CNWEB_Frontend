@@ -14,7 +14,7 @@ export default function SwiperProduct({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div>
+    <div className='border-2'>
       <Swiper
         style={{
           "--swiper-navigation-color": "#ede2d1",
@@ -27,21 +27,21 @@ export default function SwiperProduct({ images }) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="h-96 w-full rounded-lg"
+        className="w-full rounded-lg h-96"
       >
         {images?.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="flex h-full w-full items-center justify-center">
+            <div className="flex items-center justify-center w-full h-full">
               <img
                 src={image.url}
-                className="block h-full w-full object-contain"
+                className="block object-contain w-full h-full"
               />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <Swiper
+      {/* <Swiper
         centeredSlides={true}
         // className={styles.mySwiper}
         onSwiper={setThumbsSwiper}
@@ -51,16 +51,16 @@ export default function SwiperProduct({ images }) {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="thumbs mt-5 h-32 rounded-lg border-2"
+        className="h-32 mt-5 border-2 rounded-lg thumbs"
       >
         {images?.map((image, index) => (
           <SwiperSlide key={index}>
-            <button className="h-full w-full">
-              <img src={image.url} className=" h-full w-full object-contain" />
+            <button className="w-full h-full">
+              <img src={image.url} className="object-contain w-full h-full " />
             </button>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> */}
     </div>
   );
 }
