@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { ChartBarIcon, AdjustmentsHorizontalIcon, ClipboardDocumentListIcon, ChevronDownIcon, PlusCircleIcon, UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { For } from 'react-haiku'
 
 export default function SidebarItemChildren({Menu, open, openSub, setOpenSub, asPath}) {

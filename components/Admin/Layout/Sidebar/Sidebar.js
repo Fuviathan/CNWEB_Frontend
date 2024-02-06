@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { If, For } from 'react-haiku'
 import { useRouter } from "next/router";
-import { ChartBarIcon, AdjustmentsHorizontalIcon, ClipboardDocumentListIcon, ChevronDownIcon, PlusCircleIcon, UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
 import SidebarItem from './SidebarItem';
 import SidebarItemChildren from './SidebarItemChildren';
 
@@ -11,7 +10,7 @@ export default function Sidebar({Menus}) {
     const { asPath } = useRouter()
     return (
         <div
-            className={` ${open ? "w-1/6 min-w-fit" : "w-[4%] "
+            className={` ${open ? "w-1/6 min-w-fit" : "w-[8vh] "
                 } bg-dark-purple h-screen  p-5 pt-5 relative duration-300`}
         >
             <img

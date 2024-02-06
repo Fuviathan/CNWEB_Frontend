@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-
-import { ChartBarIcon, AdjustmentsHorizontalIcon, ClipboardDocumentListIcon, ChevronDownIcon, PlusCircleIcon, UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
-import { useDispatch, useSelector, Provider } from "react-redux";
+import React from 'react'
+import { ChartBarIcon, AdjustmentsHorizontalIcon, ClipboardDocumentListIcon, PlusCircleIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import Sidebar from './Sidebar/Sidebar';
+import AdminHeader from './AdminHeader';
 
 export default function AdminLayout(props) {
-  // const user = useSelector((store) => store?.auth?.user);
-  // console.log(user)
-
- 
   const Menus = [
     { title: "Trang chủ", icon: ChartBarIcon, path: '/admin/dashboard' },
     {
@@ -30,14 +26,7 @@ export default function AdminLayout(props) {
         <div className="flex">
           <Sidebar Menus={Menus} />
           <div className="flex flex-col w-full h-screen ">
-            <div className='flex justify-end w-full px-8 py-4 bg-white '>
-              <div className='flex items-center hover:cursor-pointer hover:opacity-70'>
-                <UserIcon className='w-6 h-6 font-medium' />
-                <div className='ml-3 text-xl tracking-wide'>
-                  ABCD@gmail.com
-                </div>
-              </div>
-            </div>
+            <AdminHeader />            
             {props.children}
           </div>
         </div>
