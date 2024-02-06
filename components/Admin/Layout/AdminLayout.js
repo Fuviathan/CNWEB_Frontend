@@ -24,10 +24,9 @@ export default function AdminLayout(props) {
     <>
       <Provider store={store}>
         <div className="flex">
-          <Sidebar Menus={Menus} isOpen={isOpen} />
-          <div className="flex flex-col w-full h-screen ">
-            <AdminHeader />    
-            <div></div>        
+          <Sidebar Menus={Menus}  />
+          <div className="flex flex-col w-full h-screen bg-gray-200">
+            <AdminHeader />            
             {props.children}
           </div>
         </div>
