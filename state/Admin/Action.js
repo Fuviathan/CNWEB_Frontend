@@ -18,6 +18,7 @@ export const addNewBrand = (req) => async (dispatch) => {
   dispatch({ type: ADD_BRAND_REQUEST });
   try {
     const { data } = api.post("/brand", req);
+    alert("Theem thanh cong");
 
     dispatch({ type: ADD_BRAND_SUCCESS, payload: data });
   } catch (e) {
