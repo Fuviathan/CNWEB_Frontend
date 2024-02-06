@@ -64,7 +64,7 @@ const ProductCard = ({ grid, item }) => {
 
             <img
               className="absolute top-0 object-fill w-full h-full hover:opacity-0"
-              src={item.images[1].url}
+              src={item.images[1]?.url}
             />
           </div>
           {item.discount !== 0 && (
