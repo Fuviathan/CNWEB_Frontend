@@ -17,12 +17,12 @@ import {
 export const addNewBrand = (req) => async (dispatch) => {
   dispatch({ type: ADD_BRAND_REQUEST });
   try {
-    const { data } = api.post("/brand", req);
-    alert("Theem thanh cong");
-
+    const { data } = await api.post("/brand", req);
+    alert("Thêm nhãn hàng thành công") ? "" : location.reload();
     dispatch({ type: ADD_BRAND_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e.message });
+    alert(e.message) ? "" : location.reload();
   }
 };
 

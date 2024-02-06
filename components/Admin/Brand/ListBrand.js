@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductByBrand } from "@/state/Products/Action";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-const TableReact = () => {
+const ListBrand = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state?.admin?.brands);
   useEffect(() => {
@@ -52,21 +52,21 @@ const TableReact = () => {
   const nextPage = () => {
     const startIndex = rowsLimit * (currentPage + 1);
     const endIndex = startIndex + rowsLimit;
-    const newArray = products.slice(startIndex, endIndex);
+    const newArray = brands.slice(startIndex, endIndex);
     setRowsToShow(newArray);
     setCurrentPage(currentPage + 1);
   };
   const changePage = (value) => {
     const startIndex = value * rowsLimit;
     const endIndex = startIndex + rowsLimit;
-    const newArray = productList.slice(startIndex, endIndex);
+    const newArray = brands.slice(startIndex, endIndex);
     setRowsToShow(newArray);
     setCurrentPage(value);
   };
   const previousPage = () => {
     const startIndex = (currentPage - 1) * rowsLimit;
     const endIndex = startIndex + rowsLimit;
-    const newArray = products.slice(startIndex, endIndex);
+    const newArray = brands.slice(startIndex, endIndex);
     setRowsToShow(newArray);
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -199,7 +199,7 @@ const TableReact = () => {
           </table>
         </div>
         <div
-          className={`w-full justify-center mb-4 sm:justify-between flex-col sm:flex-row gap-5 mt-6 px-1 items-center ${
+          className={`w-full justify-center mb-2 sm:justify-between flex-col sm:flex-row gap-5 mt-6 px-1 items-center ${
             productList?.length > 0 ? "flex" : "hidden"
           }`}
         >
@@ -257,4 +257,4 @@ const TableReact = () => {
     </div>
   );
 };
-export default TableReact;
+export default ListBrand;
