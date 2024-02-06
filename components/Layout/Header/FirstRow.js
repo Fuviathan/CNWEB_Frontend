@@ -25,10 +25,9 @@ export default function FirstRow() {
 
   useEffect(() => {
     // Get the value from local storage if it exists
-
     setAuth(value);
     dispatch(getCart());
-  }, [user, cart?.cartTotal, cartItem?.cartTotal, auth]);
+  }, [user, cart?.cartTotal, cartItem?.cartTotal]);
 
   function handleLogout() {
     setAuth("");

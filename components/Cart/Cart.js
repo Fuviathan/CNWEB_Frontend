@@ -18,7 +18,7 @@ const Cart = () => {
     setAuth(value);
     console.log(auth);
     dispatch(getCart());
-  }, [cartItem?.cartTotal]);
+  }, []);
 
   return (
     <div className="mt-8">
