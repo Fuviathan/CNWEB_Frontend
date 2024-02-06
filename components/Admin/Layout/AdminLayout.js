@@ -12,7 +12,7 @@ export default function AdminLayout(props) {
       title: "Thiết lập sản phẩm", icon: AdjustmentsHorizontalIcon, children: [
         { title: "Danh sách sản phẩm", icon: ClipboardDocumentListIcon, path: '/Abcd' },
         { title: "Thêm sản phẩm", icon: PlusCircleIcon, path: 'b' },
-        { title: "Danh sách nhãn hàng", icon: ClipboardDocumentListIcon, path: 'b' },
+        { title: "Danh sách nhãn hàng", icon: ClipboardDocumentListIcon, path: '/admin/brand' },
         { title: "Thêm nhãn hàng", icon: PlusCircleIcon, path: 'b' },
         { title: "Danh sách danh mục", icon: ClipboardDocumentListIcon, path: 'b' },
         { title: "Thêm Danh mục", icon: PlusCircleIcon, path: 'b' },
@@ -24,9 +24,10 @@ export default function AdminLayout(props) {
     <>
       <Provider store={store}>
         <div className="flex">
-          <Sidebar Menus={Menus} />
+          <Sidebar Menus={Menus} isOpen={isOpen} />
           <div className="flex flex-col w-full h-screen ">
-            <AdminHeader />            
+            <AdminHeader />    
+            <div></div>        
             {props.children}
           </div>
         </div>
