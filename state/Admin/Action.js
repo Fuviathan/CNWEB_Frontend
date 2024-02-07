@@ -30,10 +30,11 @@ export const deleteBrand = (brandId) => async (dispatch) => {
   dispatch({ type: DELETE_BRAND_REQUEST });
   try {
     const { data } = api.delete(`/brand/${brandId}`);
-
+    alert('Xóa thành công') ? "" : location.reload()
     dispatch({ type: DELETE_BRAND_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
+    alert(e.message) ? "" : location.reload();  
   }
 };
 
