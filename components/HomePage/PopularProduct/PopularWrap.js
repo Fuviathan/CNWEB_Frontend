@@ -16,7 +16,6 @@ export default function PopularWrap() {
     }, [])
     const productCateGory = useSelector((state) => state?.product?.products)
     const productArray = productCateGory.slice(0, 10)
-    console.log(productArray)
     return (
         <Swiper
             // pagination={{
