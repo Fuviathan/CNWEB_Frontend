@@ -12,6 +12,9 @@ import {
   DELETE_CATEGORY_FAILURE,
   DELETE_CATEGORY_REQUEST,
   DELETE_CATEGORY_SUCCESS,
+  GET_ALL_USER_FAILURE,
+  GET_ALL_USER_SUCCESS,
+  GET_ALL_USER_REQUEST,
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -34,7 +37,7 @@ export const deleteBrand = (brandId) => async (dispatch) => {
     dispatch({ type: DELETE_BRAND_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
-    alert(e.message) ? "" : location.reload();  
+    alert(e.message) ? "" : location.reload();
   }
 };
 
@@ -53,9 +56,20 @@ export const deleteCategory = (categoryId) => async (dispatch) => {
   dispatch({ type: DELETE_CATEGORY_REQUEST });
   try {
     const { data } = api.delete(`/prodcategory/${categoryId}`);
-
+    alert('Xóa thành công') ? "" : location.reload()
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
+    alert(e.message) ? "" : location.reload();
+  }
+};
+
+export const getAllUser = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_USER_REQUEST });
+  try {
+    const { data } = await api.get(`user/all-user`);
+    dispatch({ type: GET_ALL_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_ALL_USER_FAILURE, payload: error.message });
   }
 };

@@ -7,6 +7,9 @@ import {
   ADD_BRAND_FAILURE,
   ADD_BRAND_REQUEST,
   ADD_BRAND_SUCCESS,
+  GET_ALL_USER_FAILURE,
+  GET_ALL_USER_REQUEST,
+  GET_ALL_USER_SUCCESS,
 } from "./ActionType";
 
 const initialState = {
@@ -37,7 +40,11 @@ export const adminReducer = (state = initialState, action) => {
     case GET_ALL_BRAND_FAILURE:
     case ADD_BRAND_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-
+    case GET_ALL_USER_REQUEST:
+    case GET_ALL_USER_SUCCESS:
+      return {...state, isLoading: false, error: null, allUser: action.payload}
+    case GET_ALL_USER_FAILURE:
+      return {...state, isLoading: false, error: action.payload}
     // case LOGOUT:
     //   return { ...initialState, jwt: "" };
 
