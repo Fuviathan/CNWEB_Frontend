@@ -17,6 +17,9 @@ import {
   GET_SINGLE_PRODUCTS_FAILURE,
   GET_SINGLE_PRODUCTS_REQUEST,
   GET_SINGLE_PRODUCTS_SUCCESS,
+  GET_CATEGORY_COUNT_FAILURE,
+  GET_CATEGORY_COUNT_SUCCESS,
+  GET_CATEGORY_COUNT_REQUEST
 } from "./ActionType";
 
 const initialState = {
@@ -35,6 +38,7 @@ export const customerProductReducer = (state = initialState, action) => {
     case GET_ALL_COLOR_REQUEST:
     case GET_ALL_BRAND_REQUEST:
     case GET_ALL_CATEGORY_REQUEST:
+    case GET_CATEGORY_COUNT_REQUEST:
     case GET_SINGLE_PRODUCTS_REQUEST:
       return { ...state, loading: true, error: null };
     case GET_PRODUCTS_SUCCESS:
@@ -72,6 +76,13 @@ export const customerProductReducer = (state = initialState, action) => {
         error: null,
         category: action.payload,
       };
+    case GET_CATEGORY_COUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        categoryCount: action.payload,
+      };
     case GET_SINGLE_PRODUCTS_SUCCESS:
       return {
         ...state,
@@ -85,6 +96,8 @@ export const customerProductReducer = (state = initialState, action) => {
     case GET_PRODUCTS_BY_FILTER_FAILURE:
     case GET_ALL_BRAND_FAILURE:
     case GET_ALL_CATEGORY_FAILURE:
+    case GET_CATEGORY_COUNT_FAILURE:
+    case GET_ALL_BRAND_FAILURE:
     case GET_SINGLE_PRODUCTS_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:

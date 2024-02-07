@@ -18,6 +18,9 @@ import {
   GET_SINGLE_PRODUCTS_FAILURE,
   GET_SINGLE_PRODUCTS_REQUEST,
   GET_SINGLE_PRODUCTS_SUCCESS,
+  GET_CATEGORY_COUNT_FAILURE,
+  GET_CATEGORY_COUNT_REQUEST,
+  GET_CATEGORY_COUNT_SUCCESS,
 } from "./ActionType";
 import { API_BASE_URL } from "@/config/apiConfig";
 
@@ -98,3 +101,14 @@ export const getSingleProduct = (id) => async (dispatch) => {
     dispatch({ type: GET_SINGLE_PRODUCTS_FAILURE, payload: error.message });
   }
 };
+
+export const getCategoryCount = () => async (dispatch) => {
+  dispatch({ type: GET_CATEGORY_COUNT_REQUEST })
+  try {
+    const { data } = await axios.get(`${API_BASE_URL}prodcategory/count`);
+    console.log(data);
+    dispatch({ type: GET_CATEGORY_COUNT_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_CATEGORY_COUNT_FAILURE, payload: error.message });
+  }
+}
