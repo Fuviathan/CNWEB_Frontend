@@ -61,12 +61,12 @@ export default function FirstRow() {
           <div className="flex items-center hover:cursor-pointer hover:opacity-75">
             <UserIcon className="w-10 h-10 font-thin text-orange-gray" />
             {!auth ? (
-              <a
+              <Link
                 href="/login"
                 className="ml-2 text-sm font-medium text-orange-gray"
               >
                 Login<br></br>Sign Up
-              </a>
+              </Link>
             ) : (
               <div>
                 <div className="ml-2 text-sm font-medium text-orange-gray uppercase ">

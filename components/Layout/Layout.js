@@ -9,12 +9,14 @@ import { ToastContainer } from "react-toastify";
 export default function Layout(props) {
   return (
     <Provider store={store}>
-      <div className="flex flex-col justify-between min-h-screen bg-white h-fit">
-        <div>
-          <Header />
+      <div id="root">
+        <div className=" flex flex-col justify-between min-h-screen bg-white h-fit">
+          <div>
+            <Header />
+          </div>
+          <div className="bg-white">{props.children}</div>
+          <Footer />
         </div>
-        <div>{props.children}</div>
-        <Footer />
       </div>
       <ToastContainer />
     </Provider>
