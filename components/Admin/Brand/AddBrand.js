@@ -2,11 +2,9 @@ import { CustomTextField } from "@/components/Auth/CustomTextField";
 import { addNewBrand } from "@/state/Admin/Action";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-
+  
 const AddBrand = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter()
   const [brand, setBrand] = useState("");
   const [error, setError] = useState("");
 
@@ -44,14 +42,14 @@ const AddBrand = (props) => {
       </div>
       <div className="flex flex-row-reverse gap-5 mt-5">
         <button
-          className="p-2 px-6 bg-brown-green rounded-2xl"
+          className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
           onClick={handleSave}
         >
           Lưu
         </button>
         <button
           onClick={props.onClose}
-          className="p-2 px-6 bg-brown-green rounded-2xl"
+          className="p-2 px-6 text-red-500 bg-white border-2 border-red-500 hover:text-white hover:bg-red-500 rounded-2xl"
         >
           Hủy
         </button>
