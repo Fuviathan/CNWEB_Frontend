@@ -118,11 +118,11 @@ const ListCategory = () => {
                                         <span className="pl-1">Tên danh mục</span>
                                     </div>
                                 </th>
-                                {/* <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group  ">
+                                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group  ">
                                     <div className="">
                                         <span className="pl-1">Ảnh</span>
                                     </div>
-                                </th> */}
+                                </th>
                                 <th className="w-1/12"></th>
 
                             </tr>
@@ -168,7 +168,7 @@ const ListCategory = () => {
                                         >
                                             {data?.title}
                                         </td>
-                                        {/* <td
+                                        <td
                                             className={`py-2 px-3 font-normal text-base ${index == 0
                                                 ? "border-t-1 border-black"
                                                 : index == rowsToShow?.length
@@ -176,8 +176,8 @@ const ListCategory = () => {
                                                     : "border-t"
                                                 } whitespace-nowrap`}
                                         >
-                                            {data?.image}
-                                        </td> */}
+                                            <img className="max-w-16 max-h-16" src={`${data?.image}`} />
+                                        </td>
                                         <td
                                             className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
                                             onClick={() => { setOpen(true); setId(data._id); }}
