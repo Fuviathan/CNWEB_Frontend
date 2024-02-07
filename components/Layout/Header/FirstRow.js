@@ -65,18 +65,18 @@ export default function FirstRow() {
                 href="/login"
                 className="ml-2 text-sm font-medium text-orange-gray"
               >
-                Login<br></br>Sign Up
+                Đăng nhập<br></br>Đăng ký
               </Link>
             ) : (
               <div>
-                <div className="ml-2 text-sm font-medium text-orange-gray uppercase ">
+                <div className="ml-2 text-sm font-medium uppercase text-orange-gray ">
                   {auth.firstname}
                 </div>
                 <p
                   onClick={handleLogout}
                   className="ml-2 text-sm font-medium text-orange-gray"
                 >
-                  Logout
+                  Đăng xuất
                 </p>
               </div>
             )}
@@ -88,7 +88,7 @@ export default function FirstRow() {
             <ShoppingCartIcon className="w-10 h-10 font-thin text-orange-gray" />
 
             {auth && (
-              <div className="text-md font-medium text-orange-gray">
+              <div className="font-medium text-md text-orange-gray">
                 {cart ? `${cart?.cartTotal}$` : ""}{" "}
               </div>
             )}

@@ -12,16 +12,14 @@ export default function brand() {
     <AdminLayout>
       <div className="flex flex-row-reverse">
         <button
-          className=" border-2 bg-brown-green p-2 rounded-2xl mr-12 mt-2 font-medium shadow-lg hover:shadow-xl hover:opacity-80"
+          className="p-2 mt-2 mr-12 font-medium bg-white border-2 border-dark-purple text-dark-purple rounded-2xl hover:shadow-xl hover:opacity-80"
           onClick={handleOpen}
         >
-          Thêm nhãn hiệu
+          Thêm nhãn hàng
         </button>
       </div>
       <BasicModal open={open} onClose={handleClose}>
-        <div className="bg-red-500">
-          <AddBrand onClose={handleClose}></AddBrand>
-        </div>
+        <AddBrand onClose={handleClose}></AddBrand>
       </BasicModal>
       <div className="w-full max-h-screen mt-2 overflow-auto bg-gray-200">
         <div className="px-6 pb-4 mb-0 text-2xl font-semibold">

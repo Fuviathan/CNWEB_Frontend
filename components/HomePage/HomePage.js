@@ -11,8 +11,8 @@ export default function HomePage() {
       <Carousel />
       <Features />
       <ItemIntroduce />
-      <MarqueeLogo />
       <PopularProduct />
+      <MarqueeLogo />
     </div>
   )
 }

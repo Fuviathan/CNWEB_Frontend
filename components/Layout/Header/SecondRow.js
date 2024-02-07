@@ -15,19 +15,19 @@ export default function SecondRow() {
           href={"/product"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Our Store
+          Mua sắm
         </Link>
         <Link
           href={"/orderhistory"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Orders
+          Đơn hàng
         </Link>
         <Link
           href={""}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Contact
+          Liên hệ
         </Link>
       </div>
     </div>

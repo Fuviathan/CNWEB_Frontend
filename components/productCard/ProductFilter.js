@@ -104,8 +104,8 @@ const ProductFilter = () => {
         {/* ==============Product Filter========================= */}
         <div className="col-span-1 mt-4">
           {/* =============Filter by category====================== */}
-          <div className="flex flex-col justify-center px-6 py-4 border-2 rounded-lg">
-            <div className="mr-4 text-2xl font-bold ">Shop by categories</div>
+          <div className="flex flex-col justify-center px-6 py-4 border-2 rounded-lg ">
+            <div className="mr-4 text-2xl font-bold ">Tìm kiếm bằng danh mục</div>
             <div className="flex flex-row py-4">
               <div>
                 <ul className="flex flex-wrap gap-2">
@@ -137,20 +137,20 @@ const ProductFilter = () => {
           {/* =============Filter by Color and price====================== */}
 
           <div className="flex flex-col justify-center px-6 py-4 mt-4 border-2 rounded-xl">
-            <div className="mr-4 text-2xl font-bold ">Filter By</div>
+            <div className="mr-4 text-2xl font-bold ">Lọc</div>
             <div className="mt-2">
-              <div className="mb-4 text-xl font-semibold text-gray-500"> Price:</div>
+              <div className="mb-4 text-xl font-semibold text-gray-500"> Giá cả:</div>
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
                 <CustomTextField
                   onChange={(e) => setMinPrice(e.target.value)}
-                  label={"From"}
+                  label={"Từ"}
                   id="margin-none"
                 />
                 <span className="px-2 ml-8 text-xl font-semibold">$</span>
                 <CustomTextField
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  label={"To"}
+                  label={"Đến"}
                   id="margin-none"
                 />
               </div>
@@ -165,7 +165,7 @@ const ProductFilter = () => {
 
           {/* =====================Filter by Brand======================= */}
           <div className="flex flex-col justify-center px-6 py-4 mt-4 border-2 rounded-lg">
-            <div className="mr-4 text-2xl font-bold ">Brand</div>
+            <div className="mr-4 text-2xl font-bold ">Nhãn hàng</div>
             <div className="flex flex-row py-4">
               <div>
                 <ul className="flex flex-wrap gap-2 mb-0 ps-0">
@@ -197,7 +197,7 @@ const ProductFilter = () => {
         <div className="col-span-3">
           <div className="col-span-3 mb-4">
             <div className="flex items-center ">
-              <p className="mr-2 text-base font-semibold">Sort By:</p>
+              <p className="mr-2 text-base font-semibold">Sắp xếp:</p>
               <div>
                 <select
                   className="px-4 py-1 text-lg font-medium border-2 rounded-xl"
@@ -205,12 +205,12 @@ const ProductFilter = () => {
                     setSort(e.target.value);
                   }}
                 >
-                  <option value="title">Alphabetically, A-Z</option>
-                  <option value="-title">Alphabetically, Z-A</option>
-                  <option value="price">Price, low to high</option>
-                  <option value="-price">Price, high to low</option>
-                  <option value="createdAt">Date, old to new</option>
-                  <option value="-createdAt">Date, new to old</option>
+                  <option value="title">Từ A-Z</option>
+                  <option value="-title">Từ Z-A</option>
+                  <option value="price">Giá cả, thấp đến cao</option>
+                  <option value="-price">Giá cả, cao xuống thấp</option>
+                  <option value="createdAt">Ngày, cũ đến mới</option>
+                  <option value="-createdAt">Ngày, mới đến cũ</option>
                 </select>
               </div>
 

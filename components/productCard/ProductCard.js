@@ -59,17 +59,17 @@ const ProductCard = ({ grid, item }) => {
           <div className="w-full h-full">
             <img
               className="object-fill w-full h-full "
-              src={item.images[0].url}
+              src={item?.images[0].url}
             />
 
             <img
               className="absolute top-0 object-fill w-full h-full hover:opacity-0"
-              src={item.images[1]?.url}
+              src={item?.images[1]?.url}
             />
           </div>
-          {item.discount !== 0 && (
+          {item?.discount !== 0 && (
             <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-              {item.discount}% OFF
+              {item?.discount}% OFF
             </span>
           )}
           <div
@@ -109,12 +109,12 @@ const ProductCard = ({ grid, item }) => {
           <div className="flex flex-wrap justify-between w-full">
             <div>
               <div
-                title={item.title}
+                title={item?.title}
                 className={`tracking-tight text-slate-900 font-semibold text-nowrap text-ellipsis overflow-hidden ${
                   grid === 6 ? "w-full" : "w-[12rem]"
                 }`}
               >
-                {item.title}
+                {item?.title}
               </div>
             </div>
             <div className="flex flex-wrap items-center ">
@@ -134,11 +134,11 @@ const ProductCard = ({ grid, item }) => {
               <span className={`font-bold text-slate-900 ${
                 grid === 6 ? 'text-3xl' : 'text-2xl'
               }`}>
-                ${item.price}
+                ${item?.price}
               </span>
-              {item.discount !== 0 && (
+              {item?.discount !== 0 && (
                 <span className="ml-2 text-sm line-through text-slate-900">
-                  ${item.price + (item.price * item.discount) / 100}
+                  ${item?.price + (item?.price * item?.discount) / 100}
                 </span>
               )}
             </p>

@@ -84,7 +84,7 @@ const FormRegister = () => {
     <div className="py-[5rem]">
       <div className="w-2/5 py-4 m-auto bg-white">
         <p className="mb-5 text-2xl font-bold text-center text-orange-gray">
-          Sign up
+          Đăng ký
         </p>
         <form className="px-4">
           <CustomTextField

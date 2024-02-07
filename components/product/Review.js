@@ -7,24 +7,24 @@ export const Review = () => {
       <div className="bg-white ">
         {/* <div className="text-3xl font-bold ">Review</div> */}
         <div className="mt-4">
-          <div className="text-2xl font-bold ">Customer Reviews</div>
+          <div className="text-2xl font-bold ">Đánh giá của khách hàng</div>
           <div className="flex gap-2 mt-2">
             <Rating value={4.5}></Rating>
             <div className="text-xl font-semibold text-gray-400">
-              Based on 0 Reviews
+              Dựa trên 0 đánh giá
             </div>
           </div>
 
           <div>
             <div className="mt-8 text-2xl font-bold">
-              Write a Review
+              Đánh giá sản phẩm
             </div>
             <div className="my-2 text-xl font-semibold text-gray-400 ">
-              Rating
+              Đánh giá
             </div>
             <Rating name="size-medium" defaultValue={3} />
             <div className="my-4 text-xl font-semibold text-gray-400">
-              Write your review
+              Viết đánh giá của bạn
             </div>
             <TextareaAutosize
               minRows={5}
@@ -36,7 +36,7 @@ export const Review = () => {
               className="outline-black bg-black text-white rounded-2xl hover:bg-[#febd69] hover:border-[#febd69] hover:shadow-lg mt-2"
               variant="outlined"
             >
-              <p className="font-bold text-md">Submit Review</p>
+              <p className="font-bold text-md">Gửi đánh giá</p>
             </Button>
           </div>
         </div>
