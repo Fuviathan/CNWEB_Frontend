@@ -10,36 +10,36 @@ export default function features() {
             <div className='flex flex-row items-center'>
                 <TruckIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
-                    <div className='font-bold tracking-wide text-left'>Free Shipping</div>
-                    <div className='mt-2 text-sm text-left'>From all orders over 5$</div>
+                    <div className='font-bold tracking-wide text-left'>Miễn phí vận chuyển</div>
+                    <div className='mt-2 text-sm text-left'>Tất cả các đơn hàng từ 5$ trở lên</div>
                 </div>
             </div>
             <div className='flex flex-row items-center'>
                 <GiftIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
-                    <div className='font-bold tracking-wide text-left'>Daily Supprise Offers</div>
-                    <div className='mt-2 text-sm text-left'>Save upto 25% off</div>
+                    <div className='font-bold tracking-wide text-left'>Ưu đãi hấp dẫn mỗi ngày</div>
+                    <div className='mt-2 text-sm text-left'>Tiết kiệm tối đa 25%</div>
                 </div>
             </div>
             <div className='flex flex-row items-center'>
                 <DevicePhoneMobileIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
-                    <div className='font-bold tracking-wide text-left'>Support 24/7</div>
-                    <div className='mt-2 text-sm text-left'>Shop with an expert</div>
+                    <div className='font-bold tracking-wide text-left'>Đội ngũ hỗ trợ 24/7</div>
+                    <div className='mt-2 text-sm text-left'>Mua sắm với những chuyên gia</div>
                 </div>
             </div>
             <div className='flex flex-row items-center'>
                 <ReceiptPercentIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
-                    <div className='font-bold tracking-wide text-left'>Affordable Prices</div>
-                    <div className='mt-2 text-sm text-left'>Get Factory Default Price</div>
+                    <div className='font-bold tracking-wide text-left'>Giá cả hợp lý</div>
+                    <div className='mt-2 text-sm text-left'>Giá cả được lấy từ nhà máy sản xuất</div>
                 </div>
             </div>
             <div className='flex flex-row items-center'>    
                 <CreditCardIcon className='w-10 h-10 mr-4' />
                 <div className='flex flex-col'>
-                    <div className='font-bold tracking-wide text-left'>Secure Payment</div>
-                    <div className='mt-2 text-sm text-left'>100% Protected Payment</div>
+                    <div className='font-bold tracking-wide text-left'>Giao dịch an toàn</div>
+                    <div className='mt-2 text-sm text-left'>100% các giao dịch đều được bảo mật</div>
                 </div>
             </div>
         </div>

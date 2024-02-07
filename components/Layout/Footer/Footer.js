@@ -23,8 +23,8 @@ export default function Footer() {
           <div className='pb-1 mb-2 '>Liên hệ</div>
         </div>
         <div className='px-3 tracking-wide text-orange-gray grid-row-3'> 
-          <div className='mb-6 text-2xl font-bold uppercase'>Our App</div>
-          <div className='mb-2 '>Download our App and get extra 15% Discount on your first Order..!</div>
+          <div className='mb-6 text-2xl font-bold uppercase'>Ứng dụng</div>
+          <div className='mb-2 '>Tải ứng dụng ngay để nhận được ưu đãi lên tới 15% cho đơn hàng đầu tiên ...!</div>
         </div>
       </div>
     </div>

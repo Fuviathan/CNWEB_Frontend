@@ -5,26 +5,26 @@ export default function SecondRow() {
   return (
     <div className="w-full bg-brown-green">
       <div className="flex items-center max-w-[1320px] p-4 text-sm leading-5 font-normal mx-auto text-white">
-        <animate
+        <a
           href={"/Abcd"}
           className="pr-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Home
-        </animate>
+          Trang chủ
+        </a>
         <a
           href={"/product"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Our Store
+          Mua sắm
         </a>
         <a
           href={"/orderhistory"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Orders
+          Đơn hàng
         </a>
         <a className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75">
-          Contact
+          Liên hệ
         </a>
       </div>
     </div>

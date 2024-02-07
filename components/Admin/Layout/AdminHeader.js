@@ -19,7 +19,7 @@ export default function AdminHeader() {
                 <UserIcon className="w-6 h-6 font-medium" />
                 <div className="flex flex-col ml-4">
                     <div className="ml-3 text-xl tracking-wide">{auth?.firstname}</div>
-                    <div className="text-sm font-normal text-right">Log out</div>
+                    <div className="text-sm font-normal text-right">Đăng xuất</div>
                 </div>
             </div>
         </div>

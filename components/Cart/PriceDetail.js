@@ -2,30 +2,29 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const PriceDetail = ({ cart }) => {
-  console.log(cart);
   return (
     <div className="">
       <div className="items-center px-16 py-4 border rounded-lg shadow-xl ">
         <div className="mb-4 text-3xl font-bold text-center text-gray-700">
-          Price details
+          Giá cả chi tiết
         </div>
         <hr></hr>
         <div className="px-4 text-xl font-medium text-black">
           <div className="flex justify-between pt-3">
-            <div>Price</div>
+            <div>Tổng tiền thanh toán</div>
             <div>{cart?.cartTotal}$</div>
           </div>
           <div className="flex justify-between pt-3">
-            <div>Discount</div>
+            <div>Giảm giá</div>
             <div className="text-green-600">0$</div>
           </div>
           <div className="flex justify-between pt-3 mb-4">
-            <div>Delivery Charge</div>
-            <div className="text-green-600">Free</div>
+            <div>Phí vận chuyển</div>
+            <div className="text-green-600">Miễn phí</div>
           </div>
           <hr></hr>
           <div className="flex justify-between pt-3">
-            <div>Total amount</div>
+            <div>Tổng số tiền</div>
             <div className="text-green-600">{cart?.cartTotal}$</div>
           </div>
         </div>
@@ -33,7 +32,7 @@ const PriceDetail = ({ cart }) => {
           variant="contained"
           className="w-full mt-3 bg-[#baaf9d]  hover:bg-[#baaf9d] text-xl font-semibold text-white"
         >
-          CHECKOUT
+          Xác nhận thanh toán
         </Button>
       </div>
     </div>

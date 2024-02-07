@@ -91,20 +91,20 @@ export default function ProductDetail({ product }) {
             </div>
             <div className="flex gap-5">
               <Rating value={5} readOnly></Rating>
-              <div className="font-semibold">Based on 0 Reviews</div>
+              <div className="font-semibold">Dựa trên 0 đánh giá</div>
             </div>
           </div>
           {/* ==============Category================ */}
           <div className="flex flex-col col-span-2 mt-5 gap-y-2">
             <div className="flex gap-4">
-              <div className="font-semibold">Brand:</div>
+              <div className="font-semibold">Nhãn hàng:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600 font-mono">
                 {product?.brand}
               </div>
             </div>
 
             <div className="flex gap-4">
-              <div className="font-semibold">Category:</div>
+              <div className="font-semibold">Danh mục:</div>
               <div className="font-semibolđ opacity-90 text-yellow-600 font-mono">
                 {product?.category}
               </div>
@@ -118,7 +118,7 @@ export default function ProductDetail({ product }) {
             </div> */}
 
             <div className="flex gap-4">
-              <div className="font-semibold">Availablity :</div>
+              <div className="font-semibold">Số lượng tồn kho :</div>
               <div className="font-semibolđ opacity-90 text-yellow-600  font-mono">
                 {product?.quantity}
               </div>
@@ -163,7 +163,7 @@ export default function ProductDetail({ product }) {
                 }}
               >
                 <AddShoppingCart />
-                <div className="font-semibold">ADD TO CART </div>
+                <div className="font-semibold">Đặt vào giỏ hàng</div>
               </Button>
               <Button
                 className="shadow-lg bg-light-brown hover:cursor-pointer text-orange-gray hover:bg-opacity-80 hover:bg-light-brown"
@@ -173,7 +173,7 @@ export default function ProductDetail({ product }) {
                   handleAddToCart(product), router.push("/cart");
                 }}
               >
-                <div className="font-semibold">BUY IT NOW </div>
+                <div className="font-semibold">Mua ngay</div>
               </Button>
             </div>
           </div>

@@ -81,7 +81,7 @@ const FormLogin = () => {
           />
           <CustomTextField
             className="mb-4"
-            label="Password"
+            label="Mật khẩu"
             type="password"
             name="password"
             value={formData.password}
@@ -93,7 +93,7 @@ const FormLogin = () => {
           />
           <Link href={"#"}>
             <p className="text-base text-orange-gray hover:opacity-80">
-              Forgot password?
+              Quên mật khẩu?
             </p>
           </Link>
           <div className="flex justify-center gap-5 mt-4 ">
@@ -104,7 +104,7 @@ const FormLogin = () => {
               onClick={handleSubmit}
               size="large"
             >
-              Login
+              Đăng nhập
             </Button>
 
             <Button
@@ -118,7 +118,7 @@ const FormLogin = () => {
                 router.push("/signup");
               }}
             >
-              Sign up
+              Đăng xuất
             </Button>
           </div>
         </form>
