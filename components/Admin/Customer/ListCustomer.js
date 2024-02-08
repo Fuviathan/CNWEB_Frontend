@@ -112,41 +112,45 @@ const ListCustomer = () => {
                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap w-1/12">
                   Số thứ tự
                 </th>
-                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-1/12 ">
+                {/* <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-1/12 ">
                   <div className="">
                     <span className="pl-1">ID</span>
                   </div>
-                </th>
-                <th className="py-3 px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
-                  <span
-                    className="mr-1 cursor-pointer "
-                    onClick={() => sortByColumn("lastname")}
-                  >
-                    Họ và tên đệm
-                  </span>
-                  {/* <svg
-                    className={`w-4 h-4 cursor-pointer ${activeColumn?.includes("lastname")
-                      ? "text-black"
-                      : "text-[#BCBDBE] group-hover:text-black rotate-180"
-                      } ${sortingColumn?.includes("lastname")
-                        ? "rotate-180"
-                        : "rotate-0"
-                      } `}
-                    onClick={() => sortByColumn("lastname")}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg> */}
+                </th> */}
+                <th className="py-3  px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
+                  <div className="flex items-center">
+
+                    <span
+                      className="mr-1 cursor-pointer "
+                      onClick={() => sortByColumn("lastname")}
+                    >
+                      Họ và tên đệm
+                    </span>
+                    <svg
+                      className={`w-4 h-4 cursor-pointer ${activeColumn?.includes("lastname")
+                        ? "text-black"
+                        : "text-[#BCBDBE] group-hover:text-black rotate-180"
+                        } ${sortingColumn?.includes("lastname")
+                          ? "rotate-180"
+                          : "rotate-0"
+                        } `}
+                      onClick={() => sortByColumn("lastname")}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                      />
+                    </svg>
+                  </div>
+
                 </th>
                 <th className="py-3 px-3 flex items-center text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
                   <span
@@ -182,7 +186,7 @@ const ListCustomer = () => {
                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
                   <span
                     className="mr-1 cursor-pointer "
-                    // onClick={() => sortByColumn("email")}
+                  // onClick={() => sortByColumn("email")}
                   >
                     Email
                   </span>
@@ -211,7 +215,7 @@ const ListCustomer = () => {
                   </svg> */}
                 </th>
                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
-                  <span                 
+                  <span
                   >
                     Số điện thoại
                   </span>
@@ -238,7 +242,7 @@ const ListCustomer = () => {
                     >
                       {rowsLimit * currentPage + index + 1}
                     </td>
-                    <td
+                    {/* <td
                       className={`py-2 px-3 font-normal text-base ${index == 0
                         ? "border-t-1 border-black"
                         : index == rowsToShow?.length
@@ -247,7 +251,7 @@ const ListCustomer = () => {
                         } whitespace-nowrap`}
                     >
                       {data?._id}
-                    </td>
+                    </td> */}
 
                     <td
                       className={`py-2 px-3 font-normal text-base ${index == 0
@@ -357,7 +361,7 @@ const ListCustomer = () => {
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 export default ListCustomer;

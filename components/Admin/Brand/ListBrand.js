@@ -106,14 +106,14 @@ const ListBrand = () => {
                 }`}
             >
               <tr className="bg-[#222E3A]/[6%] ">
-                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap w-1/12">
+                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap w-2/12">
                   Số thứ tự
                 </th>
-                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-5/12 ">
+                {/* <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-5/12 ">
                   <div className="flex items-center">
                     <span className="pl-1">ID</span>
                   </div>
-                </th>
+                </th> */}
                 <th className="py-3 px-3 flex items-center text-[#212B36] sm:text-base font-bold whitespace-nowrap w-4/12 group">
 
                   <span
@@ -167,7 +167,7 @@ const ListBrand = () => {
                     >
                       {rowsLimit * currentPage + index + 1}
                     </td>
-                    <td
+                    {/* <td
                       className={`py-2 px-3 font-normal text-base ${index == 0
                         ? "border-t-1 border-black"
                         : index == rowsToShow?.length
@@ -176,7 +176,7 @@ const ListBrand = () => {
                         } whitespace-nowrap`}
                     >
                       {data?._id}
-                    </td>
+                    </td> */}
                     <td
                       className={`py-2 px-3 font-normal text-base ${index == 0
                         ? "border-t-1 border-black"

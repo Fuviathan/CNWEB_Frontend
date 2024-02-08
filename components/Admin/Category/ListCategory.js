@@ -108,11 +108,11 @@ const ListCategory = () => {
                                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap w-2/12">
                                     Số thứ tự
                                 </th>
-                                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-4/12 ">
+                                {/* <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group w-4/12 ">
                                     <div className="">
                                         <span className="pl-1">ID</span>
                                     </div>
-                                </th>
+                                </th> */}
                                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group ">
                                     <div className="">
                                         <span className="pl-1">Tên danh mục</span>
@@ -123,7 +123,7 @@ const ListCategory = () => {
                                         <span className="pl-1">Ảnh</span>
                                     </div>
                                 </th>
-                                <th className="w-1/12"></th>
+                                <th className="w-2/12"></th>
 
                             </tr>
                         </thead>
@@ -145,7 +145,7 @@ const ListCategory = () => {
                                         >
                                             {rowsLimit * currentPage + index + 1}
                                         </td>
-                                        <td
+                                        {/* <td
                                             className={`py-2 px-3 font-normal text-base ${index == 0
                                                 ? "border-t-1 border-black"
                                                 : index == rowsToShow?.length
@@ -154,7 +154,7 @@ const ListCategory = () => {
                                                 } whitespace-nowrap`}
                                         >
                                             {data?._id}
-                                        </td>
+                                        </td> */}
 
 
 
@@ -176,7 +176,7 @@ const ListCategory = () => {
                                                     : "border-t"
                                                 } whitespace-nowrap`}
                                         >
-                                            <img className="max-w-16 max-h-16" src={`${data?.image}`} />
+                                            <img className="max-w-12 max-h-12" src={`${data?.image}`} />
                                         </td>
                                         <td
                                             className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
