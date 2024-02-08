@@ -1,15 +1,17 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const ProtectRouter = ({ children }) => {
+  const router = useRouter()
   const [auth, setAuth] = useState();
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists
     value = localStorage.getItem("user") || "";
-    setAuth(value);
+    setAuth(JSON.parse(value));
   }, []);
-  return (
+  if (auth?.role === 'user') return (
     <div>
       {auth ? (
         <main>{children}</main>
@@ -17,7 +19,7 @@ const ProtectRouter = ({ children }) => {
         <div>
           <a
             href={"/login"}
-            className="flex justify-center bg-light-brown w-fit h-fit mx-auto rounded-lg p-3 text-2xl font-sans font-semibold text-orange-gray shadow-md hover:opacity-75"
+            className="flex justify-center p-3 mx-auto font-sans text-2xl font-semibold rounded-lg shadow-md bg-light-brown w-fit h-fit text-orange-gray hover:opacity-75"
           >
             Login to shop now!
           </a>
@@ -26,6 +28,7 @@ const ProtectRouter = ({ children }) => {
       ;
     </div>
   );
+  else router.push('/admin/dashboard')
 };
 
 export default ProtectRouter;
