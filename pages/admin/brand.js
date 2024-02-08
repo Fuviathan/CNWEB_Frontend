@@ -22,7 +22,7 @@ export default function brand() {
           </button>
         </div>
         <BasicModal open={open} onClose={handleClose}>
-          <AddBrand onClose={handleClose}></AddBrand>
+          <AddBrand onClose={handleClose} open={open}></AddBrand>
         </BasicModal>
         <div className="w-full max-h-screen mt-2 overflow-auto bg-gray-200">
           <div className="px-6 pb-4 mb-0 text-2xl font-semibold">

@@ -23,8 +23,7 @@ const AddBrand = (props) => {
     // Call your save function here with the brand name
     // Example: props.onSave(brand);
   };
-
-  return (
+  if (props.open) return (
     <div className="absolute w-2/6 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 rounded-xl">
       <div className="font-semibold tracking-wide">Thêm nhãn hàng mới</div>
 
@@ -55,7 +54,8 @@ const AddBrand = (props) => {
         </button>
       </div>
     </div>
-  );
+  ) 
+  else return <></>
 };
 
 export default AddBrand;
