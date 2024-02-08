@@ -25,6 +25,9 @@ export default function Carousel() {
                 autoplay={{
                     delay: 2500,
                 }}
+                style={{
+                    "--swiper-pagination-bottom": '-4px'
+                }}
             >
                 <SwiperSlide>
                     <div className='flex flex-row p-4 h-[30rem]'>

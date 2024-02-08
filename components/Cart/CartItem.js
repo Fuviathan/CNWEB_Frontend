@@ -14,15 +14,15 @@ const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <div className="flex w-full mb-6 border rounded-lg shadow-lg">
-        <div className="flex justify-center w-3/5 p-4 max-h-[9rem] min-h-fit ">
+    <div className="h-full">
+      <div className="flex w-full mb-6 border rounded-lg shadow">
+        <div className="flex justify-center w-2/6 p-4 max-h-[9rem] min-h-fit ">
           <img
             className="object-contain"
             src={data?.product?.images[0].url}
           ></img>
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-2/6">
           <div
             className="text-black text-2xl font-semibold pt-5 text-ellipsis text-nowrap w-[20rem] overflow-hidden"
             title={data?.title}
@@ -42,13 +42,13 @@ const CartItem = ({ data }) => {
             <div className="text-green-500">{data?.product?.discount}%</div>
           </div>
         </div>
-        <div className="flex items-center gap-2 ml-auto">
+        <div className="flex items-center gap-1 ml-auto">
           <div className="text-xl font-semibold text-black place-self-center">
-            Quantity:
+            Số lượng:
           </div>
 
           <IconButton
-            className="p-0 w-fit h-fit"
+            className="w-fit h-fit"
             onClick={() => {
               dispatch(
                 updateProductInCart({
@@ -67,7 +67,7 @@ const CartItem = ({ data }) => {
             {data?.count}
           </div>
           <IconButton
-            className="p-0 w-fit h-fit"
+            className=" w-fit h-fit"
             onClick={() => {
               dispatch(
                 updateProductInCart({
@@ -82,7 +82,7 @@ const CartItem = ({ data }) => {
             <AddIcon></AddIcon>
           </IconButton>
         </div>
-        <div className="p-0 w-fit h-fit ml-auto my-[auto] px-5">
+        <div className="p-0 w-fit h-fit ml-auto my-[auto]">
           <IconButton aria-label="delete" size="large">
             <Delete
               className="text-red-500"

@@ -21,9 +21,9 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="mt-8">
+    <div className="h-full my-4">
       <div className="flex justify-between mx-auto max-w-[1320px]">
-        <div className="w-2/3 mr-12">
+        <div className="w-4/6 mr-8">
           {cart?.products.map((item) => (
             <CartItem key={item._id} data={item}></CartItem>
           ))}
