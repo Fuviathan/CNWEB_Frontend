@@ -10,14 +10,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "@/state/Cart/Action";
 import { toast } from "react-toastify";
 import { set } from "react-hook-form";
+import { store } from "@/app/store";
+import { useRouter } from "next/router";
+
+function covertDataToUnsigned(string) {
+  return string
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
 
 export default function FirstRow() {
   const [auth, setAuth] = useState();
   const user = useSelector((store) => store?.auth?.user);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const cartItem = useSelector((store) => store?.cart?.cartItem);
   const cart = useSelector((store) => store?.cart?.cart);
+  const dataPro = useSelector((store) => store?.product?.products);
+
+  const [search, setSearch] = useState("");
+  const [dataSearch, setDataSearch] = useState([]);
+  const [showList, setShowList] = useState(false);
+
   let value;
   if (typeof window !== "undefined") {
     value = JSON.parse(localStorage.getItem("user")) || null;
@@ -43,12 +59,55 @@ export default function FirstRow() {
         >
           ElectricalD
         </Link>
-        <div className="relative flex flex-row items-stretch w-full col-span-3 focus:ring-0 flex-warp">
+        <div className="relative flex flex-row items-stretch w-full col-span-3">
           <input
             type="text"
             className="w-full px-3 py-2 border-[1px] border-x-2 border-white focus:outline-none rounded-full bg-white"
             placeholder="Search for Product Here ..."
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setShowList(true);
+
+              setDataSearch(
+                dataPro.filter((data) =>
+                  covertDataToUnsigned(data.title).includes(
+                    covertDataToUnsigned(e.target.value)
+                  )
+                )
+              );
+            }}
+            onBlur={() => setTimeout(() => setShowList(false), 200)}
           />
+          {showList && (
+            <div className="absolute  w-full top-10 z-10  ">
+              {dataSearch.length > 0 ? (
+                <div className=" overflow-y-auto h-[50vh]  ">
+                  {dataSearch.map((i) => (
+                    <div
+                      key={i._id}
+                      className="hover:bg-white"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/product/${i._id}`);
+                      }}
+                    >
+                      <div className="flex bg-white">
+                        <img
+                          className="w-12 h-12"
+                          src={i.images[0].url}
+                          alt={i.title}
+                        />
+                        <div>{i.title}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-white">Không tìm thấy sản phẩm</div>
+              )}
+            </div>
+          )}
           <div className="absolute top-0 bottom-0 right-0 flex px-3 py-2 align-middle border-[1px] border-x-2 hover:opacity-80 border-white bg-[#ede2d1] rounded-r-full hover:cursor-pointer">
             <MagnifyingGlassIcon className="w-6 h-6 text-center text-orange-gray" />
           </div>
