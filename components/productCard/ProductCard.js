@@ -76,7 +76,7 @@ const ProductCard = ({ grid, item }) => {
             onClick={(e) => e.stopPropagation()}
             className="absolute top-0 right-0 z-50 flex flex-col"
           >
-            {/* <Checkbox
+            <Checkbox
               // {...label}
               sx={{
                 color: pink[500],
@@ -98,7 +98,7 @@ const ProductCard = ({ grid, item }) => {
               }}
               icon={<CompareArrowsOutlined />}
               checkedIcon={<CompareArrows />}
-            /> */}
+            />
           </div>
         </div>
         <div
