@@ -63,7 +63,7 @@ export default function FirstRow() {
           <input
             type="text"
             className="w-full px-3 py-2 border-[1px] border-x-2 border-white focus:outline-none rounded-full bg-white"
-            placeholder="Search for Product Here ..."
+            placeholder="Tìm kiếm sản phẩm ở đây ..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);

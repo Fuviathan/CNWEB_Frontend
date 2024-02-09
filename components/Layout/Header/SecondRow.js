@@ -6,10 +6,10 @@ export default function SecondRow() {
     <div className="w-full bg-brown-green">
       <div className="flex items-center max-w-[1320px] p-4 text-sm leading-5 font-normal mx-auto text-white">
         <Link
-          href={"/Abcd"}
+          href={"/HomePage"}
           className="pr-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
-          Home
+          Trang chủ
         </Link>
         <Link
           href={"/product"}
