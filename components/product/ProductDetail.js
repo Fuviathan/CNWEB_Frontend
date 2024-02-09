@@ -73,7 +73,7 @@ export default function ProductDetail({ product }) {
 
   return (
     <div className="mx-auto mt-8 max-w-[1320px]">
-      <div className="grid gap-2 bg-white sm:grid-cols-1 lg:grid-cols-2">
+      <div className="grid gap-2 p-6 bg-white border rounded-lg shadow-lg sm:grid-cols-1 lg:grid-cols-2">
         {/* =========================ProductImage================ */}
         <div className="w-full h-full ">
           <div className="pb-20 mr-8 h-3/5">
@@ -214,15 +214,15 @@ export default function ProductDetail({ product }) {
               >
                 <LocalShippingOutlined className="fs-5 me-2 " />
                 <p className="text-medium font-semibold font-sans mr-[auto]">
-                  Shipping & Returns
+                  Chính sách vận chuyển và trả hàng
                 </p>
                 <ExpandLess className="hidden down" />
                 <ExpandMore className="block up" />
               </div>
               <p className="hidden product-data">
-                Free shipping and returns available on all orders! <br />
-                We ship all US domestic orders within
-                <b> 5-10 business days!</b>
+                Phí vận chuyển và trả hàng hoàn toàn miễn phí <br />
+                Chúng tôi sẽ vận chuyển hàng hóa trong vòng
+                <b> 5-10 ngày!</b>
               </p>
             </div>
           </div>
@@ -235,20 +235,20 @@ export default function ProductDetail({ product }) {
               >
                 <FavoriteBorder className="fs-5 me-2 " />
                 <p className="text-medium font-semibold font-sans mr-[auto]">
-                  Add to wishlist
+                  Thêm vào danh sách ưa thích
                 </p>
-                <ExpandLess className="hidden down" />
-                <ExpandMore className="block up" />
+                {/* <ExpandLess className="hidden down" />
+                <ExpandMore className="block up" /> */}
               </div>
-              <p className="hidden product-data">
+              {/* <p className="hidden product-data">
                 Free shipping and returns available on all orders! <br />
                 We ship all US domestic orders within
                 <b> 5-10 business days!</b>
-              </p>
+              </p> */}
             </div>
           </div>
 
-          <div className="col-span-3 mt-4">
+          {/* <div className="col-span-3 mt-4">
             <div className="flex flex-col ">
               <div
                 className="flex items-center border-b-2 cursor-pointer"
@@ -267,18 +267,18 @@ export default function ProductDetail({ product }) {
                 <b> 5-10 business days!</b>
               </p>
             </div>
-          </div>
+          </div> */}
 
-          <div className="col-span-3 mt-4">
+          <div className="col-span-3 mt-4 hover:cursor-pointer">
             <div
               className="flex cursor-pointer"
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
               }}
             >
-              <Share className=" me-2" />
+              <Share className="me-2" />
               <p className="text-medium font-semibold font-sans mr-[auto]">
-                Share
+                Chia sẻ
               </p>
             </div>
           </div>
@@ -286,12 +286,12 @@ export default function ProductDetail({ product }) {
       </div>
 
       {/* ===================PRoduct description========================= */}
-      <div className="mt-16">
+      <div className="p-6 mt-8 border border-gray-200 rounded-lg shadow-lg">
         <Description description={product?.description}></Description>
       </div>
 
       {/* =====================Product Review=========================== */}
-      <div>
+      <div className="p-6 mt-8 border border-gray-200 rounded-lg shadow-lg">
         <Review></Review>
       </div>
     </div>
