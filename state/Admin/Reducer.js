@@ -12,7 +12,13 @@ import {
   GET_ALL_USER_SUCCESS,
   UPLOAD_IMAGE_FAILURE,
   UPLOAD_IMAGE_REQUEST,
-  UPLOAD_IMAGE_SUCCESS
+  UPLOAD_IMAGE_SUCCESS,
+  DELETE_BRAND_FAILURE,
+  DELETE_BRAND_REQUEST,
+  DELETE_BRAND_SUCCESS,
+  DELETE_IMAGE_REQUEST,
+  DELETE_IMAGE_SUCCESS,
+  DELETE_IMAGE_FAILURE
 } from "./ActionType";
 
 const initialState = {
@@ -25,6 +31,7 @@ export const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPLOAD_IMAGE_REQUEST:
     case GET_ALL_BRAND_REQUEST:
+    case DELETE_IMAGE_REQUEST:
     case ADD_BRAND_REQUEST:
       return { ...state, isLoading: true, error: null };
     case GET_ALL_BRAND_SUCCESS:
@@ -48,8 +55,16 @@ export const adminReducer = (state = initialState, action) => {
         error: null,
         image: action.payload,
       }
+    case DELETE_IMAGE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        data: action.payload
+      }
     case GET_ALL_BRAND_FAILURE:
     case UPLOAD_IMAGE_FAILURE:
+    case DELETE_IMAGE_FAILURE:
     case ADD_BRAND_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case GET_ALL_USER_REQUEST:

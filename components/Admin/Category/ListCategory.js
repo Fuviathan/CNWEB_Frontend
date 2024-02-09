@@ -21,7 +21,7 @@ const ListCategory = () => {
     const [sortingColumn, setSortingColumn] = useState(["Price"]);
     const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
     const [currentPage, setCurrentPage] = useState(0);
-
+    
     const sortByColumn = (column, changeSortingColumn = true) => {
         if (sortingColumn?.includes(column) && changeSortingColumn) {
             const sortData = productList
@@ -176,7 +176,7 @@ const ListCategory = () => {
                                                     : "border-t"
                                                 } whitespace-nowrap`}
                                         >
-                                            <img className="max-w-12 max-h-12" src={`${data?.image}`} />
+                                            <img className="max-w-12 max-h-12" src={`${data?.image?.url}`} />
                                         </td>
                                         <td
                                             className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}

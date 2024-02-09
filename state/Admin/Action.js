@@ -17,7 +17,10 @@ import {
   GET_ALL_USER_REQUEST,
   UPLOAD_IMAGE_FAILURE,
   UPLOAD_IMAGE_SUCCESS,
-  UPLOAD_IMAGE_REQUEST
+  UPLOAD_IMAGE_REQUEST,
+  DELETE_IMAGE_REQUEST,
+  DELETE_IMAGE_SUCCESS,
+  DELETE_IMAGE_FAILURE
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -45,6 +48,8 @@ export const deleteBrand = (brandId) => async (dispatch) => {
 };
 
 export const addNewCategory = (req) => async (dispatch) => {
+  req.image = req.image[0]
+  console.log(req)
   dispatch({ type: ADD_CATEGORY_REQUEST });
   try {
     const { data } = await api.post("/prodcategory", req);
@@ -53,6 +58,7 @@ export const addNewCategory = (req) => async (dispatch) => {
     alert('Thêm thành công')
   } catch (e) {
     dispatch({ type: ADD_CATEGORY_FAILURE, payload: e.message });
+    console.log(e)
     alert('Lỗi')
   }
 };
@@ -83,13 +89,22 @@ export const uploadImg = (req) => async (dispatch) => {
   var formData = new FormData()  
   req.map((i) => formData.append("images", i))
   dispatch({ type: UPLOAD_IMAGE_REQUEST });
-  console.log(formData)
   try {
     const { data } = await api.post(`/upload`, formData, {headers: {"Content-Type": "multipart/form-data",}});
     dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: data });
-    console.log(data)
   } catch (error) {
     dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: error.message });
-    console.log(error)
   }
 };
+
+export const deleteImg = (imgId) => async (dispatch) => {
+  dispatch({ type: DELETE_IMAGE_REQUEST });
+  try {
+    const { data } = api.put(`/upload/delete-img/${imgId}`);
+    dispatch({ type: DELETE_IMAGE_SUCCESS, payload: data });
+    alert('Xóa thành công')
+  } catch (e) {
+    dispatch({ type: DELETE_IMAGE_FAILURE, payload: e.message });
+    alert(e.message);
+  }
+}

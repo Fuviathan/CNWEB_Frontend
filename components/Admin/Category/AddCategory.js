@@ -5,12 +5,12 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { addNewCategory } from '@/state/Admin/Action';
 import Dropzone from 'react-dropzone';
-import { uploadImg } from '../../../state/Admin/Action';
+import { uploadImg, deleteImg } from '../../../state/Admin/Action';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form'
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const AddCategory = (props) => {
-  console.log(props)
   const {
     register,
     handleSubmit,
@@ -18,7 +18,7 @@ const AddCategory = (props) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      images: [],
+      image: [],
       title: '',
     }
   })
@@ -29,12 +29,11 @@ const AddCategory = (props) => {
   // });
   const images = useSelector((state) => state?.admin?.image);
   const onSubmit = (data) => {
-    data.images = images
-    console.log(data)
+    data.image = images
     dispatch(addNewCategory(data))
   }
   if (props.open) return (
-    <div className='absolute w-3/5 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 rounded-xl'>
+    <div className='absolute w-3/5 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white min-w-fit top-1/2 left-1/2 rounded-xl'>
       <h3 className="mb-4 text-xl font-semibold tracking-wide">Thêm danh mục mới</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className='block'>Tên danh mục</label>
@@ -60,13 +59,35 @@ const AddCategory = (props) => {
             </Dropzone>
           </div>
         ) : (
-          <div className="flex flex-wrap gap-3 mt-3 images">
+          <div className="flex flex-wrap gap-3 mt-3 ">
             {images?.map((item, index) => {
               if (item !== 'null') {
                 return (
+                  // <div key={index} className="relative">
+                  //   {item?.url ? (
+                  //     <img src={item?.url} alt="" className='max-w-[500px] min-w-[200px] min-h-[200px] max-h-[500px]' />
+                  //   ) : (
+                  //     <></>
+                  //   )}
+                  // </div>
                   <div key={index} className="relative">
-                    {item?.url ? (
-                      <img src={item?.url} alt="" className='max-w-[500px] max-h-[500px]' />
+                    {item?.puclicId ? (
+                      <button
+                        onClick={() => {
+                          dispatch(
+                            deleteImg({id: item.puclicId})
+                          );
+                        }}
+                        className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
+                        type="button"
+                      >
+                        <XMarkIcon className='w-6 h-6 text-red-400' />
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                    {item?.puclicId ? (
+                      <img src={item?.url} alt="" className='max-w-[600px] min-w-[400px] min-h-[400px] max-h-[600px]' />
                     ) : (
                       <></>
                     )}
