@@ -18,7 +18,7 @@ export default function category() {
           Thêm danh mục
         </button>
       </div>
-      <BasicModal onClose={handleClose}>
+      <BasicModal onClose={handleClose} open={open}>
         <AddCategory onClose={handleClose} open={open}></AddCategory>
       </BasicModal>
       <div className="w-full max-h-screen mt-2 overflow-auto bg-gray-200">
