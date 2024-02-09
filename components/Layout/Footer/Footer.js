@@ -20,7 +20,7 @@ export default function Footer() {
         <div className='px-3 tracking-wide grid-row-3 text-orange-gray'> 
           <div className='mb-6 text-2xl font-bold uppercase'>Tài khoản</div>
           <div className='pb-1 mb-2 '>Về chúng tôi</div>
-          <div className='pb-1 mb-2 '>Liên hệ</div>
+          {/* <div className='pb-1 mb-2 '>Liên hệ</div> */}
         </div>
         <div className='px-3 tracking-wide text-orange-gray grid-row-3'> 
           <div className='mb-6 text-2xl font-bold uppercase'>Ứng dụng</div>

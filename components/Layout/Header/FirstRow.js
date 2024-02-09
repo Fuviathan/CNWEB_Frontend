@@ -80,21 +80,21 @@ export default function FirstRow() {
             onBlur={() => setTimeout(() => setShowList(false), 200)}
           />
           {showList && (
-            <div className="absolute  w-full top-10 z-10  ">
+            <div className="absolute z-10 w-full top-10 ">
               {dataSearch.length > 0 ? (
-                <div className=" overflow-y-auto h-[50vh]  ">
+                <div className=" overflow-y-auto h-[50vh]">
                   {dataSearch.map((i) => (
                     <div
                       key={i._id}
-                      className="hover:bg-white"
+                      className="hover:cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/product/${i._id}`);
                       }}
                     >
-                      <div className="flex bg-white">
+                      <div className="flex px-4 py-2 bg-white hover:bg-gray-200">
                         <img
-                          className="w-12 h-12"
+                          className="w-12 h-12 mr-2"
                           src={i.images[0].url}
                           alt={i.title}
                         />
