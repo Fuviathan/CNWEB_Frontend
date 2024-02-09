@@ -102,7 +102,7 @@ const ProductFilter = () => {
     <div className="mt-8">
       <div className="grid gap-8 bg-white lg:grid-cols-4 ">
         {/* ==============Product Filter========================= */}
-        <div className="col-span-1 mt-4">
+        <div className="col-span-1">
           {/* =============Filter by category====================== */}
           <div className="flex flex-col justify-center px-6 py-4 border-2 rounded-lg ">
             <div className="mr-4 text-2xl font-bold ">Tìm kiếm bằng danh mục</div>
@@ -216,7 +216,7 @@ const ProductFilter = () => {
 
               <div className="ml-auto">
                 <IconButton
-                  className="line-layout w-[3rem] h-[3rem]  rounded-md hover:bg-gray-300 bg-gray-300"
+                  className="line-layout w-[3rem] h-[3rem] rounded-md hover:bg-gray-300 bg-gray-300"
                   onClick={(e) => {
                     handleChangeLayout(e);
                     setGrid(12);
@@ -226,7 +226,7 @@ const ProductFilter = () => {
                   <ViewModule></ViewModule>
                 </IconButton>
                 <IconButton
-                  className="row-layout w-[3rem] h-[3rem]  rounded-md hover:bg-gray-300"
+                  className="row-layout w-[3rem] h-[3rem] rounded-md hover:bg-gray-300"
                   onClick={(e) => {
                     handleChangeLayout(e);
                     setGrid(6);
