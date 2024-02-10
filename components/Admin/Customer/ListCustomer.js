@@ -220,6 +220,12 @@ const ListCustomer = () => {
                     Số điện thoại
                   </span>
                 </th>
+                <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
+                  <span
+                  >
+                    Role
+                  </span>
+                </th>
                 <th className=""></th>
 
               </tr>
@@ -292,6 +298,16 @@ const ListCustomer = () => {
                         } whitespace-nowrap`}
                     >
                       {data?.mobile}
+                    </td>
+                    <td
+                      className={`py-2 px-3 font-normal text-base ${index == 0
+                        ? "border-t-1 border-black"
+                        : index == rowsToShow?.length
+                          ? "border-y"
+                          : "border-t"
+                        } whitespace-nowrap`}
+                    >
+                      {data?.role}
                     </td>
                     <td
                       className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
