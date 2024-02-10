@@ -118,7 +118,7 @@ const FormLogin = () => {
                 router.push("/signup");
               }}
             >
-              Đăng xuất
+              Đăng ký
             </Button>
           </div>
         </form>

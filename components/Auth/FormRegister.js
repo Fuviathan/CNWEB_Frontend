@@ -155,7 +155,7 @@ const FormRegister = () => {
               }}
               size="large"
             >
-              Login
+              Đăng nhập
             </Button>
 
             <Button
@@ -166,7 +166,7 @@ const FormRegister = () => {
               size="large"
               onClick={handleSubmit}
             >
-              Sign up
+              Đăng ký
             </Button>
           </div>
         </form>
