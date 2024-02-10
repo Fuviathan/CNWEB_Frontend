@@ -11,7 +11,7 @@ const ProtectAdminRouter = ({ children }) => {
         value = localStorage.getItem("user") || "";
         setAuth(JSON.parse(value));
     }, []);
-    if (auth?.role === 'admin') {
+    if (auth?.role !== 'user') {
         return (<main>{children}</main>)
     }
     else router.push('/product')

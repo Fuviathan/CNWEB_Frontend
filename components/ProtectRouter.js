@@ -9,9 +9,9 @@ const ProtectRouter = ({ children }) => {
     let value;
     // Get the value from local storage if it exists
     value = localStorage.getItem("user") || "";
-    setAuth(JSON.parse(value));
+    setAuth(value);
   }, []);
-  if (auth?.role === 'user') return (
+  return (
     <div>
       {auth ? (
         <main>{children}</main>
@@ -28,7 +28,6 @@ const ProtectRouter = ({ children }) => {
       ;
     </div>
   );
-  else router.push('/admin/dashboard')
 };
 
 export default ProtectRouter;
