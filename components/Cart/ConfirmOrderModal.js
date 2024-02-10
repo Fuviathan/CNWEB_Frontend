@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { getCart } from '@/state/Cart/Action';
 import { For } from 'react-haiku';
 import { useDispatch, useSelector } from 'react-redux';
+import { createOrder } from '@/state/Cart/Action';
 
 const ConfirmOrderModal = (props) => {
   const {
@@ -28,10 +29,24 @@ const ConfirmOrderModal = (props) => {
     dispatch(getCart());
   }, []);
   const productList = cart?.products
-  console.log(productList)
+  let cartList = productList.map(item => ({
+    id: item._id,
+    count: item.count,
+    price: item.price,
+  }))
   const onSubmit = (data) => {
+    data.orderItems = cartList
     data.totalPrice = cart.cartTotal
-    console.log(data)
+    data.shippingInfor = {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      address: data.address,
+      email: data.email,
+      methodPayment: data.methodPayment,
+    }
+    const {firstname, lastname, email, address, methodPayment, ...data_t} = data
+    console.log(data_t)
+    dispatch(createOrder(data))
   }
   if (!cart) return <></>
   else if (props.open && cart) return (
