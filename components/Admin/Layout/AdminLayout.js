@@ -10,7 +10,7 @@ export default function AdminLayout(props) {
     { title: "Trang chủ", icon: ChartBarIcon, path: '/admin/dashboard' },
     {
       title: "Thiết lập sản phẩm", icon: AdjustmentsHorizontalIcon, children: [
-        { title: "Danh sách sản phẩm", icon: ClipboardDocumentListIcon, path: '/Abcd' },
+        { title: "Danh sách sản phẩm", icon: ClipboardDocumentListIcon, path: '/admin/products' },
         { title: "Danh sách nhãn hàng", icon: ClipboardDocumentListIcon, path: '/admin/brand' },
         { title: "Danh sách danh mục", icon: ClipboardDocumentListIcon, path: '/admin/category' },
       ]
