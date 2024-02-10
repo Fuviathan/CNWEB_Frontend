@@ -11,7 +11,6 @@ export default function brand() {
   const handleClose = () => setOpen(false);
   return (
     <ProtectAdminRouter>
-
       <AdminLayout>
         <div className="flex flex-row-reverse">
           <button
@@ -34,6 +33,5 @@ export default function brand() {
         </div>
       </AdminLayout>
     </ProtectAdminRouter>
-
   );
 }

@@ -14,8 +14,8 @@ const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="h-full">
-      <div className="flex w-full mb-6 border rounded-lg shadow">
+    <div className="">
+      <div className="flex w-full mb-2 border rounded-lg shadow">
         <div className="flex justify-center w-2/6 p-4 max-h-[9rem] min-h-fit ">
           <img
             className="object-contain"

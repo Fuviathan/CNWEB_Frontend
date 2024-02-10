@@ -12,7 +12,7 @@ export default function Layout(props) {
     <Provider store={store}>
       <div id="root">
         <ToastContainer></ToastContainer>
-        <div className=" flex flex-col justify-between min-h-screen bg-white h-fit">
+        <div className="flex flex-col justify-between min-h-screen overflow-y-scroll bg-white  h-fit">
           <div>
             <Header />
           </div>
