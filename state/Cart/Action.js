@@ -12,6 +12,9 @@ import {
   UPDATE_PRODUCT_IN_CART_FAILURE,
   UPDATE_PRODUCT_IN_CART_REQUEST,
   UPDATE_PRODUCT_IN_CART_SUCCESS,
+  CREATE_ORDER_FAILURE, 
+  CREATE_ORDER_REQUEST, 
+  CREATE_ORDER_SUCCESS
 } from "./ActionType";
 import { toast } from "react-toastify";
 
@@ -64,5 +67,17 @@ export const updateProductInCart = (req) => async (dispatch) => {
     dispatch({ type: UPDATE_PRODUCT_IN_CART_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPDATE_PRODUCT_IN_CART_FAILURE, payload: error.message });
+  }
+};
+
+export const createOrder = (req) => async (dispatch) => {
+  dispatch({ type: CREATE_ORDER_REQUEST });
+  try {
+    const { data } = await api.post( `user/cart/create-order `);
+    dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
+    console.log('Thanh cong')
+  } catch (error) {
+    dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
+    console.log(error)
   }
 };

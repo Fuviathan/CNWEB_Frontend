@@ -2,6 +2,9 @@ import {
   ADD_PRODUCT_TO_CART_FAILURE,
   ADD_PRODUCT_TO_CART_REQUEST,
   ADD_PRODUCT_TO_CART_SUCCESS,
+  CREATE_ORDER_FAILURE,
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_SUCCESS,
   DELETE_PRODUCT_FROM_CART_FAILURE,
   DELETE_PRODUCT_FROM_CART_REQUEST,
   DELETE_PRODUCT_FROM_CART_SUCCESS,
@@ -25,13 +28,14 @@ export const cartReducer = (state = initialState, action) => {
     case GET_CART_REQUEST:
     case DELETE_PRODUCT_FROM_CART_REQUEST:
     case UPDATE_PRODUCT_IN_CART_REQUEST:
+    case CREATE_ORDER_REQUEST:
     case ADD_PRODUCT_TO_CART_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
-
+    case CREATE_ORDER_SUCCESS:
     case ADD_PRODUCT_TO_CART_SUCCESS:
     case UPDATE_PRODUCT_IN_CART_SUCCESS:
     case DELETE_PRODUCT_FROM_CART_SUCCESS: {
@@ -50,7 +54,7 @@ export const cartReducer = (state = initialState, action) => {
         error: null,
         cart: action.payload,
       };
-
+    case CREATE_ORDER_FAILURE:
     case GET_CART_FAILURE:
     case DELETE_PRODUCT_FROM_CART_FAILURE:
     case UPDATE_PRODUCT_IN_CART_FAILURE:
