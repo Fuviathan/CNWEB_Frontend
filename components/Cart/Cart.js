@@ -4,13 +4,11 @@ import PriceDetail from "./PriceDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "@/state/Cart/Action";
 
-const Cart = () => {
+const Cart = (props) => {
   const [auth, setAuth] = useState();
   const dispatch = useDispatch();
   const cart = useSelector((store) => store?.cart?.cart);
   const cartItem = useSelector((store) => store?.cart?.cartItem);
-  console.log(cartItem);
-  console.log(cart);
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists
@@ -29,7 +27,7 @@ const Cart = () => {
           ))}
         </div>
         <div className="w-1/3">
-          <PriceDetail cart={cart}></PriceDetail>
+          <PriceDetail cart={cart} onOpen={props.onOpen}></PriceDetail>
         </div>
       </div>
     </div>

@@ -2,14 +2,23 @@ import Cart from "@/components/Cart/Cart";
 import Layout from "@/components/Layout/Layout";
 import ProtectRouter from "@/components/ProtectRouter";
 import React from "react";
+import { useState } from "react";
+import BasicModal from "@/components/Admin/Modal/BasicModal";
+import ConfirmOrderModal from "@/components/Cart/ConfirmOrderModal";
 
 const cart = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
-    <Layout className="bg-white">
-      <ProtectRouter>
-        <Cart></Cart>
-      </ProtectRouter>
-    </Layout>
+      <Layout className="bg-white">
+        <ProtectRouter>
+          <BasicModal onClose={handleClose} open={open} >
+            <ConfirmOrderModal onClose={handleClose} open={open} cart={cart}></ConfirmOrderModal>
+          </BasicModal>
+          <Cart onOpen={handleOpen}></Cart>
+        </ProtectRouter>
+      </Layout>
   );
 };
 
