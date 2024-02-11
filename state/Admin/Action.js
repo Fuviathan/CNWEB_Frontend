@@ -26,7 +26,10 @@ import {
   DELETE_IMAGE_FAILURE,
   DELETE_PRODUCT_FAILURE, 
   DELETE_PRODUCT_REQUEST,
-  DELETE_PRODUCT_SUCCESS
+  DELETE_PRODUCT_SUCCESS,
+  CHANGE_ROLE_REQUEST,
+  CHANGE_ROLE_SUCCESS,
+  CHANGE_ROLE_FAILURE,
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -116,13 +119,13 @@ export const deleteImg = (imgId) => async (dispatch) => {
 }
 
 export const deleteProduct = (productId) => async (dispatch) => {
-  dispatch({ type: DELETE_CATEGORY_REQUEST });
+  dispatch({ type: DELETE_PRODUCT_REQUEST });
   try {
     const { data } = api.delete(`/product/${productId}`);
     alert('Xóa thành công') ? "" : location.reload()
-    dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
+    dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
-    dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
+    dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });
     alert(e.message) ? "" : location.reload();
   }
 };
@@ -137,6 +140,20 @@ export const addNewProduct = (req) => async (dispatch) => {
     alert('Thêm thành công')
   } catch (e) {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
+    console.log(e)
+    alert('Lỗi')
+  }
+};
+
+export const updateRole = (req) => async (dispatch) => {
+  const role_T = {"role": `${req.role}`}
+  dispatch({ type: CHANGE_ROLE_REQUEST });
+  try {
+    const { data } = await api.put(`/user/role/${req.id}`, role_T);
+    dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
+    alert('Sửa thành công')
+  } catch (e) {
+    dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
     console.log(e)
     alert('Lỗi')
   }

@@ -1,7 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "@/state/Admin/Action";
-import { TrashIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, ShoppingCartIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import UpdateRole from "./UpdateRole";
+import BasicModal from "../Modal/BasicModal";
 
 const ListCustomer = () => {
   const [auth, setAuth] = useState()
@@ -14,6 +16,7 @@ const ListCustomer = () => {
     dispatch(getAllUser())
   }, []);
   console.log(brands)
+  const [role, setRole] = useState()
   const [open, setOpen] = useState(false)
   const [id, setId] = useState(0)
   const [productList, setProductList] = useState([]);
@@ -311,9 +314,9 @@ const ListCustomer = () => {
                     </td>
                     <td
                       className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
-                      onClick={() => { setOpen(true); setId(data._id); }}
+                      onClick={() => { setOpen(true); setId(data._id); setRole(data.role) }}
                     >
-                      <ShoppingCartIcon className="w-8 h-8 text-dark-purple" />
+                      <PencilSquareIcon className="w-8 h-8 text-dark-purple" />
                     </td>
 
                   </tr>
@@ -361,9 +364,9 @@ const ListCustomer = () => {
                   {index + 1}
                 </li>
               ))}
-              {/* <BasicModal open={open} onClose={() => setOpen(false)} >
-                <DeleteBrand onClose={() => setOpen(false)} data={id}/>
-              </BasicModal> */}
+              <BasicModal open={open} onClose={() => setOpen(false)} >
+                <UpdateRole onClose={() => setOpen(false)} open={open} data={id} role={role}/>
+              </BasicModal>
               <li
                 className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${currentPage == totalPage - 1
                   ? "bg-[#cccccc] pointer-events-none"
