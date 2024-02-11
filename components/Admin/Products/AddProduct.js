@@ -50,6 +50,7 @@ const AddProduct = (props) => {
           <div className='w-1/2 mr-8'>
             <label className='block'>Nhãn hàng</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('brand', { required: true })} >
+              <option value={''}></option>
               {brandList.map((item) =>
                 <option value={item.title}>
                   {item.title}
@@ -61,6 +62,7 @@ const AddProduct = (props) => {
           <div className='w-1/2 ml-8'>
             <label className='block'>Danh mục</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('category', { required: true })} >
+              <option value={''}></option>
               {categoryList.map((item) =>
                 <option value={item.title}>
                   {item.title}
@@ -133,7 +135,7 @@ const AddProduct = (props) => {
                       <></>
                     )}
                     {item?.puclicId ? (
-                      <img src={item?.url} alt="" className='max-w-[600px] min-w-[400px] min-h-[400px] max-h-[600px]' />
+                      <img src={item?.url} alt="" className='max-w-[300px] min-w-[200px] min-h-[200px] max-h-[300px]' />
                     ) : (
                       <></>
                     )}
