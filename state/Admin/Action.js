@@ -109,7 +109,7 @@ export const uploadImg = (req) => async (dispatch) => {
 export const deleteImg = (imgId) => async (dispatch) => {
   dispatch({ type: DELETE_IMAGE_REQUEST });
   try {
-    const { data } = api.put(`/upload/delete-img/${imgId}`);
+    const { data } = await api.put(`/upload/delete-img/${imgId}`);
     dispatch({ type: DELETE_IMAGE_SUCCESS, payload: data });
     alert('Xóa thành công')
   } catch (e) {

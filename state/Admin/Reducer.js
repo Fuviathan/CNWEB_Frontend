@@ -57,6 +57,7 @@ export const adminReducer = (state = initialState, action) => {
         error: null,
         brand: action.payload,
       };
+    case DELETE_IMAGE_SUCCESS:
     case UPLOAD_IMAGE_SUCCESS:
       return {
         ...state,
@@ -67,13 +68,12 @@ export const adminReducer = (state = initialState, action) => {
     case DELETE_BRAND_SUCCESS:
     case CHANGE_ROLE_SUCCESS:
     case DELETE_PRODUCT_SUCCESS:
-    case DELETE_IMAGE_SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: null,
         data: action.payload
-      }
+      } 
     case CHANGE_ROLE_FAILURE:
     case GET_ALL_BRAND_FAILURE:
     case UPLOAD_IMAGE_FAILURE:

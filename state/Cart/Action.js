@@ -73,7 +73,7 @@ export const updateProductInCart = (req) => async (dispatch) => {
 export const createOrder = (req) => async (dispatch) => {
   dispatch({ type: CREATE_ORDER_REQUEST });
   try {
-    const { data } = await api.post( `user/cart/create-order `);
+    const { data } = await api.post( `user/cart/create-order `, req);
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
     console.log('Thanh cong')
   } catch (error) {

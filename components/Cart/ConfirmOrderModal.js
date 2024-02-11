@@ -30,7 +30,7 @@ const ConfirmOrderModal = (props) => {
   }, []);
   const productList = cart?.products
   let cartList = productList.map(item => ({
-    id: item._id,
+    product: item._id,
     count: item.count,
     price: item.price,
   }))
@@ -46,7 +46,7 @@ const ConfirmOrderModal = (props) => {
     }
     const {firstname, lastname, email, address, methodPayment, ...data_t} = data
     console.log(data_t)
-    dispatch(createOrder(data))
+    dispatch(createOrder(data_t))
   }
   if (!cart) return <></>
   else if (props.open && cart) return (
@@ -81,7 +81,7 @@ const ConfirmOrderModal = (props) => {
               <option value={"tien mat"}>
                 Tiền mặt
               </option>
-              <option value={"chuyen khoan"}>
+              <option value={"Chuyen khoan"}>
                 Thẻ ngân hàng
               </option>
             </select>
