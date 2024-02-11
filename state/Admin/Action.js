@@ -3,6 +3,9 @@ import {
   ADD_BRAND_FAILURE,
   ADD_BRAND_REQUEST,
   ADD_BRAND_SUCCESS,
+  ADD_NEW_PRODUCT_REQUEST, 
+  ADD_NEW_PRODUCT_FAILURE, 
+  ADD_NEW_PRODUCT_SUCCESS,
   ADD_CATEGORY_FAILURE,
   ADD_CATEGORY_REQUEST,
   ADD_CATEGORY_SUCCESS,
@@ -20,7 +23,10 @@ import {
   UPLOAD_IMAGE_REQUEST,
   DELETE_IMAGE_REQUEST,
   DELETE_IMAGE_SUCCESS,
-  DELETE_IMAGE_FAILURE
+  DELETE_IMAGE_FAILURE,
+  DELETE_PRODUCT_FAILURE, 
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -108,3 +114,30 @@ export const deleteImg = (imgId) => async (dispatch) => {
     alert(e.message);
   }
 }
+
+export const deleteProduct = (productId) => async (dispatch) => {
+  dispatch({ type: DELETE_CATEGORY_REQUEST });
+  try {
+    const { data } = api.delete(`/product/${productId}`);
+    alert('Xóa thành công') ? "" : location.reload()
+    dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
+  } catch (e) {
+    dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
+    alert(e.message) ? "" : location.reload();
+  }
+};
+
+export const addNewProduct = (req) => async (dispatch) => {
+  req.images = req.images[0]
+  console.log(req)
+  dispatch({ type: ADD_NEW_PRODUCT_REQUEST });
+  try {
+    const { data } = await api.post("/product", req);
+    dispatch({ type: ADD_NEW_PRODUCT_SUCCESS, payload: data });
+    alert('Thêm thành công')
+  } catch (e) {
+    dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
+    console.log(e)
+    alert('Lỗi')
+  }
+};
