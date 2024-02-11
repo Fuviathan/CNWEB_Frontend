@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "@/state/Products/Action";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import BasicModal from "../Modal/BasicModal";
 import DeleteProduct from "./DeleteProduct";
+import UpdateProduct from "./UpdateProduct";
 
 const ListProduct = () => {
     const dispatch = useDispatch();
@@ -11,8 +12,11 @@ const ListProduct = () => {
     useEffect(() => {
         dispatch(getProducts())
     }, []);
-    const [open, setOpen] = useState(false)
+    console.log(brands)
+    const [openDelete, setOpenDelete] = useState(false)
+    const [openUpdate, setOpenUpdate] = useState(false)
     const [id, setId] = useState()
+    const [initP, setInitP] = useState()
     const [productList, setProductList] = useState([]);
     const [rowsLimit, setRowsLimit] = useState(10);
     const [rowsToShow, setRowsToShow] = useState([]);
@@ -353,10 +357,17 @@ const ListProduct = () => {
                                             {data?.price}
                                         </td>
                                         <td
-                                            className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
-                                            onClick={() => { setOpen(true); setId(data._id); }}
+                                            className={`py-4 px-4 flex justify-center  font-normal`}
+
                                         >
-                                            <TrashIcon className="w-8 h-8 text-red-400" />
+                                            <TrashIcon
+                                                className="w-8 h-8 mr-8 text-red-400 hover:cursor-pointer hover:opacity-50"
+                                                onClick={() => { setOpenDelete(true); setId(data._id); }}
+                                            />
+                                            <PencilSquareIcon
+                                                className="w-8 h-8 hover:cursor-pointer hover:opacity-50 text-dark-purple"
+                                                onClick={() => { setOpenUpdate(true); setInitP(data); }}
+                                            />
                                         </td>
                                     </tr>
                                 </>
@@ -403,9 +414,7 @@ const ListProduct = () => {
                                     {index + 1}
                                 </li>
                             ))}
-                            <BasicModal open={open} onClose={() => setOpen(false)} >
-                                <DeleteProduct onClose={() => setOpen(false)} open={open} data={id} />
-                            </BasicModal>
+
                             <li
                                 className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${currentPage == totalPage - 1
                                     ? "bg-[#cccccc] pointer-events-none"
@@ -416,6 +425,12 @@ const ListProduct = () => {
                                 <img src="https://www.tailwindtap.com/assets/travelagency-admin/rightarrow.svg" />
                             </li>
                         </ul>
+                        <BasicModal open={openDelete} onClose={() => setOpenDelete(false)} >
+                            <DeleteProduct onClose={() => setOpenDelete(false)} open={openDelete} data={id} />
+                        </BasicModal>
+                        <BasicModal open={openUpdate} onClose={() => setOpenUpdate(false)} >
+                            <UpdateProduct onClose={() => setOpenUpdate(false)} open={openUpdate} data={initP} />
+                        </BasicModal>
                     </div>
                 </div>
             </div>
