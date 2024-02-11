@@ -87,7 +87,7 @@ const AddCategory = (props) => {
                       <></>
                     )}
                     {item?.puclicId ? (
-                      <img src={item?.url} alt="" className='max-w-[600px] min-w-[400px] min-h-[400px] max-h-[600px]' />
+                      <img src={item?.url} alt="" className='max-w-[300px] min-w-[200px] min-h-[200px] max-h-[300px]' />
                     ) : (
                       <></>
                     )}
