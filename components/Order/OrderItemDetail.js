@@ -22,7 +22,7 @@ const OrderItemDetail = (props) => {
       methodPayment: props?.item?.shippingInfor.methodPayment,
     }
   })
-  const onSubmit = (data) => {console.log(data)}
+  const onSubmit = (data) => { console.log(data) }
   return (
     // <div className='relative z-30 flex items-center justify-center w-screen h-screen bg-black bg-opacity-30'>
     <div className='absolute w-3/5 px-10 py-5 mt-4 overflow-y-auto -translate-x-1/2 -translate-y-1/2 bg-white min-h-fit h-3/4 min-w-fit top-1/2 left-1/2 rounded-xl'>
@@ -43,7 +43,7 @@ const OrderItemDetail = (props) => {
         <div className='flex justify-between mt-2'>
           <div className='flex flex-col w-1/2 mr-8'>
             <label className='block '>Email</label>
-            <input className='w-full p-2 mt-2 border border-gray-300 rounded-lg' disabled {...register('email', { required: true })} />       
+            <input className='w-full p-2 mt-2 border border-gray-300 rounded-lg' disabled {...register('email', { required: true })} />
           </div>
           <div className='flex flex-col w-1/2 ml-8'>
             <label className='block'>Phương thức thanh toán</label>
@@ -67,7 +67,7 @@ const OrderItemDetail = (props) => {
                   <div className='font-medium text-black '>{item.product.title}</div>
                 </div>
                 <div className='w-1/4 ml-2 font-medium text-black'>{item.count}</div>
-                <div className='w-1/4 font-medium text-black'>{item.count * item.price}</div>
+                <div className='w-1/4 font-medium text-black'>{props?.item?.totalPrice}</div>
               </div>
             )
           })}
@@ -79,17 +79,11 @@ const OrderItemDetail = (props) => {
         </div>
         <div className="flex flex-row-reverse gap-5 mt-5">
           <button
-            type='submit'
+            onClick={props.handleClose}
+            type='button'
             className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
           >
-            Lưu
-          </button>
-          <button
-            type='button'
-            onClick={props.handleClose}
-            className="p-2 px-6 text-red-500 bg-white border-2 border-red-500 hover:text-white hover:bg-red-500 rounded-2xl"
-          >
-            Hủy
+            Đóng
           </button>
         </div>
       </form>
