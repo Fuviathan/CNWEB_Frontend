@@ -80,9 +80,9 @@ export default function FirstRow() {
             onBlur={() => setTimeout(() => setShowList(false), 200)}
           />
           {showList && (
-            <div className="absolute z-10 w-full top-10 ">
+            <div className="absolute z-10 w-[94%] rounded-lg top-11 ">
               {dataSearch.length > 0 ? (
-                <div className=" overflow-y-auto h-[50vh]">
+                <div className="overflow-y-auto rounded-lg h-[50vh]">
                   {dataSearch.map((i) => (
                     <div
                       key={i._id}
