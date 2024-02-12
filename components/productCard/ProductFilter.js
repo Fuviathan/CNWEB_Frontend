@@ -58,7 +58,9 @@ const ProductFilter = () => {
   const categories = useSelector((store) => store?.product?.category);
 
   useEffect(() => {
-    dispatch(getProducts());
+    if (!router.query.category) {
+      dispatch(getProducts());
+    }
     dispatch(getProductByBrand());
     dispatch(getProductByColor());
     dispatch(getProductByCategory());
@@ -86,17 +88,19 @@ const ProductFilter = () => {
 
   // ================ GET DATA FILTER ============
   useEffect(() => {
-    dispatch(
-      getProductByFilter({
-        sort,
-        tag,
-        brand,
-        category,
-        minPrice,
-        maxPrice,
-        color,
-      })
-    );
+    if (!router.query.category) {
+      dispatch(
+        getProductByFilter({
+          sort,
+          tag,
+          brand,
+          category,
+          minPrice,
+          maxPrice,
+          color,
+        })
+      );
+    }
   }, [sort, tag, brand, category, minPrice, maxPrice, color]);
   return (
     <div className="mt-8">
@@ -105,7 +109,9 @@ const ProductFilter = () => {
         <div className="col-span-1">
           {/* =============Filter by category====================== */}
           <div className="flex flex-col justify-center px-6 py-4 border-2 rounded-lg ">
-            <div className="mr-4 text-2xl font-bold ">Tìm kiếm bằng danh mục</div>
+            <div className="mr-4 text-2xl font-bold ">
+              Tìm kiếm bằng danh mục
+            </div>
             <div className="flex flex-row py-4">
               <div>
                 <ul className="flex flex-wrap gap-2">
@@ -139,7 +145,10 @@ const ProductFilter = () => {
           <div className="flex flex-col justify-center px-6 py-4 mt-4 border-2 rounded-xl">
             <div className="mr-4 text-2xl font-bold ">Lọc</div>
             <div className="mt-2">
-              <div className="mb-4 text-xl font-semibold text-gray-500"> Giá cả:</div>
+              <div className="mb-4 text-xl font-semibold text-gray-500">
+                {" "}
+                Giá cả:
+              </div>
               <div className="flex items-center">
                 <span className="pr-2 text-xl font-semibold">$</span>
                 <CustomTextField
