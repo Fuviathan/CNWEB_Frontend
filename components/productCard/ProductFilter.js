@@ -101,7 +101,7 @@ const ProductFilter = () => {
         })
       );
     }
-  }, [sort, tag, brand, category, minPrice, maxPrice, color]);
+  }, [sort, tag, brand, category, minPrice, maxPrice, color, router]);
   return (
     <div className="mt-8">
       <div className="grid gap-8 bg-white lg:grid-cols-4 ">
