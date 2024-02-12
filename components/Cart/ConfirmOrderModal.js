@@ -29,11 +29,13 @@ const ConfirmOrderModal = (props) => {
     dispatch(getCart());
   }, []);
   const productList = cart?.products
+  console.log(productList)
   let cartList = productList.map(item => ({
-    product: item._id,
+    product: item.product._id,
     count: item.count,
     price: item.price,
   }))
+  console.log(cartList)
   const onSubmit = (data) => {
     data.orderItems = cartList
     data.totalPrice = cart.cartTotal

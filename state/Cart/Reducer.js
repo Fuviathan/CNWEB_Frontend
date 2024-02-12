@@ -8,6 +8,8 @@ import {
   DELETE_PRODUCT_FROM_CART_FAILURE,
   DELETE_PRODUCT_FROM_CART_REQUEST,
   DELETE_PRODUCT_FROM_CART_SUCCESS,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
   GET_CART_FAILURE,
   GET_CART_REQUEST,
   GET_CART_SUCCESS,
@@ -25,6 +27,7 @@ const initialState = {
 
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_ORDERS_REQUEST:
     case GET_CART_REQUEST:
     case DELETE_PRODUCT_FROM_CART_REQUEST:
     case UPDATE_PRODUCT_IN_CART_REQUEST:
@@ -46,7 +49,13 @@ export const cartReducer = (state = initialState, action) => {
         cartItem: action.payload,
       };
     }
-
+    case GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        orders: action.payload,
+      };
     case GET_CART_SUCCESS:
       return {
         ...state,

@@ -14,7 +14,10 @@ import {
   UPDATE_PRODUCT_IN_CART_SUCCESS,
   CREATE_ORDER_FAILURE, 
   CREATE_ORDER_REQUEST, 
-  CREATE_ORDER_SUCCESS
+  CREATE_ORDER_SUCCESS, 
+  GET_ALL_ORDERS_FAILURE, 
+  GET_ALL_ORDERS_REQUEST, 
+  GET_ALL_ORDERS_SUCCESS
 } from "./ActionType";
 import { toast } from "react-toastify";
 
@@ -79,5 +82,15 @@ export const createOrder = (req) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
     console.log(error)
+  }
+};
+
+export const getAllOrderOfUser = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_ORDERS_REQUEST });
+  try {
+    const { data } = await api.get("user/carts");
+    dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_ALL_ORDERS_FAILURE, payload: error.message });
   }
 };
