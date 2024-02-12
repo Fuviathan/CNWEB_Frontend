@@ -11,6 +11,9 @@ import {
   GET_CART_FAILURE,
   GET_CART_REQUEST,
   GET_CART_SUCCESS,
+  GET_ORDER_HISTORY_FAILURE,
+  GET_ORDER_HISTORY_REQUEST,
+  GET_ORDER_HISTORY_SUCCESS,
   UPDATE_PRODUCT_IN_CART_FAILURE,
   UPDATE_PRODUCT_IN_CART_REQUEST,
   UPDATE_PRODUCT_IN_CART_SUCCESS,
@@ -30,6 +33,7 @@ export const cartReducer = (state = initialState, action) => {
     case UPDATE_PRODUCT_IN_CART_REQUEST:
     case CREATE_ORDER_REQUEST:
     case ADD_PRODUCT_TO_CART_REQUEST:
+    case GET_ORDER_HISTORY_REQUEST:
       return {
         ...state,
         loading: true,
@@ -54,6 +58,14 @@ export const cartReducer = (state = initialState, action) => {
         error: null,
         cart: action.payload,
       };
+    case GET_ORDER_HISTORY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        orderHistory: action.payload,
+      };
+    case GET_ORDER_HISTORY_FAILURE:
     case CREATE_ORDER_FAILURE:
     case GET_CART_FAILURE:
     case DELETE_PRODUCT_FROM_CART_FAILURE:

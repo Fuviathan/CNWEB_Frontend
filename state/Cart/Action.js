@@ -12,9 +12,12 @@ import {
   UPDATE_PRODUCT_IN_CART_FAILURE,
   UPDATE_PRODUCT_IN_CART_REQUEST,
   UPDATE_PRODUCT_IN_CART_SUCCESS,
-  CREATE_ORDER_FAILURE, 
-  CREATE_ORDER_REQUEST, 
-  CREATE_ORDER_SUCCESS
+  CREATE_ORDER_FAILURE,
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_SUCCESS,
+  GET_ORDER_HISTORY_REQUEST,
+  GET_ORDER_HISTORY_SUCCESS,
+  GET_ORDER_HISTORY_FAILURE,
 } from "./ActionType";
 import { toast } from "react-toastify";
 
@@ -73,11 +76,22 @@ export const updateProductInCart = (req) => async (dispatch) => {
 export const createOrder = (req) => async (dispatch) => {
   dispatch({ type: CREATE_ORDER_REQUEST });
   try {
-    const { data } = await api.post( `user/cart/create-order `, req);
+    const { data } = await api.post(`user/cart/create-order `, req);
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
-    console.log('Thanh cong')
+    console.log("Thanh cong");
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
-    console.log(error)
+    console.log(error);
+  }
+};
+
+export const getAllOrderHistory = () => async (dispatch) => {
+  dispatch({ type: GET_ORDER_HISTORY_REQUEST });
+  try {
+    const { data } = await api.get(`user/carts`);
+    console.log(data);
+    dispatch({ type: GET_ORDER_HISTORY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_ORDER_HISTORY_FAILURE, payload: error.message });
   }
 };
