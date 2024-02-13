@@ -80,7 +80,7 @@ const ConfirmOrderModal = (props) => {
           <div className='flex flex-col w-1/2 ml-8'>
             <label className='block'>Phương thức thanh toán</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('methodPayment', { required: true })} >
-              <option value={"tien mat"}>
+              <option value={"Tien mat"}>
                 Tiền mặt
               </option>
               <option value={"Chuyen khoan"}>

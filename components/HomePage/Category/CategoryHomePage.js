@@ -12,7 +12,7 @@ const CategoryWrapper = () => {
   console.log(data);
   // const number = useSelector((state) => state.product?.categoryProductTotal);
   return (
-    <div className="flex flex-wrap  justify-between mb-8 shadow-md">
+    <div className="flex flex-wrap justify-between mb-16 shadow-md">
       {data?.map((item, index) => {
         return (
           <CategoryCard
