@@ -45,10 +45,15 @@ export default function FirstRow() {
     dispatch(getCart());
   }, [user, cart?.cartTotal, cartItem?.cartTotal]);
 
+  function redirect() {
+    window.location.href = '/homePage'
+  }
+
   function handleLogout() {
     setAuth("");
     localStorage.clear();
     toast.error("Bạn đã đăng xuất");
+    setTimeout(redirect, 2500)
   }
   return (
     <div className="w-full bg-[#ede2d1]">

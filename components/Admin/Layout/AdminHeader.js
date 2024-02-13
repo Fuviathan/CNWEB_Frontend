@@ -13,10 +13,16 @@ export default function AdminHeader() {
         // Get the value from local storage if it exists
         setAuth(value);
     }, []);
+
+    function redirect() {
+        window.location.href = '/homePage'
+    }
+    
     function handleLogout() {
         setAuth("");
         localStorage.clear();
         toast.error("Bạn đã đăng xuất");
+        setTimeout(redirect, 2000)
     }
     return (
         <div className="flex justify-end w-full px-8 py-2 bg-white shadow">
