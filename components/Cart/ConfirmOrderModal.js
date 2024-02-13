@@ -29,13 +29,11 @@ const ConfirmOrderModal = (props) => {
     dispatch(getCart());
   }, []);
   const productList = cart?.products
-  console.log(productList)
-  let cartList = productList.map(item => ({
+  let cartList = productList?.map(item => ({
     product: item.product._id,
     count: item.count,
     price: item.price,
   }))
-  console.log(cartList)
   const onSubmit = (data) => {
     data.orderItems = cartList
     data.totalPrice = cart.cartTotal
@@ -47,7 +45,6 @@ const ConfirmOrderModal = (props) => {
       methodPayment: data.methodPayment,
     }
     const {firstname, lastname, email, address, methodPayment, ...data_t} = data
-    console.log(data_t)
     dispatch(createOrder(data_t))
   }
   if (!cart) return <></>
@@ -80,10 +77,10 @@ const ConfirmOrderModal = (props) => {
           <div className='flex flex-col w-1/2 ml-8'>
             <label className='block'>Phương thức thanh toán</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('methodPayment', { required: true })} >
-              <option value={"Tien mat"}>
+              <option value={"Tiền mặt"}>
                 Tiền mặt
               </option>
-              <option value={"Chuyen khoan"}>
+              <option value={"Chuyển khoản"}>
                 Thẻ ngân hàng
               </option>
             </select>
@@ -97,7 +94,7 @@ const ConfirmOrderModal = (props) => {
             <div className='w-1/4 mb-1 text-lg font-medium'>Số lượng</div>
             <div className='w-1/4 mb-1 text-lg font-medium'>Giá tiền</div>
           </div>
-          {productList && productList.map((item) => {
+          {productList && productList?.map((item) => {
             return (
               <div className='flex my-2 '>
                 <div className='flex w-2/4'>

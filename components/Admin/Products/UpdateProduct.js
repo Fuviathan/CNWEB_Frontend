@@ -2,20 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct, handleSetImagesToNull } from "@/state/Admin/Action";
 import Dropzone from "react-dropzone";
-import { uploadImg, deleteImg } from "../../../state/Admin/Action";
+import { uploadImg } from "../../../state/Admin/Action";
 import { useForm } from "react-hook-form";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   getProductByBrand,
   getProductByCategory,
-  getSingleProduct,
 } from "@/state/Products/Action";
 
 const UpdateProduct = (props) => {
   const [img, setImg] = useState(props?.data?.images);
 
   let images = useSelector((state) => state?.admin?.image);
-  console.log(images);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductByBrand());
@@ -32,7 +30,6 @@ const UpdateProduct = (props) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -49,7 +46,6 @@ const UpdateProduct = (props) => {
     data.images = img;
     data.price = Number(data.price);
     data.quantity = Number(data.quantity);
-    console.log(data);
     dispatch(updateProduct(data))
   };
   if (categoryList && brandList && props.open)
