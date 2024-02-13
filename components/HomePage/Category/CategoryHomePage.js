@@ -13,11 +13,13 @@ const CategoryWrapper = () => {
   // const number = useSelector((state) => state.product?.categoryProductTotal);
   return (
     <div className="flex flex-wrap justify-between mb-16 shadow-md">
-      {data?.map((item, index) => {
+      {data?.map((item, index) => { 
         return (
           <CategoryCard
             key={item && item["_id"]}
-            src={item?.image}
+            src={
+              typeof item?.image[0] === 'string' ? item?.image : item?.image[0].url
+            }
             title={item?.title}
             quantity={item?.totalProducts}
             alt={item?.title}
