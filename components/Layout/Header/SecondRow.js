@@ -23,12 +23,12 @@ export default function SecondRow() {
         >
           Đơn hàng
         </Link>
-        <Link
+        {/* <Link
           href={""}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
           Liên hệ
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

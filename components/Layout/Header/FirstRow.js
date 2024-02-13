@@ -59,7 +59,7 @@ export default function FirstRow() {
     <div className="w-full bg-[#ede2d1]">
       <div className="grid items-center grid-cols-6 py-4 max-w-[1320px] mx-auto">
         <Link
-          href="/Abcd"
+          href="/homePage"
           className="px-5 mb-0 font-sans text-3xl font-semibold tracking-wide text-orange-gray hover:cursor-pointer"
         >
           ElectricalD

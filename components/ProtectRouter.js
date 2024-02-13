@@ -4,14 +4,19 @@ import { useRouter } from "next/router";
 
 const ProtectRouter = ({ children }) => {
   const router = useRouter()
+  console.log(router.pathname)
   const [auth, setAuth] = useState();
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists
     value = localStorage.getItem("user") || "";
-    setAuth(value);
+    if (value) {
+      setAuth(JSON.parse(value));
+    }
   }, []);
-  return (
+  if (auth?.role === 'admin' || auth?.role === 'subadmin' ) router.push('/admin/dashboard')
+  if (!auth && router.pathname !=='/cart' && router.pathname !== '/orderhistory') return <main>{children}</main>
+  else return (
     <div>
       {auth ? (
         <main>{children}</main>
@@ -25,7 +30,6 @@ const ProtectRouter = ({ children }) => {
           </a>
         </div>
       )}
-      ;
     </div>
   );
 };

@@ -9,7 +9,10 @@ const ProtectAdminRouter = ({ children }) => {
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("user") || "";
-        setAuth(JSON.parse(value));
+        if (!value) router.push('/homePage')
+        if (value) {
+            setAuth(JSON.parse(value));
+        }
     }, []);
     if (auth?.role !== 'user') {
         return (<main>{children}</main>)
