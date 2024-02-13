@@ -38,20 +38,19 @@ import {
 import { toast } from "react-toastify";
 
 function refresh() {
-  location.reload()
+  location.reload();
 }
-
 
 export const addNewBrand = (req) => async (dispatch) => {
   dispatch({ type: ADD_BRAND_REQUEST });
   try {
     const { data } = await api.post("/brand", req);
     dispatch({ type: ADD_BRAND_SUCCESS, payload: data });
-    toast.success("Thêm nhãn hàng thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Thêm nhãn hàng thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -60,11 +59,11 @@ export const deleteBrand = (brandId) => async (dispatch) => {
   try {
     const { data } = api.delete(`/brand/${brandId}`);
     dispatch({ type: DELETE_BRAND_SUCCESS, payload: data });
-    toast.success("Xóa thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Xóa thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -76,11 +75,11 @@ export const addNewCategory = (req) => async (dispatch) => {
     const { data } = await api.post("/prodcategory", req);
 
     dispatch({ type: ADD_CATEGORY_SUCCESS, payload: data });
-    toast.success("Thêm thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Thêm thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: ADD_CATEGORY_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -89,11 +88,11 @@ export const deleteCategory = (categoryId) => async (dispatch) => {
   try {
     const { data } = api.delete(`/prodcategory/${categoryId}`);
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
-    toast.success("Xóa thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Xóa thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -113,7 +112,10 @@ export const uploadImg = (req) => async (dispatch) => {
   dispatch({ type: UPLOAD_IMAGE_REQUEST });
   try {
     const { data } = await api.post(`/upload`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Accept: "application/json",
+      },
     });
     dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: data });
   } catch (error) {
@@ -136,12 +138,12 @@ export const deleteProduct = (productId) => async (dispatch) => {
   dispatch({ type: DELETE_PRODUCT_REQUEST });
   try {
     const { data } = api.delete(`/product/${productId}`);
-    toast.success("Xóa thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Xóa thành công");
+    setTimeout(refresh, 3000);
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -152,25 +154,25 @@ export const addNewProduct = (req) => async (dispatch) => {
   try {
     const { data } = await api.post("/product", req);
     dispatch({ type: ADD_NEW_PRODUCT_SUCCESS, payload: data });
-    toast.success("Thêm thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Thêm thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
 export const updateProduct = (req) => async (dispatch) => {
-  const { ID, ...data_t } = req
+  const { ID, ...data_t } = req;
   dispatch({ type: UPDATE_PRODUCT_REQUEST });
   try {
     const { data } = await api.put(`/product/${req.ID}`, data_t);
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
-    toast.success("Sửa thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: e });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
@@ -180,11 +182,11 @@ export const updateRole = (req) => async (dispatch) => {
   try {
     const { data } = await api.put(`/user/role/${req.id}`, role_T);
     dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
-    toast.success("Sửa thành công")
-    setTimeout(refresh, 3000)
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
-    toast.error(e.response.data.message)
+    toast.error(e.response.data.message);
   }
 };
 
