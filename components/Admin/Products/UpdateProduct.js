@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewProduct } from "@/state/Admin/Action";
+import { addNewProduct, handleSetImagesToNull } from "@/state/Admin/Action";
 import Dropzone from "react-dropzone";
 import { uploadImg, deleteImg } from "../../../state/Admin/Action";
 import { useForm } from "react-hook-form";
@@ -24,6 +24,7 @@ const UpdateProduct = (props) => {
   useEffect(() => {
     if (images) {
       setImg([...img, images[0]]);
+      dispatch(handleSetImagesToNull());
     }
   }, [images]);
   console.log(img);

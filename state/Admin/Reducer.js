@@ -24,7 +24,8 @@ import {
   DELETE_PRODUCT_FAILURE,
   CHANGE_ROLE_REQUEST,
   CHANGE_ROLE_SUCCESS,
-  CHANGE_ROLE_FAILURE
+  CHANGE_ROLE_FAILURE,
+  SET_IMAGE_NULL,
 } from "./ActionType";
 
 const initialState = {
@@ -42,6 +43,7 @@ export const adminReducer = (state = initialState, action) => {
     case DELETE_BRAND_REQUEST:
     case CHANGE_ROLE_REQUEST:
     case ADD_BRAND_REQUEST:
+    case GET_ALL_USER_REQUEST:
       return { ...state, isLoading: true, error: null };
     case GET_ALL_BRAND_SUCCESS:
       return {
@@ -49,7 +51,7 @@ export const adminReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         brands: action.payload,
-      }; 
+      };
     case ADD_BRAND_SUCCESS:
       return {
         ...state,
@@ -64,7 +66,7 @@ export const adminReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         image: action.payload,
-      }
+      };
     case DELETE_BRAND_SUCCESS:
     case CHANGE_ROLE_SUCCESS:
     case DELETE_PRODUCT_SUCCESS:
@@ -72,8 +74,15 @@ export const adminReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: null,
-        data: action.payload
-      } 
+        data: action.payload,
+      };
+    case SET_IMAGE_NULL:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        image: action.payload,
+      };
     case CHANGE_ROLE_FAILURE:
     case GET_ALL_BRAND_FAILURE:
     case UPLOAD_IMAGE_FAILURE:
@@ -81,11 +90,15 @@ export const adminReducer = (state = initialState, action) => {
     case DELETE_PRODUCT_FAILURE:
     case ADD_BRAND_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case GET_ALL_USER_REQUEST:
     case GET_ALL_USER_SUCCESS:
-      return {...state, isLoading: false, error: null, allUser: action.payload}
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        allUser: action.payload,
+      };
     case GET_ALL_USER_FAILURE:
-      return {...state, isLoading: false, error: action.payload}
+      return { ...state, isLoading: false, error: action.payload };
     // case LOGOUT:
     //   return { ...initialState, jwt: "" };
 

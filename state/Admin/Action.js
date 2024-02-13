@@ -3,8 +3,8 @@ import {
   ADD_BRAND_FAILURE,
   ADD_BRAND_REQUEST,
   ADD_BRAND_SUCCESS,
-  ADD_NEW_PRODUCT_REQUEST, 
-  ADD_NEW_PRODUCT_FAILURE, 
+  ADD_NEW_PRODUCT_REQUEST,
+  ADD_NEW_PRODUCT_FAILURE,
   ADD_NEW_PRODUCT_SUCCESS,
   ADD_CATEGORY_FAILURE,
   ADD_CATEGORY_REQUEST,
@@ -24,12 +24,13 @@ import {
   DELETE_IMAGE_REQUEST,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAILURE,
-  DELETE_PRODUCT_FAILURE, 
+  DELETE_PRODUCT_FAILURE,
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
   CHANGE_ROLE_REQUEST,
   CHANGE_ROLE_SUCCESS,
   CHANGE_ROLE_FAILURE,
+  SET_IMAGE_NULL,
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -48,7 +49,7 @@ export const deleteBrand = (brandId) => async (dispatch) => {
   dispatch({ type: DELETE_BRAND_REQUEST });
   try {
     const { data } = api.delete(`/brand/${brandId}`);
-    alert('Xóa thành công') ? "" : location.reload()
+    alert("Xóa thành công") ? "" : location.reload();
     dispatch({ type: DELETE_BRAND_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
@@ -57,18 +58,18 @@ export const deleteBrand = (brandId) => async (dispatch) => {
 };
 
 export const addNewCategory = (req) => async (dispatch) => {
-  req.image = req.image[0]
-  console.log(req)
+  req.image = req.image[0];
+  console.log(req);
   dispatch({ type: ADD_CATEGORY_REQUEST });
   try {
     const { data } = await api.post("/prodcategory", req);
 
     dispatch({ type: ADD_CATEGORY_SUCCESS, payload: data });
-    alert('Thêm thành công')
+    alert("Thêm thành công");
   } catch (e) {
     dispatch({ type: ADD_CATEGORY_FAILURE, payload: e.message });
-    console.log(e)
-    alert('Lỗi')
+    console.log(e);
+    alert("Lỗi");
   }
 };
 
@@ -76,7 +77,7 @@ export const deleteCategory = (categoryId) => async (dispatch) => {
   dispatch({ type: DELETE_CATEGORY_REQUEST });
   try {
     const { data } = api.delete(`/prodcategory/${categoryId}`);
-    alert('Xóa thành công') ? "" : location.reload()
+    alert("Xóa thành công") ? "" : location.reload();
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
@@ -95,11 +96,13 @@ export const getAllUser = () => async (dispatch) => {
 };
 
 export const uploadImg = (req) => async (dispatch) => {
-  var formData = new FormData()  
-  req.map((i) => formData.append("images", i))
+  var formData = new FormData();
+  req.map((i) => formData.append("images", i));
   dispatch({ type: UPLOAD_IMAGE_REQUEST });
   try {
-    const { data } = await api.post(`/upload`, formData, {headers: {"Content-Type": "multipart/form-data",}});
+    const { data } = await api.post(`/upload`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: error.message });
@@ -111,18 +114,18 @@ export const deleteImg = (imgId) => async (dispatch) => {
   try {
     const { data } = await api.put(`/upload/delete-img/${imgId}`);
     dispatch({ type: DELETE_IMAGE_SUCCESS, payload: data });
-    alert('Xóa thành công')
+    alert("Xóa thành công");
   } catch (e) {
     dispatch({ type: DELETE_IMAGE_FAILURE, payload: e.message });
     alert(e.message);
   }
-}
+};
 
 export const deleteProduct = (productId) => async (dispatch) => {
   dispatch({ type: DELETE_PRODUCT_REQUEST });
   try {
     const { data } = api.delete(`/product/${productId}`);
-    alert('Xóa thành công') ? "" : location.reload()
+    alert("Xóa thành công") ? "" : location.reload();
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });
@@ -131,30 +134,34 @@ export const deleteProduct = (productId) => async (dispatch) => {
 };
 
 export const addNewProduct = (req) => async (dispatch) => {
-  req.images = req.images[0]
-  console.log(req)
+  req.images = req.images[0];
+  console.log(req);
   dispatch({ type: ADD_NEW_PRODUCT_REQUEST });
   try {
     const { data } = await api.post("/product", req);
     dispatch({ type: ADD_NEW_PRODUCT_SUCCESS, payload: data });
-    alert('Thêm thành công')
+    alert("Thêm thành công");
   } catch (e) {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
-    console.log(e)
-    alert('Lỗi')
+    console.log(e);
+    alert("Lỗi");
   }
 };
 
 export const updateRole = (req) => async (dispatch) => {
-  const role_T = {"role": `${req.role}`}
+  const role_T = { role: `${req.role}` };
   dispatch({ type: CHANGE_ROLE_REQUEST });
   try {
     const { data } = await api.put(`/user/role/${req.id}`, role_T);
     dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
-    alert('Sửa thành công')
+    alert("Sửa thành công");
   } catch (e) {
     dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
-    console.log(e)
-    alert('Lỗi')
+    console.log(e);
+    alert("Lỗi");
   }
+};
+
+export const handleSetImagesToNull = () => async (dispatch) => {
+  dispatch({ type: SET_IMAGE_NULL, payload: null });
 };
