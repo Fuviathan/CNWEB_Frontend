@@ -85,7 +85,7 @@ export default function FirstRow() {
             onBlur={() => setTimeout(() => setShowList(false), 200)}
           />
           {showList && (
-            <div className="absolute z-10 w-[94%] rounded-lg top-11 ">
+            <div className="absolute z-[80] w-[94%] rounded-lg top-11 ">
               {dataSearch.length > 0 ? (
                 <div className="overflow-y-auto rounded-lg h-[50vh]">
                   {dataSearch.map((i) => (
@@ -118,10 +118,10 @@ export default function FirstRow() {
           </div>
         </div>
         <div className="flex flex-row justify-between col-span-2 px-4 ml-8">
-          {/* <a className='flex items-center hover:cursor-pointer hover:opacity-75'>
-                        <HeartIcon className='w-10 h-10 font-thin text-white' />
-                        <p className='ml-2 text-sm font-medium text-white'>Favorite<br></br>Wishlist</p>
-                    </a> */}
+          <a className='flex items-center hover:cursor-pointer hover:opacity-75'>
+            <HeartIcon className='w-10 h-10 font-thin text-orange-gray' />
+            <p className='ml-2 text-sm font-medium text-orange-gray'>Sản phẩm<br></br>ưa thích</p>
+          </a>
           <div className="flex items-center hover:cursor-pointer hover:opacity-75">
             <UserIcon className="w-10 h-10 font-thin text-orange-gray" />
             {!auth ? (

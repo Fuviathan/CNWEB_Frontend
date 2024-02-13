@@ -13,7 +13,7 @@ const order = () => {
         {/* <div className="ml-12">
           <BreadCrumb title={"Orders"}></BreadCrumb>
         </div> */}
-        <div className="max-w-[1320px] mx-auto mb-8 text-2xl font-semibold">Xem danh sách các đơn hàng của bạn</div>
+        <div className="max-w-[1320px] mx-auto my-8 text-2xl font-semibold">Xem danh sách các đơn hàng của bạn</div>
         <div className="self-start max-w-[1320px] mx-auto ">
           <OrderDetail open={open} handleClose={handleClose} handleOpen={handleOpen} />
         </div>
