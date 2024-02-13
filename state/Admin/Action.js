@@ -31,6 +31,9 @@ import {
   CHANGE_ROLE_SUCCESS,
   CHANGE_ROLE_FAILURE,
   SET_IMAGE_NULL,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAILURE,
 } from "./ActionType";
 
 export const addNewBrand = (req) => async (dispatch) => {
@@ -145,6 +148,20 @@ export const addNewProduct = (req) => async (dispatch) => {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
     console.log(e);
     alert("Lỗi");
+  }
+};
+
+export const updateProduct = (req) => async (dispatch) => {
+  const {ID, ...data_t} = req
+  console.log(data_t)
+  dispatch({ type: UPDATE_PRODUCT_REQUEST });
+  try {
+    const { data } = await api.put(`/product/${req.ID}`, data_t);
+    dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
+    alert("Sửa thành công");
+  } catch (e) {
+    dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: e });
+    console.log(e);
   }
 };
 

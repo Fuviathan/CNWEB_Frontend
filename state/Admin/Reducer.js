@@ -26,6 +26,9 @@ import {
   CHANGE_ROLE_SUCCESS,
   CHANGE_ROLE_FAILURE,
   SET_IMAGE_NULL,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAILURE,
 } from "./ActionType";
 
 const initialState = {
@@ -36,6 +39,7 @@ const initialState = {
 };
 export const adminReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_PRODUCT_REQUEST:
     case UPLOAD_IMAGE_REQUEST:
     case GET_ALL_BRAND_REQUEST:
     case DELETE_IMAGE_REQUEST:
@@ -69,6 +73,7 @@ export const adminReducer = (state = initialState, action) => {
       };
     case DELETE_BRAND_SUCCESS:
     case CHANGE_ROLE_SUCCESS:
+    case UPDATE_PRODUCT_SUCCESS:
     case DELETE_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -83,6 +88,7 @@ export const adminReducer = (state = initialState, action) => {
         error: null,
         image: action.payload,
       };
+    case UPDATE_PRODUCT_FAILURE:
     case CHANGE_ROLE_FAILURE:
     case GET_ALL_BRAND_FAILURE:
     case UPLOAD_IMAGE_FAILURE:

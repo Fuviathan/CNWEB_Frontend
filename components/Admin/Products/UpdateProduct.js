@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewProduct, handleSetImagesToNull } from "@/state/Admin/Action";
+import { updateProduct, handleSetImagesToNull } from "@/state/Admin/Action";
 import Dropzone from "react-dropzone";
 import { uploadImg, deleteImg } from "../../../state/Admin/Action";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,6 @@ const UpdateProduct = (props) => {
       dispatch(handleSetImagesToNull());
     }
   }, [images]);
-  console.log(img);
   const categoryList = useSelector((store) => store?.product?.category);
   const brandList = useSelector((store) => store?.product?.brand);
   const {
@@ -46,11 +45,12 @@ const UpdateProduct = (props) => {
     },
   });
   const onSubmit = (data) => {
+    data.ID = props.data._id
     data.images = img;
     data.price = Number(data.price);
     data.quantity = Number(data.quantity);
     console.log(data);
-    // dispatch(addNewProduct(data))
+    dispatch(updateProduct(data))
   };
   if (categoryList && brandList && props.open)
     return (
