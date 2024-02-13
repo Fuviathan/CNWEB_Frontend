@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import Sidebar from './Sidebar/Sidebar';
 import AdminHeader from './AdminHeader';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminLayout(props) {
   const Menus = [
@@ -20,11 +22,14 @@ export default function AdminLayout(props) {
   return (
     <>
       <Provider store={store}>
-        <div className="flex">
-          <Sidebar Menus={Menus}  />
-          <div className="flex flex-col w-full h-screen bg-gray-200">
-            <AdminHeader />            
-            {props.children}
+        <div id='root'>
+          <div className="flex">
+            <ToastContainer></ToastContainer>
+            <Sidebar Menus={Menus} />
+            <div className="flex flex-col w-full h-screen bg-gray-200">
+              <AdminHeader />
+              {props.children}
+            </div>
           </div>
         </div>
       </Provider>

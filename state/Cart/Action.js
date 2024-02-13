@@ -12,11 +12,11 @@ import {
   UPDATE_PRODUCT_IN_CART_FAILURE,
   UPDATE_PRODUCT_IN_CART_REQUEST,
   UPDATE_PRODUCT_IN_CART_SUCCESS,
-  CREATE_ORDER_FAILURE, 
-  CREATE_ORDER_REQUEST, 
-  CREATE_ORDER_SUCCESS, 
-  GET_ALL_ORDERS_FAILURE, 
-  GET_ALL_ORDERS_REQUEST, 
+  CREATE_ORDER_FAILURE,
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_SUCCESS,
+  GET_ALL_ORDERS_FAILURE,
+  GET_ALL_ORDERS_REQUEST,
   GET_ALL_ORDERS_SUCCESS
 } from "./ActionType";
 import { toast } from "react-toastify";
@@ -50,7 +50,7 @@ export const removeProductFromCart = (productId) => async (dispatch) => {
   try {
     const { data } = await api.delete(`user/delete-product-cart/${productId}`);
     dispatch({ type: DELETE_PRODUCT_FROM_CART_SUCCESS, payload: data });
-    toast.error("Đã xóa sản phẩm khỏi giỏ hàng!");
+    toast.success("Đã xóa sản phẩm khỏi giỏ hàng!");
   } catch (error) {
     dispatch({
       type: DELETE_PRODUCT_FROM_CART_FAILURE,
@@ -73,12 +73,18 @@ export const updateProductInCart = (req) => async (dispatch) => {
   }
 };
 
+function redirect() {
+  window.location.href = '/homePage'
+}
+
 export const createOrder = (req) => async (dispatch) => {
   dispatch({ type: CREATE_ORDER_REQUEST });
+
   try {
-    const { data } = await api.post( `user/cart/create-order `, req);
+    const { data } = await api.post(`user/cart/create-order`, req);
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
-    console.log('Thanh cong')
+    toast.success("Tạo đơn hàng thành công!");
+    setTimeout(redirect, 2000)
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
     console.log(error)
