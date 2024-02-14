@@ -148,7 +148,6 @@ export const deleteProduct = (productId) => async (dispatch) => {
 };
 
 export const addNewProduct = (req) => async (dispatch) => {
-  req.images = req.images[0];
   console.log(req);
   dispatch({ type: ADD_NEW_PRODUCT_REQUEST });
   try {
