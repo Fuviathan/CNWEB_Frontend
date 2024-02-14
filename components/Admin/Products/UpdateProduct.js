@@ -21,7 +21,7 @@ const UpdateProduct = (props) => {
   }, []);
   useEffect(() => {
     if (images) {
-      setImg([...img, images[0]]);
+      setImg([...img, ...images]);
       dispatch(handleSetImagesToNull());
     }
   }, [images]);

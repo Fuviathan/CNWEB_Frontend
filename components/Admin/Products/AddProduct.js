@@ -3,13 +3,15 @@ import { CustomTextField } from '@/components/Auth/CustomTextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewProduct } from '@/state/Admin/Action';
 import Dropzone from 'react-dropzone';
-import { uploadImg, deleteImg } from '../../../state/Admin/Action';
+import { uploadImg, deleteImg, handleSetImagesToNull } from '../../../state/Admin/Action';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form'
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { getProductByBrand, getProductByCategory } from '@/state/Products/Action';
+import { If } from 'react-haiku'
 
 const AddProduct = (props) => {
+  const [img, setImg] = useState([]);
   const {
     register,
     handleSubmit,
@@ -26,20 +28,28 @@ const AddProduct = (props) => {
   //   title: yup.string().required('Tên danh mục không được để trống'),
   //   images: yup.array().required('Phải có ít nhất một ảnh'),
   // });
+  const images = useSelector((state) => state?.admin?.image);
   useEffect(() => {
     dispatch(getProductByBrand())
     dispatch(getProductByCategory())
   }, []);
+  useEffect(() => {
+    if (images) {
+      setImg([...img, ...images]);
+      dispatch(handleSetImagesToNull());
+    }
+  }, [images]);
   const brandList = useSelector((store) => store?.product?.brand)
   const categoryList = useSelector((store) => store?.product?.category)
-  const images = useSelector((state) => state?.admin?.image);
+
   const onSubmit = (data) => {
-    data.images = images
+    data.images = img
     data.price = Number(data.price)
     data.quantity = Number(data.quantity)
     dispatch(addNewProduct(data))
   }
   if (categoryList && brandList && props.open) return (
+
     <div className='absolute w-3/5 px-10 py-5 mt-4 overflow-y-auto -translate-x-1/2 -translate-y-1/2 bg-white min-h-fit h-3/4 min-w-fit top-1/2 left-1/2 rounded-xl'>
       <h3 className="mb-4 text-xl font-semibold tracking-wide">Thêm sản phẩm mới</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +97,67 @@ const AddProduct = (props) => {
         <label className='block mt-2'>Mô tả sản phẩm</label>
         <textarea className='w-full min-h-[100px] overflow-y-auto p-2 mt-2 border border-gray-300 rounded-lg' {...register('description', { required: true })} />
         {errors.description && <div className='mt-2 text-sm italic text-red-400 text-italic'>*Không được để trống thông tin sản phẩm</div>}
-        {!images ? (
+
+        <div className="p-5 mt-6 text-center bg-white border border-gray-400 rounded-lg cursor-pointer">
+          <Dropzone
+            onDrop={(acceptedFiles) => {
+              dispatch(uploadImg(acceptedFiles));
+            }}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>
+                    Kéo và thả ảnh vào đây, hoặc bấm vào để chọn ảnh
+                  </p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </div>
+        <div className="flex flex-wrap gap-3 mt-3 ">
+          {img?.map((item, index) => {
+            if (item !== "null") {
+              return (
+                // <div key={index} className="relative">
+                //   {item?.url ? (
+                //     <img src={item?.url} alt="" className='max-w-[500px] min-w-[200px] min-h-[200px] max-h-[500px]' />
+                //   ) : (
+                //     <></>
+                //   )}
+                // </div>
+                <div key={index} className="relative">
+                  {item?._id || item?.puclicId ? (
+                    <button
+                      onClick={() => {
+                        setImg(img.filter((i) => i.puclicId !== item.puclicId));
+                      }}
+                      className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
+                      type="button"
+                    >
+                      <XMarkIcon className="w-6 h-6 text-red-400" />
+                    </button>
+                  ) : (
+                    <></>
+                  )}
+                  {item?._id || item?.puclicId ? (
+                    <img
+                      src={item?.url}
+                      alt=""
+                      className="w-[350px] h-[350px]"
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              );
+            } else {
+              return <></>;
+            }
+          })}
+        </div>
+        {/* {!images ? (
           <div className="p-5 mt-6 text-center bg-white border border-gray-400 rounded-lg cursor-pointer">
             <Dropzone
               onDrop={(acceptedFiles) => {
@@ -123,8 +193,9 @@ const AddProduct = (props) => {
                       <button
                         onClick={() => {
                           dispatch(
-                            deleteImg({ id: item.puclicId })
+                            deleteImg({ id: item.puclicId })    
                           );
+                          dispatch(handleSetImagesToNull())
                         }}
                         className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
                         type="button"
@@ -146,7 +217,7 @@ const AddProduct = (props) => {
               }
             })}
           </div>
-        )}
+        )} */}
         <div className="flex flex-row-reverse gap-5 mt-5">
           <button
             type='submit'
