@@ -2,7 +2,7 @@ import AdminLayout from "@/components/Admin/Layout/AdminLayout";
 import ListCustomer from "@/components/Admin/Customer/ListCustomer";
 import ProtectAdminRouter from "@/components/ProtectAdminRouter";
 
-export default function customer() {
+export default function Customer() {
   return (
     <ProtectAdminRouter>
       <AdminLayout>

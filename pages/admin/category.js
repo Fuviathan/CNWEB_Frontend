@@ -5,7 +5,7 @@ import { useState } from "react";
 import AddCategory from "@/components/Admin/Category/AddCategory";
 import ProtectAdminRouter from "@/components/ProtectAdminRouter";
 
-export default function category() {
+export default function Category() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

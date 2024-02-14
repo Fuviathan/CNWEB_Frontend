@@ -5,7 +5,7 @@ import BasicModal from "@/components/Admin/Modal/BasicModal";
 import { useState } from "react";
 import ProtectAdminRouter from "@/components/ProtectAdminRouter";
 
-export default function brand() {
+export default function Brand() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

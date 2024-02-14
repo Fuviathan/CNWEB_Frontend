@@ -6,7 +6,7 @@ import { useState } from "react";
 import BasicModal from "@/components/Admin/Modal/BasicModal";
 import ConfirmOrderModal from "@/components/Cart/ConfirmOrderModal";
 
-const cart = () => {
+const UserCart = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -14,7 +14,7 @@ const cart = () => {
       <Layout className="bg-white">
         <ProtectRouter>
           <BasicModal onClose={handleClose} open={open} >
-            <ConfirmOrderModal onClose={handleClose} open={open} cart={cart}></ConfirmOrderModal>
+            <ConfirmOrderModal onClose={handleClose} open={open}></ConfirmOrderModal>
           </BasicModal>
           <Cart onOpen={handleOpen}></Cart>
         </ProtectRouter>
@@ -22,4 +22,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default UserCart;

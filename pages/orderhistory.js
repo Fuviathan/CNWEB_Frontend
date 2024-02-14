@@ -3,7 +3,7 @@ import OrderDetail from "@/components/Order/OrderDetail";
 import ProtectRouter from "@/components/ProtectRouter";
 import React, { useState } from "react";
 
-const order = () => {
+const Order = () => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -22,4 +22,4 @@ const order = () => {
   );
 };
   
-export default order;
+export default Order;

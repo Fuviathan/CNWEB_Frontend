@@ -5,7 +5,7 @@ import ProtectAdminRouter from "@/components/ProtectAdminRouter";
 import ListProduct from "@/components/Admin/Products/ListProduct";
 import AddProduct from "@/components/Admin/Products/AddProduct";
 
-export default function brand() {
+export default function Product() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

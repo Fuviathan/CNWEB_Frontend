@@ -72,8 +72,8 @@ const UpdateProduct = (props) => {
                 className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
                 {...register("brand", { required: true })}
               >
-                {brandList.map((item) => (
-                  <option value={item.title}>{item.title}</option>
+                {brandList.map((item, index) => (
+                  <option key={index} value={item.title}>{item.title}</option>
                 ))}
               </select>
               {errors.brand && (
@@ -88,8 +88,8 @@ const UpdateProduct = (props) => {
                 className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
                 {...register("category", { required: true })}
               >
-                {categoryList.map((item) => (
-                  <option value={item.title}>{item.title}</option>
+                {categoryList.map((item, index) => (
+                  <option key={index} value={item.title}>{item.title}</option>
                 ))}
               </select>
               {errors.category && (

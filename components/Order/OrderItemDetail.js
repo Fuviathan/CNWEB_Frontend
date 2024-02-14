@@ -59,9 +59,9 @@ const OrderItemDetail = (props) => {
             <div className='w-1/4 mb-1 text-lg font-medium'>Số lượng</div>
             <div className='w-1/4 mb-1 text-lg font-medium'>Giá tiền</div>
           </div>
-          {props?.item?.orderItems.map((item) => {
+          {props?.item?.orderItems.map((item, index) => {
             return (
-              <div className='flex my-2 '>
+              <div key={index} className='flex my-2 '>
                 <div className='flex w-2/4'>
                   <img src={item?.product?.images[0].url} className='max-w-[50px] max-h-[50px] mr-4' />
                   <div className='font-medium text-black '>{item.product.title}</div>

@@ -61,8 +61,8 @@ const AddProduct = (props) => {
             <label className='block'>Nhãn hàng</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('brand', { required: true })} >
               <option value={''}></option>
-              {brandList.map((item) =>
-                <option value={item.title}>
+              {brandList.map((item, index) =>
+                <option key={index} value={item.title}>
                   {item.title}
                 </option>
               )}
@@ -73,8 +73,8 @@ const AddProduct = (props) => {
             <label className='block'>Danh mục</label>
             <select className='w-full p-2 mt-2 border border-gray-300 rounded-lg' {...register('category', { required: true })} >
               <option value={''}></option>
-              {categoryList.map((item) =>
-                <option value={item.title}>
+              {categoryList.map((item, index) =>
+                <option key={index} value={item.title}>
                   {item.title}
                 </option>
               )}
