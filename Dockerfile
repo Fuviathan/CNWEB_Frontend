@@ -8,7 +8,7 @@ RUN npm i
 
 RUN npm run build
 
-FROM builder AS runner
+FROM node:lts AS runner
 
 WORKDIR /app
 

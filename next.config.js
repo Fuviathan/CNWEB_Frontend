@@ -2,10 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: "standalone"
+  output: "standalone",
 }
 
-module.exports = {
-  transpilePackages: ['react-haiku'],
-  nextConfig,
-}
+const withTM = require('next-transpile-modules')(['react-haiku']);
+module.exports = withTM(nextConfig);
