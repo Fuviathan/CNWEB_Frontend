@@ -12,14 +12,14 @@ export default function ItemIntroduce() {
       </div>
       <div className='relative flex w-1/4 mx-4 rounded-lg shadow-lg h-5/6'>
         <div className='absolute z-10 w-full h-full px-4 pt-6 text-black'>
-          <div className='mb-4 text-2xl font-bold'>Room-filling sound</div>
+          <div className='mb-4 text-2xl font-bold'>Loa âm thanh vòm</div>
           <div className=''>Từ $699 hoặc $116.58/tháng. trong 12 tháng.*</div>
         </div>
         <img src='/sound.webp' className='pt-12 rounded-lg' alt='brand' /> 
       </div>    
       <div className='relative flex w-1/4 mx-4 rounded-lg shadow-lg h-5/6'>
         <div className='absolute z-10 w-full h-full px-4 pt-6 text-black '>
-          <div className='mb-4 text-2xl font-bold'>600 nit of brightness</div>
+          <div className='mb-4 text-2xl font-bold'>Độ sáng có thể lên tới 600 nit</div>
           <div className=''>màn hình 27-inch độ phân giải 5K </div>
         </div>
         <img src='/laptop.webp' className='pt-12 rounded-lg' alt='brand' /> 

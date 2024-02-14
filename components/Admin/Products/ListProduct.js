@@ -12,7 +12,6 @@ const ListProduct = () => {
     useEffect(() => {
         dispatch(getProducts())
     }, []);
-    console.log(brands)
     const [openDelete, setOpenDelete] = useState(false)
     const [openUpdate, setOpenUpdate] = useState(false)
     const [id, setId] = useState()

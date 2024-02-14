@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
-import { CustomTextField } from '@/components/Auth/CustomTextField';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as yup from 'yup';
-import { useFormik } from 'formik';
 import { addNewCategory } from '@/state/Admin/Action';
 import Dropzone from 'react-dropzone';
 import { uploadImg, deleteImg } from '../../../state/Admin/Action';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form'
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -14,7 +10,6 @@ const AddCategory = (props) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {

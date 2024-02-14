@@ -1,31 +1,20 @@
 import { Button, IconButton, Rating } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Color from "./Color";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   AddShoppingCart,
-  BalanceOutlined,
-  Compare,
-  CompareArrowsOutlined,
   ExpandLess,
   ExpandMore,
-  Favorite,
   FavoriteBorder,
-  FavoriteOutlined,
-  LocalShipping,
   LocalShippingOutlined,
   Remove,
   Share,
-  StraightOutlined,
-  StraightenOutlined,
 } from "@mui/icons-material";
-import { BreadCrumb } from "./BreadCrumb";
 import { Description } from "./Description";
 import { Review } from "./Review";
 import SwiperProduct from "./SwiperProduct";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "next/navigation";
-import { getSingleProduct } from "@/state/Products/Action";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { addProductToCart } from "@/state/Cart/Action";
 // import { Rating } from "@mui/material";

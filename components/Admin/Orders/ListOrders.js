@@ -12,7 +12,6 @@ const ListOrders = () => {
     useEffect(() => {
         dispatch(getAllOrders())
     }, []);
-    console.log(brands)
     const [openView, setOpenView] = useState(false)
     const [openUpdate, setOpenUpdate] = useState(false)
     const [id, setId] = useState()

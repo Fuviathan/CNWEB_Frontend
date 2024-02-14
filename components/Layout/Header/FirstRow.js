@@ -9,8 +9,6 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "@/state/Cart/Action";
 import { toast } from "react-toastify";
-import { set } from "react-hook-form";
-import { store } from "@/app/store";
 import { useRouter } from "next/router";
 
 function covertDataToUnsigned(string) {

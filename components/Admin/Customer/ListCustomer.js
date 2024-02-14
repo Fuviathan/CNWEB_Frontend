@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "@/state/Admin/Action";
-import { TrashIcon, ShoppingCartIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import UpdateRole from "./UpdateRole";
 import BasicModal from "../Modal/BasicModal";
 
@@ -15,7 +15,6 @@ const ListCustomer = () => {
     setAuth(value)
     dispatch(getAllUser())
   }, []);
-  console.log(brands)
   const [role, setRole] = useState()
   const [open, setOpen] = useState(false)
   const [id, setId] = useState(0)

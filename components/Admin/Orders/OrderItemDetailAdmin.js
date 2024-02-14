@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form'
 
 const OrderItemDetailAdmin = (props) => {
@@ -17,7 +17,6 @@ const OrderItemDetailAdmin = (props) => {
   })
   const onSubmit = (data) => { console.log(data) }
   return (
-    // <div className='relative z-30 flex items-center justify-center w-screen h-screen bg-black bg-opacity-30'>
     <div className='absolute w-3/5 px-10 py-5 mt-4 overflow-y-auto -translate-x-1/2 -translate-y-1/2 bg-white min-h-fit h-3/4 min-w-fit top-1/2 left-1/2 rounded-xl'>
       <h3 className="mb-4 text-xl font-semibold tracking-wide">Chi tiết đơn đặt hàng</h3>
       <form onSubmit={handleSubmit(onSubmit)} className='p-6 border border-gray-200 rounded-lg'>
@@ -81,7 +80,6 @@ const OrderItemDetailAdmin = (props) => {
         </div>
       </form>
     </div>
-    // </div>
   )
 };
 

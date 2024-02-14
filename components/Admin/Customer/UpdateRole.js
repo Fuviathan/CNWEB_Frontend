@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { updateRole } from "@/state/Admin/Action";
 
@@ -8,7 +8,6 @@ const UpdateRole = (props) => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -19,8 +18,6 @@ const UpdateRole = (props) => {
     const onSubmit = (data) => {
         data.id = props.data
         dispatch(updateRole(data))
-        // Call your save function here with the brand name
-        // Example: props.onSave(brand);
     };
     if (props.open) return (
         <div className="absolute w-2/6 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 rounded-xl">

@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { CustomTextField } from '@/components/Auth/CustomTextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewProduct } from '@/state/Admin/Action';
 import Dropzone from 'react-dropzone';
-import { uploadImg, deleteImg, handleSetImagesToNull } from '../../../state/Admin/Action';
-import { useRouter } from 'next/router';
+import { uploadImg, handleSetImagesToNull } from '../../../state/Admin/Action';
 import { useForm } from 'react-hook-form'
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { getProductByBrand, getProductByCategory } from '@/state/Products/Action';
-import { If } from 'react-haiku'
 
 const AddProduct = (props) => {
   const [img, setImg] = useState([]);

@@ -1,4 +1,3 @@
-import SwiperProduct from '@/components/product/SwiperProduct'
 import React from 'react'
 import PopularWrap from './PopularWrap'
 

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { useForm } from 'react-hook-form'
 
 const OrderItemDetail = (props) => {

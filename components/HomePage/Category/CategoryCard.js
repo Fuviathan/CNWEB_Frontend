@@ -1,13 +1,11 @@
 import { getProductByFilter } from "@/state/Products/Action";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { getAllProducts } from '../../features/products/productSlice';
 const CategoryCard = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const store = useSelector((store) => store);
-  console.log(store);
   const handleClick = () => {
     // navigate(`/product?category=${props.title}`);
     router.push(`/product?category=${props.title}`);
