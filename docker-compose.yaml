@@ -1,0 +1,6 @@
+services:
+  frontend:
+    build: .
+    container_name: cnweb-frontend
+    expose:
+      - 3000
