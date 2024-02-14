@@ -18,6 +18,7 @@ export default function AdminLayout(props) {
       ]
     },
     { title: "Khách hàng", icon: UserGroupIcon, path: '/admin/customer' },
+    { title: "Quản lý đơn hàng", icon: ClipboardDocumentListIcon, path: '/admin/orders' },
   ];
   return (
     <>

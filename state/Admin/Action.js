@@ -34,6 +34,9 @@ import {
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAILURE,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
+  GET_ALL_ORDERS_FAILURE,
 } from "./ActionType";
 import { toast } from "react-toastify";
 
@@ -191,4 +194,28 @@ export const updateRole = (req) => async (dispatch) => {
 
 export const handleSetImagesToNull = () => async (dispatch) => {
   dispatch({ type: SET_IMAGE_NULL, payload: null });
+};
+
+export const getAllOrders = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_ORDERS_REQUEST });
+  try {
+    const { data } = await api.get(`/user/all-orders`);
+    dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_ALL_ORDERS_FAILURE, payload: error.message });
+  }
+};
+
+export const updateOrderStatus = (req) => async (dispatch) => {
+  const status_T = { status: `${req.status}` };
+  dispatch({ type: CHANGE_ROLE_REQUEST });
+  try {
+    const { data } = await api.put(`/user/order/update/${req.id}`, status_T);
+    dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 3000);
+  } catch (e) {
+    dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
+    toast.error(e.response.data.message);
+  }
 };
