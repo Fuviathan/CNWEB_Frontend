@@ -112,6 +112,8 @@ export const getAllUser = () => async (dispatch) => {
 export const uploadImg = (req) => async (dispatch) => {
   var formData = new FormData();
   req.map((i) => formData.append("images", i));
+  console.log(req)
+  console.log(...formData)
   dispatch({ type: UPLOAD_IMAGE_REQUEST });
   try {
     const { data } = await api.post(`/upload`, formData, {
@@ -123,6 +125,7 @@ export const uploadImg = (req) => async (dispatch) => {
     dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: error.message });
+    console.log(error)
   }
 };
 
@@ -133,7 +136,7 @@ export const deleteImg = (imgId) => async (dispatch) => {
     dispatch({ type: DELETE_IMAGE_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_IMAGE_FAILURE, payload: e.message });
-    alert(e.message);
+    alert(e);
   }
 };
 
@@ -142,7 +145,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
   try {
     const { data } = api.delete(`/product/${productId}`);
     toast.success("Xóa thành công");
-    setTimeout(refresh, 3000);
+    setTimeout(refresh, 1000);
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });

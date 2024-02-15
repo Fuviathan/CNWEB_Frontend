@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form'
 
 const OrderItemDetail = (props) => {
-  console.log(props)
   const {
     register,
     handleSubmit,
@@ -61,7 +60,7 @@ const OrderItemDetail = (props) => {
                   <div className='font-medium text-black '>{item.product.title}</div>
                 </div>
                 <div className='w-1/4 ml-2 font-medium text-black'>{item.count}</div>
-                <div className='w-1/4 font-medium text-black'>{props?.item?.totalPrice}</div>
+                <div className='w-1/4 font-medium text-black'>${item.count * item.price}</div>
               </div>
             )
           })}

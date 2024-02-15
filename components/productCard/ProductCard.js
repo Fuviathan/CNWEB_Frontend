@@ -72,7 +72,7 @@ const ProductCard = ({ grid, item }) => {
               {item?.discount}% OFF
             </span>
           )}
-          <div
+          {/* <div
             onClick={(e) => e.stopPropagation()}
             className="absolute top-0 right-0 z-50 flex flex-col"
           >
@@ -99,7 +99,7 @@ const ProductCard = ({ grid, item }) => {
               icon={<CompareArrowsOutlined />}
               checkedIcon={<CompareArrows />}
             />
-          </div>
+          </div> */}
         </div>
         <div
           className={`ml-auto mt-4 px-5 pb-5 w-full ${
