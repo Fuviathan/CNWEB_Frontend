@@ -101,7 +101,7 @@ const ConfirmOrderModal = (props) => {
                   <div className='font-medium text-black '>{item.title}</div>
                 </div>
                 <div className='w-1/4 ml-2 font-medium text-black'>{item.count}</div>
-                <div className='w-1/4 font-medium text-black'>{item.count * item.price}</div>
+                <div className='w-1/4 font-medium text-black'>${item.count * item.price}</div>
               </div>
             )
           })}
