@@ -31,6 +31,9 @@ const ChangeOrderStatus = (props) => {
           <option value='Delivery'>
             Delivery
           </option>
+          <option value='Success'>
+            Success
+          </option>
         </select>
         <div className="flex flex-row-reverse gap-5 mt-5">
           <button
