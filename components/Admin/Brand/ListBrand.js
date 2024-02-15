@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByBrand } from "@/state/Products/Action";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import BasicModal from "../Modal/BasicModal";
 import DeleteBrand from './DeleteBrand'
+import UpdateBrand from "./UpdateBrand";
 
 const ListBrand = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ const ListBrand = () => {
   useEffect(() => {
     dispatch(getProductByBrand());
   }, []);
+  const [initB, setInitB] = useState()
+  const [openUpdate, setOpenUpdate] = useState(false)
   const [open, setOpen] = useState(false)
   const [id, setId] = useState(0)
   const [productList, setProductList] = useState([]);
@@ -189,10 +192,10 @@ const ListBrand = () => {
                     </td>
 
                     <td
-                      className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
-                      onClick={() => {setOpen(true);setId(data._id);}}
+                      className={`py-4 px-4 flex justify-center font-normal`}
                     >
-                      <TrashIcon className="w-8 h-8 text-red-400" />
+                      <TrashIcon onClick={() => {setOpen(true); setId(data._id);}} className="w-8 h-8 mr-4 text-red-400 hover:cursor-pointer hover:opacity-50" />
+                      <PencilSquareIcon  onClick={() => {setOpenUpdate(true); setId(data._id); setInitB(data.title)}} className="w-8 h-8 hover:cursor-pointer hover:opacity-50 text-dark-purple" />
                     </td>
 
                   </tr>
@@ -242,6 +245,9 @@ const ListBrand = () => {
               ))}
               <BasicModal open={open} onClose={() => setOpen(false)} >
                 <DeleteBrand onClose={() => setOpen(false)} data={id}/>
+              </BasicModal>
+              <BasicModal open={openUpdate} onClose={() => setOpen(false)} >
+                <UpdateBrand open={openUpdate} onClose={() => setOpenUpdate(false)} data={id} brand={initB}/>
               </BasicModal>
               <li
                 className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${currentPage == totalPage - 1
