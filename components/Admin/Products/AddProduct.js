@@ -115,35 +115,26 @@ const AddProduct = (props) => {
         </div>
         <div className="flex flex-wrap gap-3 mt-3 ">
           {img?.map((item, index) => {
-            if (item !== "null") {
+            if (item !== 'null') {
               return (
-                // <div key={index} className="relative">
-                //   {item?.url ? (
-                //     <img src={item?.url} alt="" className='max-w-[500px] min-w-[200px] min-h-[200px] max-h-[500px]' />
-                //   ) : (
-                //     <></>
-                //   )}
-                // </div>
                 <div key={index} className="relative">
-                  {item?._id || item?.puclicId ? (
+                  {item?.puclicId ? (
                     <button
                       onClick={() => {
-                        setImg(img.filter((i) => i.puclicId !== item.puclicId));
+                        dispatch(
+                          deleteImg({ id: item.puclicId })
+                        );
                       }}
                       className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
                       type="button"
                     >
-                      <XMarkIcon className="w-6 h-6 text-red-400" />
+                      <XMarkIcon className='w-6 h-6 text-red-400' />
                     </button>
                   ) : (
                     <></>
                   )}
-                  {item?._id || item?.puclicId ? (
-                    <img
-                      src={item?.url}
-                      alt=""
-                      className="w-[350px] h-[350px]"
-                    />
+                  {item?.puclicId ? (
+                    <img src={item?.url} alt="" className='max-w-[300px] min-w-[200px] min-h-[200px] max-h-[300px]' />
                   ) : (
                     <></>
                   )}
@@ -154,67 +145,6 @@ const AddProduct = (props) => {
             }
           })}
         </div>
-        {/* {!images ? (
-          <div className="p-5 mt-6 text-center bg-white border border-gray-400 rounded-lg cursor-pointer">
-            <Dropzone
-              onDrop={(acceptedFiles) => {
-                dispatch(uploadImg(acceptedFiles));
-              }}
-            >
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>
-                      Kéo và thả ảnh vào đây, hoặc bấm vào để chọn ảnh
-                    </p>
-                  </div>
-                </section>
-              )}
-            </Dropzone>
-          </div>
-        ) : (
-          <div className="flex flex-wrap gap-3 mt-3 ">
-            {images?.map((item, index) => {
-              if (item !== 'null') {
-                return (
-                  // <div key={index} className="relative">
-                  //   {item?.url ? (
-                  //     <img src={item?.url} alt="" className='max-w-[500px] min-w-[200px] min-h-[200px] max-h-[500px]' />
-                  //   ) : (
-                  //     <></>
-                  //   )}
-                  // </div>
-                  <div key={index} className="relative">
-                    {item?.puclicId ? (
-                      <button
-                        onClick={() => {
-                          dispatch(
-                            deleteImg({ id: item.puclicId })    
-                          );
-                          dispatch(handleSetImagesToNull())
-                        }}
-                        className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
-                        type="button"
-                      >
-                        <XMarkIcon className='w-6 h-6 text-red-400' />
-                      </button>
-                    ) : (
-                      <></>
-                    )}
-                    {item?.puclicId ? (
-                      <img src={item?.url} alt="" className='max-w-[300px] min-w-[200px] min-h-[200px] max-h-[300px]' />
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                );
-              } else {
-                return <></>;
-              }
-            })}
-          </div>
-        )} */}
         <div className="flex flex-row-reverse gap-5 mt-5">
           <button
             type='submit'
