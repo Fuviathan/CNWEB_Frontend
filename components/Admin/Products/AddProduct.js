@@ -114,36 +114,38 @@ const AddProduct = (props) => {
           </Dropzone>
         </div>
         <div className="flex flex-wrap gap-3 mt-3 ">
-          {img?.map((item, index) => {
-            if (item !== 'null') {
-              return (
-                <div key={index} className="relative">
-                  {item?.puclicId ? (
-                    <button
-                      onClick={() => {
-                        dispatch(
-                          deleteImg({ id: item.puclicId })
-                        );
-                      }}
-                      className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
-                      type="button"
-                    >
-                      <XMarkIcon className='w-6 h-6 text-red-400' />
-                    </button>
-                  ) : (
-                    <></>
-                  )}
-                  {item?.puclicId ? (
-                    <img src={item?.url} alt="" className='max-w-[300px] min-w-[200px] min-h-[200px] max-h-[300px]' />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              );
-            } else {
-              return <></>;
-            }
-          })}
+        {img?.map((item, index) => {
+              if (item !== "null") {
+                return (
+                  <div key={index} className="relative">
+                    {item?._id || item?.puclicId ? (
+                      <button
+                        onClick={() => {
+                          setImg(img.filter((i) => i._id !== item._id));
+                        }}
+                        className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
+                        type="button"
+                      >
+                        <XMarkIcon className="w-6 h-6 text-red-400" />
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                    {item?._id || item?.puclicId ? (
+                      <img
+                        src={item?.url}
+                        alt=""
+                        className="w-[350px] h-[350px]"
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                );
+              } else {
+                return <></>;
+              }
+            })}
         </div>
         <div className="flex flex-row-reverse gap-5 mt-5">
           <button
