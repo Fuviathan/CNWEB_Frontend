@@ -171,7 +171,7 @@ export const updateProduct = (req) => async (dispatch) => {
     const { data } = await api.put(`/product/${req.ID}`, data_t);
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
     toast.success("Sửa thành công");
-    setTimeout(refresh, 3000);
+    // setTimeout(refresh, 3000);
   } catch (e) {
     dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: e });
     toast.error(e.response.data.message);
