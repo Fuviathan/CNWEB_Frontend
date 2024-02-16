@@ -161,13 +161,6 @@ const UpdateProduct = (props) => {
             {img?.map((item, index) => {
               if (item !== "null") {
                 return (
-                  // <div key={index} className="relative">
-                  //   {item?.url ? (
-                  //     <img src={item?.url} alt="" className='max-w-[500px] min-w-[200px] min-h-[200px] max-h-[500px]' />
-                  //   ) : (
-                  //     <></>
-                  //   )}
-                  // </div>
                   <div key={index} className="relative">
                     {item?._id || item?.puclicId ? (
                       <button

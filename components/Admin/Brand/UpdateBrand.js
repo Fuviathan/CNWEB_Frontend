@@ -13,12 +13,7 @@ const UpdateBrand = (props) => {
       title: props.brand,
     }
   })
-  console.log(props)
   const dispatch = useDispatch();
-  // const schema = yup.object({
-  //   title: yup.string().required('Tên danh mục không được để trống'),
-  //   images: yup.array().required('Phải có ít nhất một ảnh'),
-  // });
   const onSubmit = (data) => {
     data.id = props.data
     dispatch(updateBrand(data))
