@@ -42,11 +42,11 @@ const UpdateProduct = (props) => {
     },
   });
   const onSubmit = (data) => {
-    data.ID = props.data._id
+    data.ID = props.data._id;
     data.images = img;
     data.price = Number(data.price);
     data.quantity = Number(data.quantity);
-    dispatch(updateProduct(data))
+    dispatch(updateProduct(data));
   };
   if (categoryList && brandList && props.open)
     return (
@@ -73,7 +73,9 @@ const UpdateProduct = (props) => {
                 {...register("brand", { required: true })}
               >
                 {brandList.map((item, index) => (
-                  <option key={index} value={item.title}>{item.title}</option>
+                  <option key={index} value={item.title}>
+                    {item.title}
+                  </option>
                 ))}
               </select>
               {errors.brand && (
@@ -89,7 +91,9 @@ const UpdateProduct = (props) => {
                 {...register("category", { required: true })}
               >
                 {categoryList.map((item, index) => (
-                  <option key={index} value={item.title}>{item.title}</option>
+                  <option key={index} value={item.title}>
+                    {item.title}
+                  </option>
                 ))}
               </select>
               {errors.category && (
@@ -168,7 +172,13 @@ const UpdateProduct = (props) => {
                     {item?._id || item?.puclicId ? (
                       <button
                         onClick={() => {
-                          setImg(img.filter((i) => i._id !== item._id));
+                          setImg(
+                            img.filter(
+                              (i) =>
+                                i._id !== item._id ||
+                                i.puclicId !== item.puclicId
+                            )
+                          );
                         }}
                         className="absolute z-10 cursor-pointer w-10 h-10 top-2.5 right-2.5"
                         type="button"
@@ -196,6 +206,7 @@ const UpdateProduct = (props) => {
           </div>
           <div className="flex flex-row-reverse gap-5 mt-5">
             <button
+              onClick={() => setTimeout(props.onClose, 200)}
               type="submit"
               className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
             >
