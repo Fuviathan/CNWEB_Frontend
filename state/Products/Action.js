@@ -106,7 +106,6 @@ export const getCategoryCount = () => async (dispatch) => {
   dispatch({ type: GET_CATEGORY_COUNT_REQUEST })
   try {
     const { data } = await axios.get(`${API_BASE_URL}prodcategory/count`);
-    console.log(data);
     dispatch({ type: GET_CATEGORY_COUNT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_CATEGORY_COUNT_FAILURE, payload: error.message });

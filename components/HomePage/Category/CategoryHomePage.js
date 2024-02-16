@@ -18,7 +18,7 @@ const CategoryWrapper = () => {
           <CategoryCard
             key={item && item["_id"]}
             src={
-              typeof item?.image[0] === 'string' ? item?.image : item?.image[0].url
+              typeof item?.image === 'string' ? item?.image : item?.image.url
             }
             title={item?.title}
             quantity={item?.totalProducts}
