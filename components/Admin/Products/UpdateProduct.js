@@ -12,7 +12,6 @@ import {
 
 const UpdateProduct = (props) => {
   const [img, setImg] = useState(props?.data?.images);
-
   let images = useSelector((state) => state?.admin?.image);
   const dispatch = useDispatch();
   useEffect(() => {
