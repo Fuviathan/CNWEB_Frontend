@@ -6,11 +6,11 @@ import { uploadImg, handleSetImagesToNull } from "../../../state/Admin/Action";
 import { useForm } from "react-hook-form";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
+import { getProductByCategory } from "@/state/Products/Action";
 
 const UpdateCategory = (props) => {
   const dispatch = useDispatch();
   const images = useSelector((state) => state?.admin.image);
-  const admin = useSelector((state) => state?.admin);
   const [img, setImg] = useState([props.data]);
 
   const {
@@ -34,7 +34,12 @@ const UpdateCategory = (props) => {
     console.log(data);
     if (data.image.length > 1) toast.error("Không được thêm quá 1 ảnh!");
     else if (data.image.length < 1) toast.error("Không được thiếu ảnh!");
-    else dispatch(updateCategory(data));
+    else {
+      dispatch(updateCategory(data));
+      setTimeout(() => {
+        dispatch(getProductByCategory(), 500);
+      });
+    }
   };
   if (props.open)
     return (
@@ -111,6 +116,9 @@ const UpdateCategory = (props) => {
           </div>
           <div className="flex flex-row-reverse gap-5 mt-5">
             <button
+              onClick={() => {
+                setTimeout(props.onClose, 200);
+              }}
               type="submit"
               className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
             >
