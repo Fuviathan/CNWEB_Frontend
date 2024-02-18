@@ -3,19 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductByBrand } from "@/state/Products/Action";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import BasicModal from "../Modal/BasicModal";
-import DeleteBrand from './DeleteBrand'
+import DeleteBrand from "./DeleteBrand";
 import UpdateBrand from "./UpdateBrand";
 
 const ListBrand = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state?.admin?.brands);
-  useEffect(() => {
-    dispatch(getProductByBrand());
-  }, []);
-  const [initB, setInitB] = useState()
-  const [openUpdate, setOpenUpdate] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [id, setId] = useState(0)
+
+  const [initB, setInitB] = useState();
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -80,33 +78,43 @@ const ListBrand = () => {
     } else {
       setCurrentPage(0);
     }
-
   };
   useMemo(() => {
     setCustomPagination(
       Array(Math.ceil(productList?.length / rowsLimit)).fill(null)
     );
-  }, []);
+  }, [productList]);
   useEffect(() => {
     if (brands) {
       const sortedProducts = brands?.slice().sort((a, b) => a.Price - b.Price);
       setProductList(sortedProducts);
-      setRowsToShow(sortedProducts?.slice(0, rowsLimit));
+      const indexOfLastProduct = (currentPage + 1) * rowsLimit;
+      const indexOfFirstProduct = indexOfLastProduct - rowsLimit;
+      const currentProducts = sortedProducts?.slice(
+        indexOfFirstProduct,
+        indexOfLastProduct
+      );
+
+      setRowsToShow(currentProducts);
       setTotalPage(Math.ceil(sortedProducts?.length / rowsLimit));
     }
   }, [brands]);
+
+  useEffect(() => {
+    dispatch(getProductByBrand());
+  }, [productList]);
 
   return (
     <div className="flex justify-center h-full pb-2 bg-white rounded-lg">
       <div className="w-full">
         <div className="w-full overflow-x-scroll md:overflow-auto max-w-7xl 2xl:max-w-none">
-
           <table className="w-full overflow-scroll text-left border table-auto md:overflow-auto">
             <thead
-              className={`rounded-lg text-base text-white font-semibold w-full ${rowsToShow?.length > 0
-                ? "border-b-0"
-                : "border-b-1 border-black"
-                }`}
+              className={`rounded-lg text-base text-white font-semibold w-full ${
+                rowsToShow?.length > 0
+                  ? "border-b-0"
+                  : "border-b-1 border-black"
+              }`}
             >
               <tr className="bg-[#222E3A]/[6%] ">
                 <th className="py-3 px-3 text-[#212B36] sm:text-base font-bold whitespace-nowrap w-2/12">
@@ -118,7 +126,6 @@ const ListBrand = () => {
                   </div>
                 </th> */}
                 <th className="py-3 px-3 flex items-center text-[#212B36] sm:text-base font-bold whitespace-nowrap w-4/12 group">
-
                   <span
                     className="mr-1 cursor-pointer "
                     onClick={() => sortByColumn("title")}
@@ -126,13 +133,15 @@ const ListBrand = () => {
                     Tên nhãn hàng
                   </span>
                   <svg
-                    className={`w-4 h-4 cursor-pointer ${activeColumn?.includes("title")
-                      ? "text-black"
-                      : "text-[#BCBDBE] group-hover:text-black rotate-180"
-                      } ${sortingColumn?.includes("title")
+                    className={`w-4 h-4 cursor-pointer ${
+                      activeColumn?.includes("title")
+                        ? "text-black"
+                        : "text-[#BCBDBE] group-hover:text-black rotate-180"
+                    } ${
+                      sortingColumn?.includes("title")
                         ? "rotate-180"
                         : "rotate-0"
-                      } `}
+                    } `}
                     onClick={() => sortByColumn("title")}
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -156,17 +165,19 @@ const ListBrand = () => {
               {rowsToShow?.map((data, index) => (
                 <>
                   <tr
-                    className={`${index % 2 == 0 ? "bg-white" : "bg-[#222E3A]/[6%]"
-                      }`}
+                    className={`${
+                      index % 2 == 0 ? "bg-white" : "bg-[#222E3A]/[6%]"
+                    }`}
                     key={index}
                   >
                     <td
-                      className={`py-2 px-3 font-normal text-base ${index == 0
-                        ? "border-t-1 border-black"
-                        : index == rowsToShow?.length
+                      className={`py-2 px-3 font-normal text-base ${
+                        index == 0
+                          ? "border-t-1 border-black"
+                          : index == rowsToShow?.length
                           ? "border-y"
                           : "border-t"
-                        } whitespace-nowrap`}
+                      } whitespace-nowrap`}
                     >
                       {rowsLimit * currentPage + index + 1}
                     </td>
@@ -181,23 +192,34 @@ const ListBrand = () => {
                       {data?._id}
                     </td> */}
                     <td
-                      className={`py-2 px-3 font-normal text-base ${index == 0
-                        ? "border-t-1 border-black"
-                        : index == rowsToShow?.length
+                      className={`py-2 px-3 font-normal text-base ${
+                        index == 0
+                          ? "border-t-1 border-black"
+                          : index == rowsToShow?.length
                           ? "border-y"
                           : "border-t"
-                        } whitespace-nowrap`}
+                      } whitespace-nowrap`}
                     >
                       {data?.title}
                     </td>
 
-                    <td
-                      className={`py-4 px-4 flex justify-center font-normal`}
-                    >
-                      <TrashIcon onClick={() => {setOpen(true); setId(data._id);}} className="w-8 h-8 mr-4 text-red-400 hover:cursor-pointer hover:opacity-50" />
-                      <PencilSquareIcon  onClick={() => {setOpenUpdate(true); setId(data._id); setInitB(data.title)}} className="w-8 h-8 hover:cursor-pointer hover:opacity-50 text-dark-purple" />
+                    <td className={`py-4 px-4 flex justify-center font-normal`}>
+                      <TrashIcon
+                        onClick={() => {
+                          setOpen(true);
+                          setId(data._id);
+                        }}
+                        className="w-8 h-8 mr-4 text-red-400 hover:cursor-pointer hover:opacity-50"
+                      />
+                      <PencilSquareIcon
+                        onClick={() => {
+                          setOpenUpdate(true);
+                          setId(data._id);
+                          setInitB(data.title);
+                        }}
+                        className="w-8 h-8 hover:cursor-pointer hover:opacity-50 text-dark-purple"
+                      />
                     </td>
-
                   </tr>
                 </>
               ))}
@@ -205,8 +227,9 @@ const ListBrand = () => {
           </table>
         </div>
         <div
-          className={`w-full justify-center mb-2 sm:justify-between flex-col sm:flex-row gap-5 mt-6 px-1 items-center ${productList?.length > 0 ? "flex" : "hidden"
-            }`}
+          className={`w-full justify-center mb-2 sm:justify-between flex-col sm:flex-row gap-5 mt-6 px-1 items-center ${
+            productList?.length > 0 ? "flex" : "hidden"
+          }`}
         >
           <div className="px-4 text-lg">
             Hiển thị {currentPage == 0 ? 1 : currentPage * rowsLimit + 1} đến{" "}
@@ -222,10 +245,11 @@ const ListBrand = () => {
               aria-label="Pagination"
             >
               <li
-                className={` prev-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] disabled] ${currentPage == 0
-                  ? "bg-[#cccccc] pointer-events-none"
-                  : " cursor-pointer"
-                  }
+                className={` prev-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] disabled] ${
+                  currentPage == 0
+                    ? "bg-[#cccccc] pointer-events-none"
+                    : " cursor-pointer"
+                }
   `}
                 onClick={previousPage}
               >
@@ -233,27 +257,34 @@ const ListBrand = () => {
               </li>
               {customPagination?.map((data, index) => (
                 <li
-                  className={`flex items-center justify-center w-[36px] rounded-[6px] h-[34px] border-solid border-[2px] bg-[#FFFFFF] cursor-pointer ${currentPage == index
-                    ? "text-blue-600  border-sky-500"
-                    : "border-[#E4E4EB] "
-                    }`}
+                  className={`flex items-center justify-center w-[36px] rounded-[6px] h-[34px] border-solid border-[2px] bg-[#FFFFFF] cursor-pointer ${
+                    currentPage == index
+                      ? "text-blue-600  border-sky-500"
+                      : "border-[#E4E4EB] "
+                  }`}
                   onClick={() => changePage(index)}
                   key={index}
                 >
                   {index + 1}
                 </li>
               ))}
-              <BasicModal open={open} onClose={() => setOpen(false)} >
-                <DeleteBrand onClose={() => setOpen(false)} data={id}/>
+              <BasicModal open={open} onClose={() => setOpen(false)}>
+                <DeleteBrand onClose={() => setOpen(false)} data={id} />
               </BasicModal>
-              <BasicModal open={openUpdate} onClose={() => setOpen(false)} >
-                <UpdateBrand open={openUpdate} onClose={() => setOpenUpdate(false)} data={id} brand={initB}/>
+              <BasicModal open={openUpdate} onClose={() => setOpen(false)}>
+                <UpdateBrand
+                  open={openUpdate}
+                  onClose={() => setOpenUpdate(false)}
+                  data={id}
+                  brand={initB}
+                />
               </BasicModal>
               <li
-                className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${currentPage == totalPage - 1
-                  ? "bg-[#cccccc] pointer-events-none"
-                  : " cursor-pointer"
-                  }`}
+                className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${
+                  currentPage == totalPage - 1
+                    ? "bg-[#cccccc] pointer-events-none"
+                    : " cursor-pointer"
+                }`}
                 onClick={nextPage}
               >
                 <img src="https://www.tailwindtap.com/assets/travelagency-admin/rightarrow.svg" />

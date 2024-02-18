@@ -56,7 +56,7 @@ export const addNewBrand = (req) => async (dispatch) => {
     const { data } = await api.post("/brand", req);
     dispatch({ type: ADD_BRAND_SUCCESS, payload: data });
     toast.success("Thêm nhãn hàng thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e });
     toast.error(e.response.data.message);
@@ -70,7 +70,7 @@ export const updateBrand = (req) => async (dispatch) => {
     const { data } = await api.put(`/brand/${req.id}`, brand_T);
     dispatch({ type: UPDATE_BRAND_SUCCESS, payload: data });
     toast.success("Sửa thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: UPDATE_BRAND_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
@@ -83,7 +83,7 @@ export const deleteBrand = (brandId) => async (dispatch) => {
     const { data } = api.delete(`/brand/${brandId}`);
     dispatch({ type: DELETE_BRAND_SUCCESS, payload: data });
     toast.success("Xóa thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
@@ -99,7 +99,7 @@ export const addNewCategory = (req) => async (dispatch) => {
 
     dispatch({ type: ADD_CATEGORY_SUCCESS, payload: data });
     toast.success("Thêm thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: ADD_CATEGORY_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
@@ -113,7 +113,7 @@ export const updateCategory = (req) => async (dispatch) => {
     const { data } = await api.put(`/user/order/update/${req.id}`, status_T);
     dispatch({ type: UPDATE_CATEGORY_SUCCESS, payload: data });
     toast.success("Sửa thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: UPDATE_CATEGORY_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
@@ -126,7 +126,7 @@ export const deleteCategory = (categoryId) => async (dispatch) => {
     const { data } = api.delete(`/prodcategory/${categoryId}`);
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
     toast.success("Xóa thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
