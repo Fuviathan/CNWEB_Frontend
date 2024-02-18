@@ -4,15 +4,17 @@ import { getProductByCategory } from "@/state/Products/Action";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import BasicModal from "../Modal/BasicModal";
 import DeleteCategory from "./DeleteCategory";
+import UpdateCategory from "./UpdateCategory";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
 const ListCategory = () => {
     const dispatch = useDispatch();
     const brands = useSelector((store) => store?.product?.category);
-    console.log(brands)
     useEffect(() => {
         dispatch(getProductByCategory())
     }, []);
-    const [open, setOpen] = useState(false)
+    const [openDelete, setOpenDelete] = useState(false)
+    const [openUpdate, setOpenUpdate] = useState(false)
     const [id, setId] = useState(0)
     const [productList, setProductList] = useState([]);
     const [rowsLimit, setRowsLimit] = useState(10);
@@ -22,6 +24,7 @@ const ListCategory = () => {
     const [sortingColumn, setSortingColumn] = useState(["Price"]);
     const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
     const [currentPage, setCurrentPage] = useState(0);
+    const [initC, setInitC] = useState()
 
     const sortByColumn = (column, changeSortingColumn = true) => {
         if (sortingColumn?.includes(column) && changeSortingColumn) {
@@ -124,7 +127,7 @@ const ListCategory = () => {
                                         <span className="pl-1">Ảnh</span>
                                     </div>
                                 </th>
-                                <th className="w-2/12"></th>
+                                <th className="w-1/12"></th>
 
                             </tr>
                         </thead>
@@ -184,10 +187,10 @@ const ListCategory = () => {
                                             )}
                                         </td>
                                         <td
-                                            className={`py-4 px-4 flex justify-center hover:cursor-pointer hover:opacity-50 font-normal`}
-                                            onClick={() => { setOpen(true); setId(data._id); }}
+                                            className={`py-4 px-4 flex items-center  font-normal`}
                                         >
-                                            <TrashIcon className="w-8 h-8 text-red-400" />
+                                            <TrashIcon className="w-8 h-8 mr-4 text-red-400 hover:cursor-pointer hover:opacity-50" onClick={() => { setOpenDelete(true); setId(data._id); }} />
+                                            <PencilSquareIcon className="w-8 h-8 text-dark-purple hover:cursor-pointer hover:opacity-50" onClick={() => { setOpenUpdate(true); setInitC(data); }} />
                                         </td>
                                     </tr>
                                 </>
@@ -234,8 +237,11 @@ const ListCategory = () => {
                                     {index + 1}
                                 </li>
                             ))}
-                            <BasicModal open={open} onClose={() => setOpen(false)} >
-                                <DeleteCategory onClose={() => setOpen(false)} data={id} />
+                            <BasicModal open={openDelete} onClose={() => setOpenDelete(false)} >
+                                <DeleteCategory onClose={() => setOpenDelete(false)} data={id} />
+                            </BasicModal>
+                            <BasicModal open={openUpdate} onClose={() => setOpenUpdate(false)} >
+                                <UpdateCategory open={openUpdate} onClose={() => setOpenUpdate(false)} data={initC}/>
                             </BasicModal>
                             <li
                                 className={`flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB] ${currentPage == totalPage - 1

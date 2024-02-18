@@ -40,6 +40,9 @@ import {
   UPDATE_BRAND_REQUEST,
   UPDATE_BRAND_SUCCESS,
   UPDATE_BRAND_FAILURE,
+  UPDATE_CATEGORY_REQUEST,
+  UPDATE_CATEGORY_SUCCESS,
+  UPDATE_CATEGORY_FAILURE,
 } from "./ActionType";
 import { toast } from "react-toastify";
 
@@ -56,6 +59,20 @@ export const addNewBrand = (req) => async (dispatch) => {
     setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e });
+    toast.error(e.response.data.message);
+  }
+};
+
+export const updateBrand = (req) => async (dispatch) => {
+  const brand_T = { title: `${req.title}` };
+  dispatch({ type: UPDATE_BRAND_REQUEST });
+  try {
+    const { data } = await api.put(`/brand/${req.id}`, brand_T);
+    dispatch({ type: UPDATE_BRAND_SUCCESS, payload: data });
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 2300);
+  } catch (e) {
+    dispatch({ type: UPDATE_BRAND_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
   }
 };
@@ -89,6 +106,21 @@ export const addNewCategory = (req) => async (dispatch) => {
   }
 };
 
+export const updateCategory = (req) => async (dispatch) => {
+  const status_T = { status: `${req.status}` };
+  dispatch({ type: UPDATE_CATEGORY_REQUEST });
+  try {
+    const { data } = await api.put(`/user/order/update/${req.id}`, status_T);
+    dispatch({ type: UPDATE_CATEGORY_SUCCESS, payload: data });
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 2300);
+  } catch (e) {
+    dispatch({ type: UPDATE_CATEGORY_FAILURE, payload: e.message });
+    toast.error(e.response.data.message);
+  }
+};
+
+
 export const deleteCategory = (categoryId) => async (dispatch) => {
   dispatch({ type: DELETE_CATEGORY_REQUEST });
   try {
@@ -111,6 +143,22 @@ export const getAllUser = () => async (dispatch) => {
     dispatch({ type: GET_ALL_USER_FAILURE, payload: error.message });
   }
 };
+
+
+export const updateRole = (req) => async (dispatch) => {
+  const role_T = { role: `${req.role}` };
+  dispatch({ type: CHANGE_ROLE_REQUEST });
+  try {
+    const { data } = await api.put(`/user/role/${req.id}`, role_T);
+    dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
+    toast.success("Sửa thành công");
+    setTimeout(refresh, 2300);
+  } catch (e) {
+    dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
+    toast.error(e.response.data.message);
+  }
+};
+
 
 export const uploadImg = (req) => async (dispatch) => {
   var formData = new FormData();
@@ -141,6 +189,10 @@ export const deleteImg = (imgId) => async (dispatch) => {
     dispatch({ type: DELETE_IMAGE_FAILURE, payload: e.message });
     alert(e);
   }
+};
+
+export const handleSetImagesToNull = () => async (dispatch) => {
+  dispatch({ type: SET_IMAGE_NULL, payload: null });
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
@@ -184,24 +236,6 @@ export const updateProduct = (req) => async (dispatch) => {
   }
 };
 
-export const updateRole = (req) => async (dispatch) => {
-  const role_T = { role: `${req.role}` };
-  dispatch({ type: CHANGE_ROLE_REQUEST });
-  try {
-    const { data } = await api.put(`/user/role/${req.id}`, role_T);
-    dispatch({ type: CHANGE_ROLE_SUCCESS, payload: data });
-    toast.success("Sửa thành công");
-    setTimeout(refresh, 2300);
-  } catch (e) {
-    dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
-  }
-};
-
-export const handleSetImagesToNull = () => async (dispatch) => {
-  dispatch({ type: SET_IMAGE_NULL, payload: null });
-};
-
 export const getAllOrders = () => async (dispatch) => {
   dispatch({ type: GET_ALL_ORDERS_REQUEST });
   try {
@@ -226,16 +260,3 @@ export const updateOrderStatus = (req) => async (dispatch) => {
   }
 };
 
-export const updateBrand = (req) => async (dispatch) => {
-  const brand_T = { title: `${req.title}` };
-  dispatch({ type: UPDATE_BRAND_REQUEST });
-  try {
-    const { data } = await api.put(`/brand/${req.id}`, brand_T);
-    dispatch({ type: UPDATE_BRAND_SUCCESS, payload: data });
-    toast.success("Sửa thành công");
-    setTimeout(refresh, 2300);
-  } catch (e) {
-    dispatch({ type: UPDATE_BRAND_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
-  }
-};

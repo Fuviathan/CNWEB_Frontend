@@ -13,7 +13,6 @@ import {
 } from "./ActionType";
 import { API_BASE_URL } from "@/config/apiConfig";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
@@ -45,6 +44,13 @@ export const login = (userData) => async (dispatch) => {
   }
 };
 
+
+export const logout = () => (dispatch) => {
+  toast.error("Bạn đã đăng xuất!");
+  dispatch({ type: LOGOUT, payload: null });
+  localStorage.clear();
+};
+
 const getUserRequest = () => ({ type: GET_USER_REQUEST });
 const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, payload: user });
 const getUserFailure = (error) => ({ type: GET_USER_FAILURE, payload: error });
@@ -64,10 +70,4 @@ export const getUser = (jwt) => async (dispatch) => {
   } catch (error) {
     dispatch(getUserFailure(error.message));
   }
-};
-
-export const logout = () => (dispatch) => {
-  toast.error("Bạn đã đăng xuất!");
-  dispatch({ type: LOGOUT, payload: null });
-  localStorage.clear();
 };

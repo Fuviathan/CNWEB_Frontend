@@ -38,6 +38,9 @@ import {
   UPDATE_BRAND_REQUEST,
   UPDATE_BRAND_SUCCESS,
   UPDATE_BRAND_FAILURE,
+  UPDATE_CATEGORY_SUCCESS,
+  UPDATE_CATEGORY_REQUEST,
+  UPDATE_CATEGORY_FAILURE,
 } from "./ActionType";
 
 const initialState = {
@@ -48,13 +51,14 @@ const initialState = {
 };
 export const adminReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_CATEGORY_REQUEST:
     case UPDATE_PRODUCT_REQUEST:
     case UPLOAD_IMAGE_REQUEST:
     case GET_ALL_BRAND_REQUEST:
     case DELETE_IMAGE_REQUEST:
     case DELETE_PRODUCT_REQUEST:
-    case DELETE_BRAND_REQUEST:
     case CHANGE_ROLE_REQUEST:
+    case DELETE_BRAND_REQUEST:
     case ADD_BRAND_REQUEST:
     case UPDATE_BRAND_REQUEST:
     case GET_ALL_USER_REQUEST:
@@ -83,6 +87,7 @@ export const adminReducer = (state = initialState, action) => {
         error: null,
         image: action.payload,
       };
+    case UPDATE_CATEGORY_SUCCESS:
     case UPDATE_ORDER_STATUS_SUCCESS:
     case DELETE_BRAND_SUCCESS:
     case UPDATE_BRAND_SUCCESS:
@@ -109,6 +114,14 @@ export const adminReducer = (state = initialState, action) => {
         error: null,
         image: action.payload,
       };
+    case GET_ALL_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        allUser: action.payload,
+      };
+    case UPDATE_CATEGORY_FAILURE:
     case GET_ALL_ORDERS_FAILURE:
     case UPDATE_PRODUCT_FAILURE:
     case UPDATE_BRAND_FAILURE:
@@ -120,14 +133,6 @@ export const adminReducer = (state = initialState, action) => {
     case DELETE_PRODUCT_FAILURE:
     case UPDATE_ORDER_STATUS_FAILURE:
     case ADD_BRAND_FAILURE:
-      return { ...state, isLoading: false, error: action.payload };
-    case GET_ALL_USER_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: null,
-        allUser: action.payload,
-      };
     case GET_ALL_USER_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     // case LOGOUT:

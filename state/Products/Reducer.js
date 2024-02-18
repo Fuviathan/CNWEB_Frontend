@@ -25,7 +25,7 @@ import {
 const initialState = {
   products: [],
   product: null,
-  color: [],
+  // color: [],
   brand: [],
   loading: false,
   error: null,
@@ -35,11 +35,11 @@ export const customerProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCTS_REQUEST:
     case GET_PRODUCTS_BY_FILTER_REQUEST:
-    case GET_ALL_COLOR_REQUEST:
+    case GET_SINGLE_PRODUCTS_REQUEST:
+    // case GET_ALL_COLOR_REQUEST:
     case GET_ALL_BRAND_REQUEST:
     case GET_ALL_CATEGORY_REQUEST:
     case GET_CATEGORY_COUNT_REQUEST:
-    case GET_SINGLE_PRODUCTS_REQUEST:
       return { ...state, loading: true, error: null };
     case GET_PRODUCTS_SUCCESS:
       return {
@@ -55,13 +55,20 @@ export const customerProductReducer = (state = initialState, action) => {
         error: null,
         products: action.payload,
       };
-    case GET_ALL_COLOR_SUCCESS:
+    case GET_SINGLE_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        color: action.payload,
+        product: action.payload,
       };
+    // case GET_ALL_COLOR_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: null,
+    //     color: action.payload,
+    //   };
     case GET_ALL_BRAND_SUCCESS:
       return {
         ...state,
@@ -83,22 +90,14 @@ export const customerProductReducer = (state = initialState, action) => {
         error: null,
         categoryCount: action.payload,
       };
-    case GET_SINGLE_PRODUCTS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: null,
-        product: action.payload,
-      };
 
     case GET_PRODUCTS_FAILURE:
-    case GET_ALL_COLOR_FAILURE:
     case GET_PRODUCTS_BY_FILTER_FAILURE:
-    case GET_ALL_BRAND_FAILURE:
+    case GET_SINGLE_PRODUCTS_FAILURE:
+    // case GET_ALL_COLOR_FAILURE:
     case GET_ALL_CATEGORY_FAILURE:
     case GET_CATEGORY_COUNT_FAILURE:
     case GET_ALL_BRAND_FAILURE:
-    case GET_SINGLE_PRODUCTS_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
