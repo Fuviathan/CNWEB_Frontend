@@ -1,6 +1,5 @@
-import { CustomTextField } from "@/components/Auth/CustomTextField";
 import { deleteProduct } from "@/state/Admin/Action";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 const DeleteProduct = (props) => {
