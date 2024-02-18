@@ -120,7 +120,6 @@ export const updateCategory = (req) => async (dispatch) => {
   }
 };
 
-
 export const deleteCategory = (categoryId) => async (dispatch) => {
   dispatch({ type: DELETE_CATEGORY_REQUEST });
   try {
@@ -144,7 +143,6 @@ export const getAllUser = () => async (dispatch) => {
   }
 };
 
-
 export const updateRole = (req) => async (dispatch) => {
   const role_T = { role: `${req.role}` };
   dispatch({ type: CHANGE_ROLE_REQUEST });
@@ -159,12 +157,11 @@ export const updateRole = (req) => async (dispatch) => {
   }
 };
 
-
 export const uploadImg = (req) => async (dispatch) => {
   var formData = new FormData();
   req.map((i) => formData.append("images", i));
-  console.log(req)
-  console.log(...formData)
+  console.log(req);
+  console.log(...formData);
   dispatch({ type: UPLOAD_IMAGE_REQUEST });
   try {
     const { data } = await api.post(`/upload`, formData, {
@@ -176,7 +173,7 @@ export const uploadImg = (req) => async (dispatch) => {
     dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: error.message });
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -200,7 +197,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
   try {
     const { data } = api.delete(`/product/${productId}`);
     toast.success("Xóa thành công");
-    setTimeout(refresh, 1000);
+    // setTimeout(refresh, 1000);
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });
@@ -215,7 +212,7 @@ export const addNewProduct = (req) => async (dispatch) => {
     const { data } = await api.post("/product", req);
     dispatch({ type: ADD_NEW_PRODUCT_SUCCESS, payload: data });
     toast.success("Thêm thành công");
-    setTimeout(refresh, 2300);
+    // setTimeout(refresh, 2300);
   } catch (e) {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
     toast.error(e.response.data.message);
@@ -259,4 +256,3 @@ export const updateOrderStatus = (req) => async (dispatch) => {
     toast.error(e.response.data.message);
   }
 };
-

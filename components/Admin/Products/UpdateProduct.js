@@ -8,6 +8,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   getProductByBrand,
   getProductByCategory,
+  getProducts,
 } from "@/state/Products/Action";
 
 const UpdateProduct = (props) => {
@@ -46,6 +47,9 @@ const UpdateProduct = (props) => {
     data.price = Number(data.price);
     data.quantity = Number(data.quantity);
     dispatch(updateProduct(data));
+    setTimeout(() => {
+      dispatch(getProducts(), 500);
+    });
   };
   if (categoryList && brandList && props.open)
     return (

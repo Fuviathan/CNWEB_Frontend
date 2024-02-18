@@ -83,12 +83,19 @@ const ListProduct = () => {
     setCustomPagination(
       Array(Math.ceil(productList?.length / rowsLimit)).fill(null)
     );
-  }, []);
+  }, [productList]);
   useEffect(() => {
     if (brands) {
       const sortedProducts = brands?.slice().sort((a, b) => a.Price - b.Price);
       setProductList(sortedProducts);
-      setRowsToShow(sortedProducts?.slice(0, rowsLimit));
+      const indexOfLastProduct = (currentPage + 1) * rowsLimit;
+      const indexOfFirstProduct = indexOfLastProduct - rowsLimit;
+      const currentProducts = sortedProducts?.slice(
+        indexOfFirstProduct,
+        indexOfLastProduct
+      );
+
+      setRowsToShow(currentProducts);
       setTotalPage(Math.ceil(sortedProducts?.length / rowsLimit));
     }
   }, [brands]);
