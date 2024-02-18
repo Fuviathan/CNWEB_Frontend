@@ -20,43 +20,10 @@ const ListCategory = () => {
     const [rowsLimit, setRowsLimit] = useState(10);
     const [rowsToShow, setRowsToShow] = useState([]);
     const [customPagination, setCustomPagination] = useState([]);
-    const [activeColumn, setActiveColumn] = useState(["Price"]);
-    const [sortingColumn, setSortingColumn] = useState(["Price"]);
     const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
     const [currentPage, setCurrentPage] = useState(0);
     const [initC, setInitC] = useState()
 
-    const sortByColumn = (column, changeSortingColumn = true) => {
-        if (sortingColumn?.includes(column) && changeSortingColumn) {
-            const sortData = productList
-                .slice()
-                .sort((a, b) =>
-                    b[column].toString().localeCompare(a[column].toString())
-                );
-            setRowsToShow(
-                sortData.slice(currentPage * rowsLimit, (currentPage + 1) * rowsLimit)
-            );
-            if (changeSortingColumn) {
-                setSortingColumn([]);
-                setProductList(sortData);
-            }
-        } else {
-            const sortData = productList
-                .slice()
-                .sort((a, b) =>
-                    a[column].toString().localeCompare(b[column].toString())
-                );
-            setRowsToShow(
-                sortData.slice(currentPage * rowsLimit, (currentPage + 1) * rowsLimit)
-            );
-            if (changeSortingColumn) {
-                setProductList(sortData);
-                setSortingColumn([`${column}`]);
-            } else {
-            }
-        }
-        setActiveColumn([`${column}`]);
-    };
     const nextPage = () => {
         const startIndex = rowsLimit * (currentPage + 1);
         const endIndex = startIndex + rowsLimit;
