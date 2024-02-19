@@ -44,8 +44,8 @@ const AddProduct = (props) => {
     data.quantity = Number(data.quantity);
     dispatch(addNewProduct(data));
     setTimeout(() => {
-      dispatch(getProducts(), 500);
-    });
+      dispatch(getProducts());
+    }, 2000);
   };
   if (categoryList && brandList && props.open)
     return (

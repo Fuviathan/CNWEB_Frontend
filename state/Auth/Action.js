@@ -21,8 +21,10 @@ export const register = (userData) => async (dispatch) => {
     const response = await axios.post(`${API_BASE_URL}user/register`, userData);
     const user = response.data;
     dispatch({ type: REGISTER_SUCCESS, payload: user });
+    toast.success("Đăng ký thành công!");
   } catch (error) {
     dispatch({ type: REGISTER_FAILURE, payload: error });
+    toast.error(error.response.data.message);
   }
 };
 
@@ -38,12 +40,13 @@ export const login = (userData) => async (dispatch) => {
     }
 
     toast.success("Đăng nhập thành công!");
+    window.location = "/product";
     dispatch({ type: LOGIN_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: LOGIN_FAILURE, payload: error });
+    toast.error("Sai tài khoản hoặc mặt khẩu");
   }
 };
-
 
 export const logout = () => (dispatch) => {
   toast.error("Bạn đã đăng xuất!");

@@ -19,8 +19,8 @@ const UpdateBrand = (props) => {
     data.id = props.data;
     dispatch(updateBrand(data));
     setTimeout(() => {
-      dispatch(getProductByBrand(), 500);
-    });
+      dispatch(getProductByBrand());
+    }, 2000);
   };
   if (props.open)
     return (

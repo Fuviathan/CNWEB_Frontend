@@ -49,10 +49,6 @@ import {
 } from "./ActionType";
 import { toast } from "react-toastify";
 
-function refresh() {
-  location.reload();
-}
-
 export const addNewBrand = (req) => async (dispatch) => {
   dispatch({ type: ADD_BRAND_REQUEST });
   try {
@@ -228,7 +224,6 @@ export const updateProduct = (req) => async (dispatch) => {
     const { data } = await api.put(`/product/${req.ID}`, data_t);
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
     toast.success("Sửa thành công");
-    setTimeout(refresh, 2000);
   } catch (e) {
     dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: e });
     toast.error(e.response.data.message);

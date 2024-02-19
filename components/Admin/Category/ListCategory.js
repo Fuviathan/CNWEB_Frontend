@@ -67,10 +67,9 @@ const ListCategory = () => {
       setTotalPage(Math.ceil(sortedProducts?.length / rowsLimit));
     }
   }, [brands]);
-
   useEffect(() => {
     dispatch(getProductByCategory());
-  }, [productList]);
+  }, []);
 
   return (
     <div className="flex justify-center h-full pb-2 bg-white rounded-lg">

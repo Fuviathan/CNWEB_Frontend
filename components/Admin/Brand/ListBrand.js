@@ -102,7 +102,7 @@ const ListBrand = () => {
 
   useEffect(() => {
     dispatch(getProductByBrand());
-  }, [productList]);
+  }, []);
 
   return (
     <div className="flex justify-center h-full pb-2 bg-white rounded-lg">

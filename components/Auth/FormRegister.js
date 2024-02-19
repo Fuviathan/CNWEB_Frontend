@@ -8,7 +8,6 @@ import { register } from "@/state/Auth/Action";
 const FormRegister = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const auth = useSelector((store) => store?.auth);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,10 +37,17 @@ const FormRegister = () => {
 
     if (formData.email.trim() === "") {
       newErrors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Invalid email address";
+      }
     }
 
     if (formData.password.trim() === "") {
       newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long";
     }
 
     if (formData.firstname.trim() === "") {
@@ -72,11 +78,7 @@ const FormRegister = () => {
     setError({});
 
     dispatch(register(formData));
-    console.log("Đăng nhập với:", formData);
   };
-  useEffect(() => {
-    console.log(auth);
-  }, [auth]);
 
   return (
     <div className="py-[5rem]">
