@@ -36,8 +36,8 @@ const AddCategory = (props) => {
     else {
       dispatch(addNewCategory(data));
       setTimeout(() => {
-        dispatch(getProductByCategory(), 500);
-      });
+        dispatch(getProductByCategory());
+      }, 2000);
     }
   };
   if (props.open)

@@ -48,8 +48,8 @@ const UpdateProduct = (props) => {
     data.quantity = Number(data.quantity);
     dispatch(updateProduct(data));
     setTimeout(() => {
-      dispatch(getProducts(), 500);
-    });
+      dispatch(getProducts());
+    }, 2000);
   };
   if (categoryList && brandList && props.open)
     return (
@@ -202,6 +202,9 @@ const UpdateProduct = (props) => {
           </div>
           <div className="flex flex-row-reverse gap-5 mt-5">
             <button
+              onClick={() => {
+                setTimeout(props.onClose, 200);
+              }}
               type="submit"
               className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
             >

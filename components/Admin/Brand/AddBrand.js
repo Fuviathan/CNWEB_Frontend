@@ -21,8 +21,8 @@ const AddBrand = (props) => {
     } else {
       dispatch(addNewBrand({ title: brand }));
       setTimeout(() => {
-        dispatch(getProductByBrand(), 500);
-      });
+        dispatch(getProductByBrand());
+      }, 2000);
     }
     // Call your save function here with the brand name
     // Example: props.onSave(brand);

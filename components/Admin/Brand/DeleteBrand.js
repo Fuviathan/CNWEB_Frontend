@@ -9,8 +9,8 @@ const DeleteBrand = (props) => {
   const handleDelete = () => {
     dispatch(deleteBrand(props.data));
     setTimeout(() => {
-      dispatch(getProductByBrand(), 500);
-    });
+      dispatch(getProductByBrand());
+    }, 2000);
   };
   return (
     <div className="absolute w-2/6 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 rounded-xl">

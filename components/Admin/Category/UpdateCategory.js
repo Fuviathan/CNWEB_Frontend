@@ -37,8 +37,8 @@ const UpdateCategory = (props) => {
     else {
       dispatch(updateCategory(data));
       setTimeout(() => {
-        dispatch(getProductByCategory(), 500);
-      });
+        dispatch(getProductByCategory());
+      }, 2000);
     }
   };
   if (props.open)
