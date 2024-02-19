@@ -6,9 +6,8 @@ import {
   FavoriteBorder,
   ShoppingCart,
 } from "@mui/icons-material";
-import { Button, Checkbox, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import React, { useEffect } from "react";
-import { pink } from "@mui/material/colors";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -16,24 +15,24 @@ import { getSingleProduct } from "@/state/Products/Action";
 import { addProductToCart } from "@/state/Cart/Action";
 
 const ProductCard = ({ grid, item }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const router = useRouter();
 
-  function handleAddToCart(product) {
-    const data = {
-      cart: [
-        {
-          _id: product?._id,
-          count: 1,
-          price: product?.price,
-          title: product?.title,
-          description: product.description,
-        },
-      ],
-    };
-    dispatch(addProductToCart(data));
-    alert("Thêm sản phẩm thành công");
-  }
+  // function handleAddToCart(product) {
+  //   const data = {
+  //     cart: [
+  //       {
+  //         _id: product?._id,
+  //         count: 1,
+  //         price: product?.price,
+  //         title: product?.title,
+  //         description: product.description,
+  //       },
+  //     ],
+  //   };
+  //   dispatch(addProductToCart(data));
+  //   alert("Thêm sản phẩm thành công");
+  // }
   // useEffect(() => {
   //   dispatch(getSingleProduct(item._id));
   // }, []);
