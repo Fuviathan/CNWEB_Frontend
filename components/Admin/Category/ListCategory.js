@@ -72,7 +72,7 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <div className="flex justify-center h-full pb-2 bg-white rounded-lg">
+    <div id="root" className="flex justify-center h-full pb-2 bg-white rounded-lg">
       <div className="w-full">
         <div className="w-full overflow-x-scroll md:overflow-auto 2xl:max-w-none">
           <table className="w-full overflow-scroll text-left border table-auto md:overflow-auto">
