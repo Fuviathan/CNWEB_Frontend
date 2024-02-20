@@ -72,7 +72,10 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <div id="root" className="flex justify-center h-full pb-2 bg-white rounded-lg">
+    <div
+      id="root"
+      className="flex justify-center h-full pb-2 bg-white rounded-lg"
+    >
       <div className="w-full">
         <div className="w-full overflow-x-scroll md:overflow-auto 2xl:max-w-none">
           <table className="w-full overflow-scroll text-left border table-auto md:overflow-auto">
@@ -202,7 +205,7 @@ const ListCategory = () => {
               : (currentPage + 1) * rowsLimit}{" "}
             / {productList?.length} danh mục
           </div>
-          <div className="flex px-4">
+          <div className="flex px-4" id="root">
             <ul
               className="flex justify-center items-center gap-x-[10px] z-30"
               role="navigation"
