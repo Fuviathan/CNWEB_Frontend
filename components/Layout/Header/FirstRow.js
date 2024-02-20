@@ -50,7 +50,7 @@ export default function FirstRow() {
   function handleLogout() {
     setAuth("");
     localStorage.clear();
-    toast.error("Bạn đã đăng xuất");
+    toast.success("Bạn đã đăng xuất");
     setTimeout(redirect, 2500)
   }
   return (
