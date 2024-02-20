@@ -18,7 +18,7 @@ const Cart = (props) => {
     dispatch(getCart());
   }, []);
   console.log(cart)
-  if (!cart) return (
+  if (!cart || cart.cartTotal == 0 ) return (
     <div className="flex flex-col items-center justify-center h-full my-4 bg-white">
       <div className="p-6 text-2xl font-medium bg-white">
         Giỏ hàng của bạn chưa có sản phẩm nào

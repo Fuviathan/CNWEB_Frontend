@@ -58,7 +58,7 @@ export const addNewBrand = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e });
-    toast.error(e.response.data.message);
+    toast.error(e);
   }
 };
 
@@ -72,7 +72,7 @@ export const updateBrand = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: UPDATE_BRAND_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e);
   }
 };
 
@@ -85,7 +85,7 @@ export const deleteBrand = (brandId) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e);
   }
 };
 

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form'
 import { getCart } from '@/state/Cart/Action';
-import { For } from 'react-haiku';
 import { useDispatch, useSelector } from 'react-redux';
 import { createOrder } from '@/state/Cart/Action';
 
