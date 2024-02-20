@@ -58,7 +58,7 @@ export const addNewBrand = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: ADD_BRAND_FAILURE, payload: e });
-    toast.error(e);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -72,7 +72,7 @@ export const updateBrand = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: UPDATE_BRAND_FAILURE, payload: e.message });
-    toast.error(e);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -85,7 +85,7 @@ export const deleteBrand = (brandId) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: DELETE_BRAND_FAILURE, payload: e.message });
-    toast.error(e);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -100,21 +100,22 @@ export const addNewCategory = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: ADD_CATEGORY_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
 export const updateCategory = (req) => async (dispatch) => {
-  const status_T = { status: `${req.status}` };
+  req.image = req.image[0].image
+  const { id, ...data_t } = req;
   dispatch({ type: UPDATE_CATEGORY_REQUEST });
   try {
-    const { data } = await api.put(`/user/order/update/${req.id}`, status_T);
+    const { data } = await api.put(`/prodcategory/${req.id}`, data_t);
     dispatch({ type: UPDATE_CATEGORY_SUCCESS, payload: data });
     toast.success("Sửa thành công");
     setTimeout(refresh, 1800);
   } catch (e) {
-    dispatch({ type: UPDATE_CATEGORY_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    dispatch({ type: UPDATE_CATEGORY_FAILURE, payload: e });
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -127,7 +128,7 @@ export const deleteCategory = (categoryId) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: DELETE_CATEGORY_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -151,7 +152,7 @@ export const updateRole = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: CHANGE_ROLE_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -199,7 +200,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: DELETE_PRODUCT_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -213,7 +214,7 @@ export const addNewProduct = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: ADD_NEW_PRODUCT_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -226,7 +227,7 @@ export const updateProduct = (req) => async (dispatch) => {
     toast.success("Sửa thành công");
   } catch (e) {
     dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: e });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };
 
@@ -250,6 +251,6 @@ export const updateOrderStatus = (req) => async (dispatch) => {
     setTimeout(refresh, 1800);
   } catch (e) {
     dispatch({ type: UPDATE_ORDER_STATUS_FAILURE, payload: e.message });
-    toast.error(e.response.data.message);
+    toast.error(e?.response?.data.message);
   }
 };

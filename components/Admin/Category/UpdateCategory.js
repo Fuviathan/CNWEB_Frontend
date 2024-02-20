@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { getProductByCategory } from "@/state/Products/Action";
 
 const UpdateCategory = (props) => {
+  console.log(props)
   const dispatch = useDispatch();
   const images = useSelector((state) => state?.admin.image);
   const [img, setImg] = useState([props.data]);
@@ -30,6 +31,7 @@ const UpdateCategory = (props) => {
     }
   }, [images]);
   const onSubmit = (data) => {
+    data.id = props.data._id
     data.image = img;
     console.log(data);
     if (data.image.length > 1) toast.error("Không được thêm quá 1 ảnh!");

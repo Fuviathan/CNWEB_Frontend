@@ -24,7 +24,7 @@ export const register = (userData) => async (dispatch) => {
     toast.success("Đăng ký thành công!");
   } catch (error) {
     dispatch({ type: REGISTER_FAILURE, payload: error });
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data.message);
   }
 };
 

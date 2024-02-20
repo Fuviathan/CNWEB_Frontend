@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminLayout(props) {
   const Menus = [
-    { title: "Trang chủ", icon: ChartBarIcon, path: '/admin/dashboard' },
     {
       title: "Thiết lập sản phẩm", icon: AdjustmentsHorizontalIcon, children: [
         { title: "Danh sách sản phẩm", icon: ClipboardDocumentListIcon, path: '/admin/products' },

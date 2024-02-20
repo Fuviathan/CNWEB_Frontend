@@ -14,7 +14,7 @@ const ProtectRouter = ({ children }) => {
       setAuth(JSON.parse(value));
     }
   }, []);
-  if (auth?.role === 'admin' || auth?.role === 'subadmin' ) router.push('/admin/dashboard')
+  if (auth?.role === 'admin' || auth?.role === 'subadmin' ) router.push('/admin/products')
   if (!auth && router.pathname !=='/cart' && router.pathname !== '/orderhistory') return <main>{children}</main>
   else return (
     <div>
