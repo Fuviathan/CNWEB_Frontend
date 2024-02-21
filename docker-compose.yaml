@@ -2,5 +2,6 @@ services:
   frontend:
     build: .
     container_name: cnweb-frontend
+    environment: []
     expose:
       - 3000
