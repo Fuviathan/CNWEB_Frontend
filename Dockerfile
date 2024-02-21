@@ -6,6 +6,12 @@ COPY . .
 
 RUN npm i
 
+ENV MONGO_URL mongodb+srv://buivananh01072003:78VGJrX2j7YPdGoV@shopping.7tf8wao.mongodb.net/?retryWrites=true&w=majority
+ENV JWT_SECRET mysecret
+ENV PORT 3000
+ENV SECRET_KEY BfWQTmqfH-6nltqy20yw-JGxGEQ
+ENV NEXT_PUBLIC_API_BASE_URL "https://cnweb-be.soooverpowered.com/api/"
+
 RUN npm run build
 
 FROM node:lts AS runner
@@ -31,7 +37,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
