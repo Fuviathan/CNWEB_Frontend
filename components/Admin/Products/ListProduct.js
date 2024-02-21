@@ -9,11 +9,6 @@ import UpdateProduct from "./UpdateProduct";
 const ListProduct = () => {
   const dispatch = useDispatch();
   const brands = useSelector((store) => store?.product?.products);
-
-  const [openDelete, setOpenDelete] = useState(false);
-  const [openUpdate, setOpenUpdate] = useState(false);
-  const [id, setId] = useState();
-  const [initP, setInitP] = useState();
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -22,6 +17,11 @@ const ListProduct = () => {
   const [sortingColumn, setSortingColumn] = useState(["Price"]);
   const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
   const [currentPage, setCurrentPage] = useState(0);
+
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [id, setId] = useState();
+  const [initP, setInitP] = useState();
 
   const sortByColumn = (column, changeSortingColumn = true) => {
     if (sortingColumn?.includes(column) && changeSortingColumn) {

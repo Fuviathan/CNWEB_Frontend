@@ -9,11 +9,6 @@ import UpdateBrand from "./UpdateBrand";
 const ListBrand = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state?.admin?.brands);
-
-  const [initB, setInitB] = useState();
-  const [openUpdate, setOpenUpdate] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -22,7 +17,12 @@ const ListBrand = () => {
   const [sortingColumn, setSortingColumn] = useState(["Price"]);
   const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
   const [currentPage, setCurrentPage] = useState(0);
-
+  
+  const [initB, setInitB] = useState();
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+  
   const sortByColumn = (column, changeSortingColumn = true) => {
     if (sortingColumn?.includes(column) && changeSortingColumn) {
       const sortData = productList

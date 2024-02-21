@@ -10,6 +10,7 @@ import {
   getProductByCategory,
   getProducts,
 } from "@/state/Products/Action";
+import { toast } from "react-toastify";
 
 const AddProduct = (props) => {
   const [img, setImg] = useState([]);
@@ -40,12 +41,15 @@ const AddProduct = (props) => {
 
   const onSubmit = (data) => {
     data.images = img;
-    data.price = Number(data.price);
-    data.quantity = Number(data.quantity);
-    dispatch(addNewProduct(data));
-    setTimeout(() => {
-      dispatch(getProducts());
-    }, 2000);
+    if (data.images == '') toast.error('Phải có ít nhất một ảnh!')
+    else {
+      data.price = Number(data.price);
+      data.quantity = Number(data.quantity);
+      dispatch(addNewProduct(data));
+      setTimeout(() => {
+        dispatch(getProducts());
+      }, 2000);
+    }
   };
   if (categoryList && brandList && props.open)
     return (
@@ -113,9 +117,9 @@ const AddProduct = (props) => {
                   className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
                   {...register("quantity", { required: true })}
                 />
-                {errors.brand && (
+                {errors.quantity && (
                   <div className="mt-2 text-sm italic text-red-400 text-italic">
-                    *Không được để trống tên danh mục
+                    *Không được để trống số lượng
                   </div>
                 )}
               </div>
@@ -128,7 +132,7 @@ const AddProduct = (props) => {
                 />
                 {errors.price && (
                   <div className="mt-2 text-sm italic text-red-400 text-italic">
-                    *Không được để trống tên danh mục
+                    *Không được để trống giá tiền
                   </div>
                 )}
               </div>

@@ -11,9 +11,7 @@ const ListCategory = () => {
   const dispatch = useDispatch();
   const brands = useSelector((store) => store?.product?.category);
 
-  const [openDelete, setOpenDelete] = useState(false);
-  const [openUpdate, setOpenUpdate] = useState(false);
-  const [id, setId] = useState(0);
+  
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -21,7 +19,9 @@ const ListCategory = () => {
   const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
   const [currentPage, setCurrentPage] = useState(0);
   const [initC, setInitC] = useState();
-
+  const [id, setId] = useState();
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const nextPage = () => {
     const startIndex = rowsLimit * (currentPage + 1);
     const endIndex = startIndex + rowsLimit;

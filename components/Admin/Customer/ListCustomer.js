@@ -9,10 +9,6 @@ const ListCustomer = () => {
   const [auth, setAuth] = useState();
   const dispatch = useDispatch();
   const brands = useSelector((store) => store?.admin?.allUser);
-
-  const [role, setRole] = useState();
-  const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -21,6 +17,10 @@ const ListCustomer = () => {
   const [sortingColumn, setSortingColumn] = useState(["Price"]);
   const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
   const [currentPage, setCurrentPage] = useState(0);
+
+  const [role, setRole] = useState();
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
 
   const sortByColumn = (column, changeSortingColumn = true) => {
     if (sortingColumn?.includes(column) && changeSortingColumn) {
