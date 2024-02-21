@@ -15,7 +15,7 @@ export default function AdminHeader() {
     }, []);
 
     function redirect() {
-        window.location.href = '/homePage'
+        window.location.href = '/'
     }
     
     function handleLogout() {
