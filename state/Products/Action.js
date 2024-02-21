@@ -47,7 +47,7 @@ export const getProductByFilter = (req) => async (dispatch) => {
         req?.sort ? `sort=${req?.sort}&&` : ""
       }${req?.tag ? `tags=${req?.tag.toLowerCase()}&&` : ""}${
         req?.limit ? `limit=${req?.limit}&&` : ""
-      }`
+      }`,
     );
     dispatch({ type: GET_PRODUCTS_BY_FILTER_SUCCESS, payload: data });
   } catch (error) {
@@ -100,11 +100,11 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 
 export const getCategoryCount = () => async (dispatch) => {
-  dispatch({ type: GET_CATEGORY_COUNT_REQUEST })
+  dispatch({ type: GET_CATEGORY_COUNT_REQUEST });
   try {
     const { data } = await axios.get(`${API_BASE_URL}prodcategory/count`);
     dispatch({ type: GET_CATEGORY_COUNT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_CATEGORY_COUNT_FAILURE, payload: error.message });
   }
-}
+};
