@@ -1,12 +1,11 @@
 import { getProducts } from '@/state/Products/Action'
-import React, { createContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Autoplay, Mousewheel, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Mousewheel, Pagination } from 'swiper/modules';
 import ProductCard from '@/components/productCard/ProductCard';
-import { For } from 'react-haiku';
 
 export default function PopularWrap() {
     const notIconAdd = true
@@ -18,9 +17,6 @@ export default function PopularWrap() {
     const productArray = productCateGory.slice(0, 10)
     return (
         <Swiper
-            // pagination={{
-            //     clickable: true,
-            // }}
             spaceBetween={30}
             slidesPerView={5}
             mousewheel={true}
@@ -55,11 +51,6 @@ export default function PopularWrap() {
             <SwiperSlide>
                 <ProductCard item={productArray[8]}></ProductCard>
             </SwiperSlide>
-            {/* <For each={productArray} render={(data, index) => 
-                <SwiperSlide>
-                    <ProductCard item={data}></ProductCard>
-                </SwiperSlide>
-            }/> */}
         </Swiper>
     )
 }

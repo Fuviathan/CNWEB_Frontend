@@ -6,9 +6,8 @@ import {
   FavoriteBorder,
   ShoppingCart,
 } from "@mui/icons-material";
-import { Button, Checkbox, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import React, { useEffect } from "react";
-import { pink } from "@mui/material/colors";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -16,24 +15,24 @@ import { getSingleProduct } from "@/state/Products/Action";
 import { addProductToCart } from "@/state/Cart/Action";
 
 const ProductCard = ({ grid, item }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const router = useRouter();
 
-  function handleAddToCart(product) {
-    const data = {
-      cart: [
-        {
-          _id: product?._id,
-          count: 1,
-          price: product?.price,
-          title: product?.title,
-          description: product.description,
-        },
-      ],
-    };
-    dispatch(addProductToCart(data));
-    alert("Thêm sản phẩm thành công");
-  }
+  // function handleAddToCart(product) {
+  //   const data = {
+  //     cart: [
+  //       {
+  //         _id: product?._id,
+  //         count: 1,
+  //         price: product?.price,
+  //         title: product?.title,
+  //         description: product.description,
+  //       },
+  //     ],
+  //   };
+  //   dispatch(addProductToCart(data));
+  //   alert("Thêm sản phẩm thành công");
+  // }
   // useEffect(() => {
   //   dispatch(getSingleProduct(item._id));
   // }, []);
@@ -72,7 +71,7 @@ const ProductCard = ({ grid, item }) => {
               {item?.discount}% OFF
             </span>
           )}
-          <div
+          {/* <div
             onClick={(e) => e.stopPropagation()}
             className="absolute top-0 right-0 z-50 flex flex-col"
           >
@@ -99,7 +98,7 @@ const ProductCard = ({ grid, item }) => {
               icon={<CompareArrowsOutlined />}
               checkedIcon={<CompareArrows />}
             />
-          </div>
+          </div> */}
         </div>
         <div
           className={`ml-auto mt-4 px-5 pb-5 w-full ${

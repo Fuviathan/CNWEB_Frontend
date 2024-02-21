@@ -1,5 +1,4 @@
 import {
-  getCart,
   removeProductFromCart,
   updateProductInCart,
 } from "@/state/Cart/Action";
@@ -7,8 +6,8 @@ import { Delete, Remove } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({ data }) => {
   const dispatch = useDispatch();

@@ -13,7 +13,6 @@ import {
 } from "./ActionType";
 import { API_BASE_URL } from "@/config/apiConfig";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
@@ -22,8 +21,10 @@ export const register = (userData) => async (dispatch) => {
     const response = await axios.post(`${API_BASE_URL}user/register`, userData);
     const user = response.data;
     dispatch({ type: REGISTER_SUCCESS, payload: user });
+    toast.success("Đăng ký thành công!");
   } catch (error) {
     dispatch({ type: REGISTER_FAILURE, payload: error });
+    toast.error(error?.response?.data.message);
   }
 };
 
@@ -39,10 +40,18 @@ export const login = (userData) => async (dispatch) => {
     }
 
     toast.success("Đăng nhập thành công!");
+    window.location = "/product";
     dispatch({ type: LOGIN_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: LOGIN_FAILURE, payload: error });
+    toast.error("Sai tài khoản hoặc mặt khẩu");
   }
+};
+
+export const logout = () => (dispatch) => {
+  toast.error("Bạn đã đăng xuất!");
+  dispatch({ type: LOGOUT, payload: null });
+  localStorage.clear();
 };
 
 const getUserRequest = () => ({ type: GET_USER_REQUEST });
@@ -64,10 +73,4 @@ export const getUser = (jwt) => async (dispatch) => {
   } catch (error) {
     dispatch(getUserFailure(error.message));
   }
-};
-
-export const logout = () => (dispatch) => {
-  toast.error("Bạn đã đăng xuất!");
-  dispatch({ type: LOGOUT, payload: null });
-  localStorage.clear();
 };

@@ -9,8 +9,6 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "@/state/Cart/Action";
 import { toast } from "react-toastify";
-import { set } from "react-hook-form";
-import { store } from "@/app/store";
 import { useRouter } from "next/router";
 
 function covertDataToUnsigned(string) {
@@ -46,20 +44,20 @@ export default function FirstRow() {
   }, [user, cart?.cartTotal, cartItem?.cartTotal]);
 
   function redirect() {
-    window.location.href = '/homePage'
+    window.location.href = '/'
   }
 
   function handleLogout() {
     setAuth("");
     localStorage.clear();
-    toast.error("Bạn đã đăng xuất");
+    toast.success("Bạn đã đăng xuất");
     setTimeout(redirect, 2500)
   }
   return (
     <div className="w-full bg-[#ede2d1]">
       <div className="grid items-center grid-cols-6 py-4 max-w-[1320px] mx-auto">
         <Link
-          href="/homePage"
+          href="/"
           className="px-5 mb-0 font-sans text-3xl font-semibold tracking-wide text-orange-gray hover:cursor-pointer"
         >
           ElectricalD

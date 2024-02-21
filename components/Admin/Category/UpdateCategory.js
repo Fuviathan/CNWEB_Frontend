@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewCategory } from "@/state/Admin/Action";
+import { addNewCategory, updateCategory } from "@/state/Admin/Action";
 import Dropzone from "react-dropzone";
 import { uploadImg, handleSetImagesToNull } from "../../../state/Admin/Action";
 import { useForm } from "react-hook-form";
@@ -8,10 +8,12 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import { getProductByCategory } from "@/state/Products/Action";
 
-const AddCategory = (props) => {
+const UpdateCategory = (props) => {
+  console.log(props)
   const dispatch = useDispatch();
-  const images = useSelector((state) => state?.admin?.image);
-  const [img, setImg] = useState([]);
+  const images = useSelector((state) => state?.admin.image);
+  const [img, setImg] = useState([props.data]);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const AddCategory = (props) => {
   } = useForm({
     defaultValues: {
       image: [],
-      title: "",
+      title: props?.data?.title,
     },
   });
   useEffect(() => {
@@ -29,12 +31,13 @@ const AddCategory = (props) => {
     }
   }, [images]);
   const onSubmit = (data) => {
+    data.id = props.data._id
     data.image = img;
     console.log(data);
     if (data.image.length > 1) toast.error("Không được thêm quá 1 ảnh!");
     else if (data.image.length < 1) toast.error("Không được thiếu ảnh!");
     else {
-      dispatch(addNewCategory(data));
+      dispatch(updateCategory(data));
       setTimeout(() => {
         dispatch(getProductByCategory());
       }, 2000);
@@ -45,7 +48,7 @@ const AddCategory = (props) => {
       <div id="root">
         <div className="absolute w-3/5 px-10 py-5 mt-4 -translate-x-1/2 -translate-y-1/2 bg-white min-w-fit top-1/2 left-1/2 rounded-xl">
           <h3 className="mb-4 text-xl font-semibold tracking-wide">
-            Thêm danh mục mới
+            Sửa danh mục
           </h3>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label className="block">Tên danh mục</label>
@@ -58,7 +61,6 @@ const AddCategory = (props) => {
                 *Không được để trống tên danh mục
               </div>
             )}
-            {/* {!images ? ( */}
             <div className="p-5 mt-6 text-center bg-white border border-gray-400 rounded-lg cursor-pointer">
               <Dropzone
                 onDrop={(acceptedFiles) => {
@@ -75,7 +77,6 @@ const AddCategory = (props) => {
                 )}
               </Dropzone>
             </div>
-            {/* ) : ( */}
             <div className="flex flex-wrap gap-3 mt-3 ">
               {img?.map((item, index) => {
                 if (item !== "null") {
@@ -102,7 +103,7 @@ const AddCategory = (props) => {
                       )}
                       {item?._id || item?.puclicId ? (
                         <img
-                          src={item?.url}
+                          src={item?.image?.url || item?.image || item?.url}
                           alt=""
                           className="w-[350px] h-[350px]"
                         />
@@ -116,7 +117,6 @@ const AddCategory = (props) => {
                 }
               })}
             </div>
-            {/* )} */}
             <div className="flex flex-row-reverse gap-5 mt-5">
               <button
                 onClick={() => {
@@ -142,4 +142,4 @@ const AddCategory = (props) => {
   else return <></>;
 };
 
-export default AddCategory;
+export default UpdateCategory;

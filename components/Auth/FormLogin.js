@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import { CustomTextField } from "./CustomTextField";
@@ -11,8 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const FormLogin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const auth = useSelector((store) => store.auth);
-  console.log(auth);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +32,12 @@ const FormLogin = () => {
     const newErrors = {};
 
     if (formData.email.trim() === "") {
-      newErrors.email = "email is required";
+      newErrors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Invalid email address";
+      }
     }
 
     if (formData.password.trim() === "") {
@@ -56,10 +59,6 @@ const FormLogin = () => {
 
     setError({});
     dispatch(login(formData));
-
-    if (auth) {
-      router.push("/product");
-    }
   };
 
   return (

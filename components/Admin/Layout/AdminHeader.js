@@ -15,13 +15,13 @@ export default function AdminHeader() {
     }, []);
 
     function redirect() {
-        window.location.href = '/homePage'
+        window.location.href = '/'
     }
     
     function handleLogout() {
         setAuth("");
         localStorage.clear();
-        toast.error("Bạn đã đăng xuất");
+        toast.success("Bạn đã đăng xuất");
         setTimeout(redirect, 2000)
     }
     return (

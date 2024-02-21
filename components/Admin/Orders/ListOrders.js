@@ -1,14 +1,14 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "@/state/Products/Action";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import BasicModal from "../Modal/BasicModal";
-import DeleteProduct from "./DeleteProduct";
-import UpdateProduct from "./UpdateProduct";
+import { getAllOrders } from "@/state/Admin/Action";
+import OrderItemDetailAdmin from "./OrderItemDetailAdmin";
+import ChangeOrderStatus from "./ChangeOrderStatus";
 
-const ListProduct = () => {
+const ListOrders = () => {
   const dispatch = useDispatch();
-  const brands = useSelector((store) => store?.product?.products);
+  const brands = useSelector((store) => store?.admin?.orders);
   const [productList, setProductList] = useState([]);
   const [rowsLimit, setRowsLimit] = useState(10);
   const [rowsToShow, setRowsToShow] = useState([]);
@@ -18,7 +18,7 @@ const ListProduct = () => {
   const [totalPage, setTotalPage] = useState(0); // Initialize totalPage with 0
   const [currentPage, setCurrentPage] = useState(0);
 
-  const [openDelete, setOpenDelete] = useState(false);
+  const [openView, setOpenView] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [id, setId] = useState();
   const [initP, setInitP] = useState();
@@ -101,7 +101,7 @@ const ListProduct = () => {
   }, [brands]);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getAllOrders());
   }, []);
 
   return (
@@ -125,23 +125,38 @@ const ListProduct = () => {
                 </th>
                 <th className="py-3 px-3 text-[#212B36] sm:text-base overflow-hidden font-bold whitespace-wrap group w-1/6">
                   <div className="flex items-center">
+                    <span className="mr-1 cursor-pointer ">Tên người đặt</span>
+                  </div>
+                </th>
+                <th className="py-3 px-3 text-[#212B36] sm:text-base overflow-hidden font-bold whitespace-wrap group w-1/6">
+                  <div className="flex items-center">
+                    <span className="mr-1 cursor-pointer ">Email</span>
+                  </div>
+                </th>
+                <th className="py-3 px-3 text-[#212B36] sm:text-base overflow-hidden font-bold whitespace-wrap group w-1/6">
+                  <div className="flex items-center">
+                    <span className="mr-1">Số điện thoại</span>
+                  </div>
+                </th>
+                <th className="py-3  px-3 w-1/12 text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
+                  <div className="flex items-center">
                     <span
                       className="mr-1 cursor-pointer "
-                      onClick={() => sortByColumn("title")}
+                      onClick={() => sortByColumn("totalPrice")}
                     >
-                      Tên sản phẩm
+                      Tổng số tiền của đơn hàng
                     </span>
                     <svg
                       className={`w-4 h-4 cursor-pointer ${
-                        activeColumn?.includes("title")
+                        activeColumn?.includes("totalPrice")
                           ? "text-black"
                           : "text-[#BCBDBE] group-hover:text-black rotate-180"
                       } ${
-                        sortingColumn?.includes("title")
+                        sortingColumn?.includes("totalPrice")
                           ? "rotate-180"
                           : "rotate-0"
                       } `}
-                      onClick={() => sortByColumn("title")}
+                      onClick={() => sortByColumn("totalPrice")}
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -158,130 +173,25 @@ const ListProduct = () => {
                     </svg>
                   </div>
                 </th>
-                <th className="py-3 px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
+                <th className="py-3  px-3 w-1/12 text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
                   <div className="flex items-center">
                     <span
                       className="mr-1 cursor-pointer "
-                      onClick={() => sortByColumn("quantity")}
+                      onClick={() => sortByColumn("orderStatus")}
                     >
-                      Số lượng
+                      Trạng thái
                     </span>
                     <svg
                       className={`w-4 h-4 cursor-pointer ${
-                        activeColumn?.includes("quantity")
+                        activeColumn?.includes("orderStatus")
                           ? "text-black"
                           : "text-[#BCBDBE] group-hover:text-black rotate-180"
                       } ${
-                        sortingColumn?.includes("quantity")
+                        sortingColumn?.includes("orderStatus")
                           ? "rotate-180"
                           : "rotate-0"
                       } `}
-                      onClick={() => sortByColumn("quantity")}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                      />
-                    </svg>
-                  </div>
-                </th>
-                <th className="py-3  px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
-                  <div className="flex items-center">
-                    <span
-                      className="mr-1 cursor-pointer "
-                      onClick={() => sortByColumn("category")}
-                    >
-                      Danh mục
-                    </span>
-                    <svg
-                      className={`w-4 h-4 cursor-pointer ${
-                        activeColumn?.includes("category")
-                          ? "text-black"
-                          : "text-[#BCBDBE] group-hover:text-black rotate-180"
-                      } ${
-                        sortingColumn?.includes("category")
-                          ? "rotate-180"
-                          : "rotate-0"
-                      } `}
-                      onClick={() => sortByColumn("category")}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                      />
-                    </svg>
-                  </div>
-                </th>
-                <th className="py-3  px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
-                  <div className="flex items-center">
-                    <span
-                      className="mr-1 cursor-pointer "
-                      onClick={() => sortByColumn("brand")}
-                    >
-                      Nhãn hàng
-                    </span>
-                    <svg
-                      className={`w-4 h-4 cursor-pointer ${
-                        activeColumn?.includes("brand")
-                          ? "text-black"
-                          : "text-[#BCBDBE] group-hover:text-black rotate-180"
-                      } ${
-                        sortingColumn?.includes("brand")
-                          ? "rotate-180"
-                          : "rotate-0"
-                      } `}
-                      onClick={() => sortByColumn("brand")}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                      />
-                    </svg>
-                  </div>
-                </th>
-                <th className="py-3  px-3  text-[#212B36] sm:text-base font-bold whitespace-nowrap group">
-                  <div className="flex items-center">
-                    <span
-                      className="mr-1 cursor-pointer "
-                      onClick={() => sortByColumn("price")}
-                    >
-                      Giá tiền
-                    </span>
-                    <svg
-                      className={`w-4 h-4 cursor-pointer ${
-                        activeColumn?.includes("price")
-                          ? "text-black"
-                          : "text-[#BCBDBE] group-hover:text-black rotate-180"
-                      } ${
-                        sortingColumn?.includes("price")
-                          ? "rotate-180"
-                          : "rotate-0"
-                      } `}
-                      onClick={() => sortByColumn("price")}
+                      onClick={() => sortByColumn("orderStatus")}
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -330,7 +240,8 @@ const ListProduct = () => {
                           : "border-t"
                       } whitespace-nowrap`}
                     >
-                      {data?.title}
+                      {data?.shippingInfor?.lastname}{" "}
+                      {data?.shippingInfor?.firstname}
                     </td>
                     <td
                       className={`py-2 px-3 font-normal text-base ${
@@ -341,7 +252,7 @@ const ListProduct = () => {
                           : "border-t"
                       } whitespace-nowrap`}
                     >
-                      {data?.quantity}
+                      {data?.user?.email}
                     </td>
 
                     <td
@@ -353,7 +264,7 @@ const ListProduct = () => {
                           : "border-t"
                       } whitespace-nowrap`}
                     >
-                      {data?.category}
+                      {data?.user?.mobile}
                     </td>
                     <td
                       className={`py-2 px-3 font-normal text-base ${
@@ -364,7 +275,7 @@ const ListProduct = () => {
                           : "border-t"
                       } whitespace-nowrap`}
                     >
-                      {data?.brand}
+                      {data?.totalPrice}
                     </td>
                     <td
                       className={`py-2 px-3 font-normal text-base ${
@@ -375,23 +286,23 @@ const ListProduct = () => {
                           : "border-t"
                       } whitespace-nowrap`}
                     >
-                      {data?.price}
+                      {data?.orderStatus}
                     </td>
                     <td
                       className={`py-4 px-4 flex justify-center  font-normal`}
                     >
-                      <TrashIcon
-                        className="w-8 h-8 mr-8 text-red-400 hover:cursor-pointer hover:opacity-50"
+                      <EyeIcon
+                        className="w-8 h-8 mr-4 hover:cursor-pointer hover:opacity-50 text-dark-purple"
                         onClick={() => {
-                          setOpenDelete(true);
-                          setId(data._id);
+                          setOpenView(true);
+                          setInitP(data);
                         }}
                       />
                       <PencilSquareIcon
                         className="w-8 h-8 hover:cursor-pointer hover:opacity-50 text-dark-purple"
                         onClick={() => {
                           setOpenUpdate(true);
-                          setInitP(data);
+                          setId(data._id);
                         }}
                       />
                     </td>
@@ -411,7 +322,7 @@ const ListProduct = () => {
             {currentPage == totalPage - 1
               ? productList?.length
               : (currentPage + 1) * rowsLimit}{" "}
-            / {productList?.length} danh mục
+            / {productList?.length} đơn hàng
           </div>
           <div className="flex px-4">
             <ul
@@ -455,17 +366,17 @@ const ListProduct = () => {
                 <img src="https://www.tailwindtap.com/assets/travelagency-admin/rightarrow.svg" />
               </li>
             </ul>
-            <BasicModal open={openDelete} onClose={() => setOpenDelete(false)}>
-              <DeleteProduct
-                onClose={() => setOpenDelete(false)}
-                open={openDelete}
+            <BasicModal open={openUpdate} onClose={() => setOpenUpdate(false)}>
+              <ChangeOrderStatus
+                onClose={() => setOpenUpdate(false)}
+                open={openUpdate}
                 data={id}
               />
             </BasicModal>
-            <BasicModal open={openUpdate} onClose={() => setOpenUpdate(false)}>
-              <UpdateProduct
-                onClose={() => setOpenUpdate(false)}
-                open={openUpdate}
+            <BasicModal open={openView} onClose={() => setOpenView(false)}>
+              <OrderItemDetailAdmin
+                onClose={() => setOpenView(false)}
+                open={openView}
                 data={initP}
               />
             </BasicModal>
@@ -475,4 +386,4 @@ const ListProduct = () => {
     </div>
   );
 };
-export default ListProduct;
+export default ListOrders;

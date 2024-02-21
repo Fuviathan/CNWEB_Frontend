@@ -1,7 +1,5 @@
 import React from 'react'
 import { TruckIcon, GiftIcon, DevicePhoneMobileIcon, ReceiptPercentIcon, CreditCardIcon } from '@heroicons/react/24/outline'
-import { Gif } from '@mui/icons-material'
-
 
 export default function features() {
   return (

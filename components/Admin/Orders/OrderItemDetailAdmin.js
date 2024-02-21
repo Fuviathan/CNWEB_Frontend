@@ -1,25 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const OrderItemDetail = (props) => {
+const OrderItemDetailAdmin = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstname: props?.item?.shippingInfor.firstname,
-      lastname: props?.item?.shippingInfor.lastname,
-      address: props?.item?.shippingInfor.address,
-      email: props?.item?.shippingInfor.email,
-      methodPayment: props?.item?.shippingInfor.methodPayment,
+      firstname: props?.data?.shippingInfor.firstname,
+      lastname: props?.data?.shippingInfor.lastname,
+      address: props?.data?.shippingInfor.address,
+      email: props?.data?.shippingInfor.email,
+      methodPayment: props?.data?.shippingInfor.methodPayment,
     },
   });
   const onSubmit = (data) => {
     console.log(data);
   };
   return (
-    // <div className='relative z-30 flex items-center justify-center w-screen h-screen bg-black bg-opacity-30'>
     <div id="root">
       <div className="absolute w-3/5 px-10 py-5 mt-4 overflow-y-auto -translate-x-1/2 -translate-y-1/2 bg-white min-h-fit h-3/4 min-w-fit top-1/2 left-1/2 rounded-xl">
         <h3 className="mb-4 text-xl font-semibold tracking-wide">
@@ -80,7 +79,7 @@ const OrderItemDetail = (props) => {
               <div className="w-1/4 mb-1 text-lg font-medium">Số lượng</div>
               <div className="w-1/4 mb-1 text-lg font-medium">Giá tiền</div>
             </div>
-            {props?.item?.orderItems.map((item, index) => {
+            {props?.data?.orderItems.map((item, index) => {
               return (
                 <div key={index} className="flex my-2 ">
                   <div className="flex w-2/4">
@@ -96,7 +95,7 @@ const OrderItemDetail = (props) => {
                     {item.count}
                   </div>
                   <div className="w-1/4 font-medium text-black">
-                    ${item.count * item.price}
+                    {item.count * item.price}
                   </div>
                 </div>
               );
@@ -106,13 +105,13 @@ const OrderItemDetail = (props) => {
                 Tổng số tiền
               </div>
               <div className="text-lg font-medium text-black">
-                ${props?.item?.totalPrice}
+                ${props?.data?.totalPrice}
               </div>
             </div>
           </div>
           <div className="flex flex-row-reverse gap-5 mt-5">
             <button
-              onClick={props.handleClose}
+              onClick={props.onClose}
               type="button"
               className="p-2 px-6 bg-white border-2 text-dark-purple hover:bg-dark-purple hover:text-white border-dark-purple rounded-2xl"
             >
@@ -122,8 +121,7 @@ const OrderItemDetail = (props) => {
         </form>
       </div>
     </div>
-    // </div>
   );
 };
 
-export default OrderItemDetail;
+export default OrderItemDetailAdmin;

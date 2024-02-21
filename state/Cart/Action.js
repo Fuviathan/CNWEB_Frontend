@@ -34,7 +34,6 @@ export const getCart = () => async (dispatch) => {
 
 export const addProductToCart = (req) => async (dispatch) => {
   dispatch({ type: ADD_PRODUCT_TO_CART_REQUEST });
-  console.log(req);
   try {
     const { data } = await api.post("user/cart", req);
     dispatch({ type: ADD_PRODUCT_TO_CART_SUCCESS, payload: data });
@@ -45,7 +44,6 @@ export const addProductToCart = (req) => async (dispatch) => {
 };
 
 export const removeProductFromCart = (productId) => async (dispatch) => {
-  console.log(productId);
   dispatch({ type: DELETE_PRODUCT_FROM_CART_REQUEST });
   try {
     const { data } = await api.delete(`user/delete-product-cart/${productId}`);
@@ -61,12 +59,10 @@ export const removeProductFromCart = (productId) => async (dispatch) => {
 
 export const updateProductInCart = (req) => async (dispatch) => {
   dispatch({ type: UPDATE_PRODUCT_IN_CART_REQUEST });
-  console.log(req.quantity);
   try {
     const { data } = await api.delete(
       `user/update-product-cart/${req.id}/${req.quantity}`
     );
-    console.log(data);
     dispatch({ type: UPDATE_PRODUCT_IN_CART_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPDATE_PRODUCT_IN_CART_FAILURE, payload: error.message });
@@ -87,7 +83,6 @@ export const createOrder = (req) => async (dispatch) => {
     setTimeout(redirect, 2000)
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
-    console.log(error)
   }
 };
 
