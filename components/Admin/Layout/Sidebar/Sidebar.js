@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { If, For } from 'react-haiku'
 import { useRouter } from "next/router";
 import SidebarItem from './SidebarItem';
 import SidebarItemChildren from './SidebarItemChildren';
 
-export default function Sidebar({Menus}) {
+export default function Sidebar({ Menus, Menusub }) {
+    const [auth, setAuth] = useState()
+    let value;
+    if (typeof window !== "undefined") {
+        value = JSON.parse(localStorage.getItem("user")) || null;
+    }
+    useEffect(() => {
+        // Get the value from local storage if it exists
+        setAuth(value);
+    }, []);
+    console.log(auth)
     const [open, setOpen] = useState(true)
     const [openSub, setOpenSub] = useState(false)
     const { asPath } = useRouter()
@@ -33,16 +43,30 @@ export default function Sidebar({Menus}) {
                 </h1>
             </div>
             <ul className="pt-6">
-                <For each={Menus} render={(Menu, index) =>
-                    <>
-                        <If isTrue={!Menu.children}>
-                            <SidebarItem Menu={Menu} open={open} asPath={asPath}/>
-                        </If>
-                        <If isTrue={Menu.children}>
-                            <SidebarItemChildren Menu={Menu} openSub={openSub} asPath={asPath} open={open} setOpenSub={setOpenSub}/>
-                        </If>
-                    </>
-                } />
+                <If isTrue={auth?.role == 'admin'}>
+                    <For each={Menus} render={(Menu, index) =>
+                        <>
+                            <If isTrue={!Menu.children}>
+                                <SidebarItem Menu={Menu} open={open} asPath={asPath} />
+                            </If>
+                            <If isTrue={Menu.children}>
+                                <SidebarItemChildren Menu={Menu} openSub={openSub} asPath={asPath} open={open} setOpenSub={setOpenSub} />
+                            </If>
+                        </>
+                    } />
+                </If>
+                <If isTrue={auth?.role == 'subadmin'}>
+                    <For each={Menusub} render={(Menu, index) =>
+                        <>
+                            <If isTrue={!Menu.children}>
+                                <SidebarItem Menu={Menu} open={open} asPath={asPath} />
+                            </If>
+                            <If isTrue={Menu.children}>
+                                <SidebarItemChildren Menu={Menu} openSub={openSub} asPath={asPath} open={open} setOpenSub={setOpenSub} />
+                            </If>
+                        </>
+                    } />
+                </If>
             </ul>
         </div>
     )

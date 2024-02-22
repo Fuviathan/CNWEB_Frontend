@@ -152,9 +152,9 @@ export default function ProductDetail({ product }) {
                 }}
               >
                 <AddShoppingCart />
-                <div className="font-semibold">Đặt vào giỏ hàng</div>
+                <div className="font-semibold">Thêm vào giỏ hàng</div>
               </Button>
-              <Button
+              {/* <Button
                 className="shadow-lg bg-light-brown hover:cursor-pointer text-orange-gray hover:bg-opacity-80 hover:bg-light-brown"
                 variant="contained"
                 size="large"
@@ -163,7 +163,7 @@ export default function ProductDetail({ product }) {
                 }}
               >
                 <div className="font-semibold">Mua ngay</div>
-              </Button>
+              </Button> */}
             </div>
           </div>
           {/* <div className="grid grid-flow-col col-span-3 mt-2 auto-cols-max gap-x-20 bt-2">

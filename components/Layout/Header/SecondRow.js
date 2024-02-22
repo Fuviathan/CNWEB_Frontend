@@ -11,12 +11,12 @@ export default function SecondRow() {
         >
           Trang chủ
         </Link>
-        <Link
+        <a
           href={"/product"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"
         >
           Mua sắm
-        </Link>
+        </a>
         <Link
           href={"/orderhistory"}
           className="px-5 mb-0 font-medium text-white uppercase hover:cursor-pointer hover:opacity-75"

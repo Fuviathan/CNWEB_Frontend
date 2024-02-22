@@ -22,7 +22,7 @@ export default function AdminHeader() {
         setAuth("");
         localStorage.clear();
         toast.success("Bạn đã đăng xuất");
-        setTimeout(redirect, 2000)
+        setTimeout(redirect, 1000)
     }
     return (
         <div className="flex justify-end w-full px-8 py-2 bg-white shadow">

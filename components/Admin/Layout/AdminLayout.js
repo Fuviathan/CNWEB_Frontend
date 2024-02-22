@@ -16,7 +16,17 @@ export default function AdminLayout(props) {
         { title: "Danh sách danh mục", icon: ClipboardDocumentListIcon, path: '/admin/category' },
       ]
     },
-    { title: "Khách hàng", icon: UserGroupIcon, path: '/admin/customer' },
+    { title: "Quản lý người dùng", icon: UserGroupIcon, path: '/admin/customer' },
+    { title: "Quản lý đơn hàng", icon: ClipboardDocumentListIcon, path: '/admin/orders' },
+  ];
+  const Menusub = [
+    {
+      title: "Thiết lập sản phẩm", icon: AdjustmentsHorizontalIcon, children: [
+        { title: "Danh sách sản phẩm", icon: ClipboardDocumentListIcon, path: '/admin/products' },
+        { title: "Danh sách nhãn hàng", icon: ClipboardDocumentListIcon, path: '/admin/brand' },
+        { title: "Danh sách danh mục", icon: ClipboardDocumentListIcon, path: '/admin/category' },
+      ]
+    },
     { title: "Quản lý đơn hàng", icon: ClipboardDocumentListIcon, path: '/admin/orders' },
   ];
   return (
@@ -25,7 +35,7 @@ export default function AdminLayout(props) {
         <div id='root'>
           <div className="flex">
             <ToastContainer></ToastContainer>
-            <Sidebar Menus={Menus} />
+            <Sidebar Menus={Menus} Menusub={Menusub}/>
             <div className="flex flex-col w-full h-screen bg-gray-200">
               <AdminHeader />
               {props.children}

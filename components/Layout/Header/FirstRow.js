@@ -51,7 +51,7 @@ export default function FirstRow() {
     setAuth("");
     localStorage.clear();
     toast.success("Bạn đã đăng xuất");
-    setTimeout(redirect, 2500)
+    setTimeout(redirect, 1000)
   }
   return (
     <div className="w-full bg-[#ede2d1]">

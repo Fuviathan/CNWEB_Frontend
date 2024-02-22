@@ -70,7 +70,7 @@ export const updateProductInCart = (req) => async (dispatch) => {
 };
 
 function redirect() {
-  window.location.href = '/homePage'
+  window.location.href = '/'
 }
 
 export const createOrder = (req) => async (dispatch) => {
@@ -80,7 +80,7 @@ export const createOrder = (req) => async (dispatch) => {
     const { data } = await api.post(`user/cart/create-order`, req);
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
     toast.success("Tạo đơn hàng thành công!");
-    setTimeout(redirect, 2000)
+    setTimeout(redirect, 1000)
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
   }

@@ -14,6 +14,10 @@ import {
 import { API_BASE_URL } from "@/config/apiConfig";
 import { toast } from "react-toastify";
 
+function redirect() {
+  window.location.href = '/login'
+}
+
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
 
@@ -22,6 +26,7 @@ export const register = (userData) => async (dispatch) => {
     const user = response.data;
     dispatch({ type: REGISTER_SUCCESS, payload: user });
     toast.success("Đăng ký thành công!");
+    setTimeout(redirect, 1000)
   } catch (error) {
     dispatch({ type: REGISTER_FAILURE, payload: error });
     toast.error(error?.response?.data.message);
