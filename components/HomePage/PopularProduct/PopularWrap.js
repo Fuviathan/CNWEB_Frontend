@@ -20,7 +20,7 @@ export default function PopularWrap() {
             spaceBetween={30}
             slidesPerView={5}
             mousewheel={true}
-            className="max-w-[140vh] min-w-[140vh] my-4 h-fit"
+            className="max-w-[1320px] my-4 h-fit"
             modules={[Autoplay, Mousewheel, Pagination]}
             loop={true}
             autoplay={{
