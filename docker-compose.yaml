@@ -10,3 +10,4 @@ services:
       NEXT_PUBLIC_API_BASE_URL: "https://cnweb-be.soooverpowered.com/api/"
     expose:
       - 3000
+    restart: always
